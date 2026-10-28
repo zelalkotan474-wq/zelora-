@@ -3,34 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZELORA - Ücretsiz Dijital Akademi</title>
+<title>ZELORA</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#faf8ff;margin:0;color:#2d1b4e}
-header{background:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0}
-.logo{font-weight:800;font-size:22px} .logo span{color:#7c3aed}
-.banner{background:linear-gradient(90deg,#1f1140,#4a2a9a);color:white;padding:32px 30px;border-radius:18px;max-width:1100px;margin:24px auto;text-align:center}
-.grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:0 20px 40px 20px}
-.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
-.card h3{margin:0 0 8px 0;font-size:15px;color:#4c1d95} .card p{margin:0 0 16px 0;font-size:13px;color:#6b7280}
-.btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content}
-footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:#f8f9fb}
+nav{display:flex;justify-content:space-between;padding:22px 5%;background:#fff;border-bottom:1px solid #eee}
+nav b{font-size:20px;letter-spacing:1px}
+.wrap{padding:40px 5%}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border-left:4px solid #6d28d9;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.card h3{font-size:15px;margin-bottom:6px;color:#111}
+.card p{font-size:13px;color:#6b7280;margin-bottom:12px}
+.card a{background:#ede9fe;color:#5b21b6;padding:6px 14px;border-radius:20px;font-size:12px;text-decoration:none;font-weight:600}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<header><div class="logo">ZEL<span>ORA</span></div><div style="font-size:13px">9 Ders Yayında!</div></header>
-<div class="banner"><h1>🎉 ZELORA TAMAMLANDI!</h1><p>9 dersin tamamı yayında - Ücretsiz Dijital Akademi</p></div>
+<nav><b>ZELORA</b><span style="font-size:13px;color:#6b7280">9 Ders Yayında</span></nav>
+<div class="wrap">
 <div class="grid">
-<div class="card"><div><h3>1. Bilgisayarın Temelleri</h3><p>Donanım, yazılım nedir?</p></div><a class="btn" href="bilgisayar-temelleri.html">Keşfet →</a></div>
-<div class="card"><div><h3>2. İnternet ve Güvenlik</h3><p>Güvende kalmanın yolları.</p></div><a class="btn" href="internet-ve-guvenlik.html">Keşfet →</a></div>
-<div class="card"><div><h3>3. Kodlama Mantığı</h3><p>Algoritma nedir?</p></div><a class="btn" href="kodlama-mantigi.html">Keşfet →</a></div>
-<div class="card"><div><h3>4. Web Geliştirme</h3><p>HTML ve CSS ile site yap.</p></div><a class="btn" href="web-gelistirme.html">Keşfet →</a></div>
-<div class="card"><div><h3>5. Python'a Giriş</h3><p>En popüler dille kodlama.</p></div><a class="btn" href="python-a-giris.html">Keşfet →</a></div>
-<div class="card"><div><h3>6. Siber Güvenlik</h3><p>Hackerlar nasıl çalışır?</p></div><a class="btn" href="siber-guvenlik.html">Keşfet →</a></div>
-<div class="card"><div><h3>7. Yapay Zeka</h3><p>ChatGPT nasıl çalışıyor?</p></div><a class="btn" href="yapay-zeka.html">Keşfet →</a></div>
-<div class="card"><div><h3>8. Veritabanları</h3><p>SQL Lab ile verileri yönet.</p></div><a class="btn" href="veritabanlari.html">Keşfet →</a></div>
-<div class="card"><div><h3>9. Linux</h3><p>Terminal komutlarını öğren.</p></div><a class="btn" href="linux.html">Keşfet →</a></div>
+<div class="card"><h3>1. Bilgisayarın Temelleri</h3><p>Donanım, yazılım nedir?</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>2. İnternet ve Güvenlik</h3><p>Güvende kalmanın yolları.</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>3. Kodlama Mantığı</h3><p>Algoritma nedir?</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>4. Web Geliştirme</h3><p>HTML ve CSS ile site yap.</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>5. Python'a Giriş</h3><p>En popüler dille kodlama.</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>6. Siber Güvenlik</h3><p>Hackerlar nasıl çalışır?</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>7. Yapay Zeka</h3><p>ChatGPT nasıl çalışıyor?</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>8. Veritabanları</h3><p>SQL Lab ile verileri yönet.</p><a href="#">Keşfet →</a></div>
+<div class="card"><h3>9. Linux</h3><p>Terminal komutlarını öğren.</p><a href="#">Keşfet →</a></div>
 </div>
-<footer>© 2026 ZELORA - 9/9 Ders Yayında 🚀 Tebrikler!</footer>
+</div>
 </body>
 </html>
