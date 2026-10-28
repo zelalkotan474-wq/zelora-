@@ -15,6 +15,13 @@ nav b{font-size:20px;letter-spacing:1px}
 .card h3{font-size:15px;margin-bottom:6px;color:#111}
 .card p{font-size:13px;color:#6b7280;margin-bottom:12px}
 .card a{background:#ede9fe;color:#5b21b6;padding:6px 14px;border-radius:20px;font-size:12px;text-decoration:none;font-weight:600}
+/* SERTIFIKA BOLUMU */
+.cert-section{margin-top:60px;background:#fff;border-radius:16px;padding:40px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:2px solid #6d28d9}
+.cert-section h2{font-size:24px;margin-bottom:8px;color:#4c1d95}
+.cert-section p{color:#6b7280;font-size:14px;margin-bottom:20px}
+.cert-section input{padding:12px 18px;border:1px solid #ddd;border-radius:999px;width:280px;max-width:90%;font-size:14px}
+.cert-section button{margin-top:12px;padding:12px 24px;background:#6d28d9;color:#fff;border:none;border-radius:999px;font-weight:700;cursor:pointer;font-size:14px}
+#certPreview{display:none;margin-top:30px;padding:30px;border:2px dashed #6d28d9;background:#faf5ff;border-radius:12px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -32,6 +39,32 @@ nav b{font-size:20px;letter-spacing:1px}
 <div class="card"><h3>8. Veritabanları</h3><p>SQL Lab ile verileri yönet.</p><a href="#">Keşfet →</a></div>
 <div class="card"><h3>9. Linux</h3><p>Terminal komutlarını öğren.</p><a href="#">Keşfet →</a></div>
 </div>
+
+<div class="cert-section">
+<h2>🎓 Bitirme Sertifikanı Al</h2>
+<p>9 dersi tamamladın mı? Adını yaz, sertifikanı oluştur!</p>
+<input type="text" id="nameInput" placeholder="Ad Soyad yaz...">
+<br>
+<button onclick="makeCert()">Sertifika Oluştur</button>
+<div id="certPreview">
+<h3 style="color:#4c1d95; letter-spacing:2px;">ZELORA ACADEMY</h3>
+<p style="margin:20px 0 10px; font-size:18px;">Tebrikler</p>
+<h2 id="certName" style="font-size:28px; margin:10px 0;">AD SOYAD</h2>
+<p>ZELORA'nın 9 derslik eğitim programını başarıyla tamamladığın için verilmiştir.</p>
+<p style="margin-top:20px; font-size:12px; color:#6b7280;">Sertifika No: ZELORA-2024-<span id="rand"></span></p>
 </div>
+</div>
+
+</div>
+<script>
+function makeCert(){
+let n=document.getElementById('nameInput').value;
+if(!n){alert('Lütfen adını yaz!');return;}
+document.getElementById('certName').innerText=n;
+document.getElementById('rand').innerText=Math.floor(Math.random()*9000+1000);
+document.getElementById('certPreview').style.display='block';
+window.scrollTo(0, document.getElementById('certPreview').offsetTop);
+}
+</script>
 </body>
 </html>
