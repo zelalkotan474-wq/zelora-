@@ -3,85 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZELORA - Dersler</title>
+<title>ZELORA - Ücretsiz Dijital Akademi</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#f8f9fb;color:#111}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5%;background:#fff;border-bottom:1px solid #eee}
-nav b{font-size:22px;letter-spacing:1px}
-.wrap{padding:30px 5%}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.top h1{font-size:26px}
-.badge{background:#dbeafe;color:#1e40af;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,0.05);border-left:4px solid #6d28d9;cursor:pointer;transition:0.2s}
-.card:hover{transform:translateY(-3px)}
-.card h3{font-size:15px;margin-bottom:6px}
-.card p{font-size:13px;color:#6b7280;margin-bottom:12px;height:34px}
-.card span{background:#ede9fe;color:#5b21b6;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:99;padding:20px}
-.modal-box{background:#fff;border-radius:16px;padding:30px;max-width:500px;width:100%}
-.modal-box h2{color:#4c1d95;margin-bottom:10px}
-.modal-box p{color:#374151;line-height:1.6;font-size:14px}
-.close{margin-top:20px;background:#6d28d9;color:#fff;border:none;padding:10px 20px;border-radius:999px;cursor:pointer;font-weight:700;width:100%}
-.cert{margin-top:50px;background:#fff;border-radius:16px;padding:40px;text-align:center;border:2px solid #6d28d9}
-.cert input{padding:12px 18px;border:1px solid #ddd;border-radius:999px;width:280px;max-width:90%;margin-top:10px}
-.cert button{margin-top:12px;padding:12px 24px;background:#6d28d9;color:#fff;border:none;border-radius:999px;font-weight:700;cursor:pointer}
-#certView{display:none;margin-top:25px;padding:25px;border:2px dashed #6d28d9;background:#faf5ff;border-radius:12px}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr} .top{flex-direction:column;gap:10px;align-items:flex-start}}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#faf8ff;margin:0;color:#2d1b4e}
+header{background:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0}
+.logo{font-weight:800;font-size:22px} .logo span{color:#7c3aed}
+.banner{background:linear-gradient(90deg,#1f1140,#4a2a9a);color:white;padding:32px 30px;border-radius:18px;max-width:1100px;margin:24px auto;text-align:center}
+.grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:0 20px 40px 20px}
+.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+.card h3{margin:0 0 8px 0;font-size:15px;color:#4c1d95} .card p{margin:0 0 16px 0;font-size:13px;color:#6b7280}
+.btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content}
+footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
 </style>
 </head>
 <body>
-<nav><b>ZELORA</b><div class="badge">9 Ders Yayında</div></nav>
-<div class="wrap">
-<div class="top"><div><h1>Dersler</h1><p style="color:#6b7280;font-size:14px;margin-top:4px">Temel dijital becerilerini 9 derste keşfet</p></div></div>
+<header><div class="logo">ZEL<span>ORA</span></div><div style="font-size:13px">9 Ders Yayında!</div></header>
+<div class="banner"><h1>🎉 ZELORA TAMAMLANDI!</h1><p>9 dersin tamamı yayında - Ücretsiz Dijital Akademi</p></div>
 <div class="grid">
-<div class="card" onclick="openLesson(0)"><h3>1. Bilgisayarın Temelleri</h3><p>Donanım, yazılım ve işletim sistemi</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(1)"><h3>2. İnternet ve Güvenlik</h3><p>Güvenli internet ve şifreler</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(2)"><h3>3. Ofis Programları</h3><p>Word, Excel, PowerPoint</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(3)"><h3>4. Veri ve Dosya Yönetimi</h3><p>Dosyaları düzenleme ve yedekleme</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(4)"><h3>5. Dijital İletişim</h3><p>E-posta ve profesyonel iletişim</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(5)"><h3>6. Siber Güvenlik</h3><p>Hackerlar ve korunma yolları</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(6)"><h3>7. Bulut ve Depolama</h3><p>Google Drive, Dropbox kullanımı</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(7)"><h3>8. Kodlama Giriş</h3><p>Algoritma ve ilk kodların</p><span>Keşfet →</span></div>
-<div class="card" onclick="openLesson(8)"><h3>9. Yapay Zeka ve Gelecek</h3><p>ChatGPT ve geleceğin teknolojisi</p><span>Keşfet →</span></div>
+<div class="card"><div><h3>1. Bilgisayarın Temelleri</h3><p>Donanım, yazılım nedir?</p></div><a class="btn" href="bilgisayar-temelleri.html">Keşfet →</a></div>
+<div class="card"><div><h3>2. İnternet ve Güvenlik</h3><p>Güvende kalmanın yolları.</p></div><a class="btn" href="internet-ve-guvenlik.html">Keşfet →</a></div>
+<div class="card"><div><h3>3. Kodlama Mantığı</h3><p>Algoritma nedir?</p></div><a class="btn" href="kodlama-mantigi.html">Keşfet →</a></div>
+<div class="card"><div><h3>4. Web Geliştirme</h3><p>HTML ve CSS ile site yap.</p></div><a class="btn" href="web-gelistirme.html">Keşfet →</a></div>
+<div class="card"><div><h3>5. Python'a Giriş</h3><p>En popüler dille kodlama.</p></div><a class="btn" href="python-a-giris.html">Keşfet →</a></div>
+<div class="card"><div><h3>6. Siber Güvenlik</h3><p>Hackerlar nasıl çalışır?</p></div><a class="btn" href="siber-guvenlik.html">Keşfet →</a></div>
+<div class="card"><div><h3>7. Yapay Zeka</h3><p>ChatGPT nasıl çalışıyor?</p></div><a class="btn" href="yapay-zeka.html">Keşfet →</a></div>
+<div class="card"><div><h3>8. Veritabanları</h3><p>SQL Lab ile verileri yönet.</p></div><a class="btn" href="veritabanlari.html">Keşfet →</a></div>
+<div class="card"><div><h3>9. Linux</h3><p>Terminal komutlarını öğren.</p></div><a class="btn" href="linux.html">Keşfet →</a></div>
 </div>
-
-<div class="cert">
-<h2>🎓 Bitirme Sertifikanı Al</h2>
-<p style="color:#6b7280;font-size:14px;margin-top:6px">9 dersi tamamladın mı? Adını yaz!</p>
-<input type="text" id="nameInput" placeholder="Ad Soyad yaz..."><br>
-<button onclick="makeCert()">Sertifika Oluştur</button>
-<div id="certView">
-<h3 style="color:#4c1d95;letter-spacing:3px">ZELORA ACADEMY</h3>
-<p style="margin-top:15px">Tebrikler</p>
-<h2 id="certName" style="font-size:26px;margin:10px 0">AD SOYAD</h2>
-<p style="font-size:13px;color:#374151">ZELORA'nın 9 derslik eğitim programını başarıyla tamamladığın için verilmiştir.</p>
-<p style="margin-top:15px;font-size:11px;color:#6b7280">No: ZELORA-2024-<span id="rand"></span> • zeloraacademy.com</p>
-</div>
-</div>
-</div>
-
-<div class="modal" id="modal" onclick="closeLesson()"><div class="modal-box" onclick="event.stopPropagation()">
-<h2 id="mTitle"></h2><p id="mText"></p><button class="close" onclick="closeLesson()">Kapat</button>
-</div></div>
-
-<script>
-let dersler = [
-["1. Bilgisayarın Temelleri","Bilgisayar nedir? Donanım (ekran, klavye, anakart) ve yazılım (Windows, programlar) farkını öğreneceksin. İşletim sistemi nasıl çalışır, ilk derste temelini atıyoruz."],
-["2. İnternet ve Güvenlik","İnternet nasıl çalışır? Güvenli şifre oluşturma, iki adımlı doğrulama, oltalama (phishing) e-postalarını tanıma. Güvenle gezinmeyi öğren."],
-["3. Ofis Programları","Word'de profesyonel belge, Excel'de tablo ve formüller, PowerPoint'te etkili sunum hazırlamayı adım adım görüyoruz."],
-["4. Veri ve Dosya Yönetimi","Dosya uzantıları nedir? Klasörleme sistemi, yedek alma, zip dosyaları. Bilgisayarın dağınık olmayacak."],
-["5. Dijital İletişim","Profesyonel e-posta yazma, Zoom/Google Meet kullanımı, dijitalde doğru iletişim dili."],
-["6. Siber Güvenlik","Hacker türleri, virüs nedir, güvenlik duvarı, VPN kullanımı. Kendi dijital kaleni nasıl kurarsın."],
-["7. Bulut ve Depolama","Google Drive, OneDrive, Dropbox nedir? Dosyalarını her yerden nasıl erişirsin ve paylaşırsın."],
-["8. Kodlama Giriş","Algoritma mantığı, akış şeması, ilk kodun. Python'da print() ve değişkenlerle tanışma. Kodlama gözünü korkutmasın."],
-["9. Yapay Zeka ve Gelecek","ChatGPT nasıl çalışır? Yapay zeka, makine öğrenmesi ve gelecekte seni bekleyen meslekler. ZELORA final dersi."]
-];
-function openLesson(i){document.getElementById('mTitle').innerText=dersler[i][0];document.getElementById('mText').innerText=dersler[i][1];document.getElementById('modal').style.display='flex';}
-function closeLesson(){document.getElementById('modal').style.display='none';}
-function makeCert(){let n=document.getElementById('nameInput').value;if(!n){alert('Lütfen adını yaz fındığım!');return;}document.getElementById('certName').innerText=n;document.getElementById('rand').innerText=Math.floor(Math.random()*9000+1000);document.getElementById('certView').style.display='block';document.getElementById('certView').scrollIntoView({behavior:'smooth'});}
-</script>
+<footer>© 2026 ZELORA - 9/9 Ders Yayında 🚀 Tebrikler!</footer>
 </body>
 </html>
