@@ -1,0 +1,1412 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZELORA Ücretsiz Dijital Akademi - İnternet kullanımı ve güvenlik dersi.">
+  <title>İnternet Kullanımı ve Güvenlik | ZELORA</title>
+
+  <style>
+    :root {
+      --mor: #7653d6;
+      --mor-koyu: #5134a0;
+      --mor-acik: #f0eaff;
+      --arka-plan: #faf9ff;
+      --beyaz: #ffffff;
+      --metin: #28243a;
+      --ikincil: #706b81;
+      --kenar: #e8e2f4;
+      --yesil: #16845b;
+      --kirmizi: #c33c53;
+      --golge: 0 10px 35px rgba(65, 42, 120, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      background: var(--arka-plan);
+      color: var(--metin);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .ust-menu {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--kenar);
+      backdrop-filter: blur(12px);
+    }
+
+    .menu-icerik {
+      max-width: 1180px;
+      margin: auto;
+      padding: 15px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--mor-koyu);
+    }
+
+    .logo span {
+      color: var(--mor);
+    }
+
+    .geri-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--mor-koyu);
+      background: var(--mor-acik);
+      padding: 9px 15px;
+      border-radius: 10px;
+    }
+
+    .hero {
+      padding: 65px 22px 58px;
+      background: linear-gradient(135deg, #f1ebff 0%, #fbfaff 55%, #e9e5ff 100%);
+      border-bottom: 1px solid var(--kenar);
+    }
+
+    .hero-icerik {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .etiket {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 30px;
+      background: #ffffff;
+      color: var(--mor-koyu);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(31px, 5vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      max-width: 800px;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--ikincil);
+      font-size: 17px;
+    }
+
+    .bilgi-satiri {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .bilgi-kutusu {
+      background: #ffffff;
+      border: 1px solid var(--kenar);
+      border-radius: 12px;
+      padding: 10px 15px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sayfa {
+      max-width: 1180px;
+      margin: 35px auto 70px;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
+      align-items: start;
+      gap: 28px;
+    }
+
+    .yan-menu {
+      position: sticky;
+      top: 90px;
+      background: var(--beyaz);
+      border: 1px solid var(--kenar);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--golge);
+    }
+
+    .yan-menu h2 {
+      font-size: 15px;
+      margin-bottom: 13px;
+    }
+
+    .yan-menu a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 9px;
+      color: var(--ikincil);
+      font-size: 13px;
+      margin: 3px 0;
+    }
+
+    .yan-menu a:hover {
+      background: var(--mor-acik);
+      color: var(--mor-koyu);
+    }
+
+    .ders-icerigi {
+      min-width: 0;
+    }
+
+    .ders-bolumu {
+      background: var(--beyaz);
+      border: 1px solid var(--kenar);
+      border-radius: 18px;
+      padding: 29px;
+      margin-bottom: 24px;
+      box-shadow: var(--golge);
+      scroll-margin-top: 90px;
+    }
+
+    .bolum-no {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--mor-koyu);
+      background: var(--mor-acik);
+      padding: 4px 10px;
+      border-radius: 7px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 25px;
+      line-height: 1.35;
+      margin-bottom: 17px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 23px 0 9px;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    .ders-bolumu p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin: 10px 0 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      padding-left: 3px;
+    }
+
+    .vurgu {
+      background: #f6f2ff;
+      border-left: 4px solid var(--mor);
+      border-radius: 0 10px 10px 0;
+      padding: 15px 18px;
+      margin: 18px 0;
+    }
+
+    .uyari {
+      background: #fff5f3;
+      border-left: 4px solid #df705e;
+      border-radius: 0 10px 10px 0;
+      padding: 15px 18px;
+      margin: 18px 0;
+    }
+
+    .kart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .mini-kart {
+      padding: 17px;
+      background: #fbfaff;
+      border: 1px solid var(--kenar);
+      border-radius: 13px;
+    }
+
+    .mini-kart h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .mini-kart p {
+      margin: 0;
+      color: var(--ikincil);
+      font-size: 14px;
+    }
+
+    .video-kapsayici {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #171326;
+      margin: 20px 0 14px;
+    }
+
+    .video-kapsayici iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-link {
+      display: inline-block;
+      color: var(--mor-koyu);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .tablo-kapsayici {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 460px;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid var(--kenar);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--mor-acik);
+      color: var(--mor-koyu);
+    }
+
+    .test-aciklama {
+      color: var(--ikincil);
+      margin-bottom: 22px;
+    }
+
+    .soru {
+      border: 1px solid var(--kenar);
+      padding: 20px;
+      border-radius: 14px;
+      margin: 17px 0;
+    }
+
+    .soru h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+    }
+
+    .secenek {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid #eeeaf5;
+      border-radius: 9px;
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .secenek:hover {
+      background: #faf7ff;
+      border-color: #d5c8f7;
+    }
+
+    .secenek input {
+      margin-top: 5px;
+      accent-color: var(--mor);
+    }
+
+    .dogru-secim {
+      background: #eaf8f1 !important;
+      border-color: #8ac9ad !important;
+    }
+
+    .yanlis-secim {
+      background: #fff0f1 !important;
+      border-color: #e5a0aa !important;
+    }
+
+    .test-butonlari {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .buton {
+      border: 0;
+      border-radius: 11px;
+      padding: 12px 19px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .buton-ana {
+      background: var(--mor);
+      color: #ffffff;
+    }
+
+    .buton-ana:hover {
+      background: var(--mor-koyu);
+    }
+
+    .buton-ikincil {
+      background: var(--mor-acik);
+      color: var(--mor-koyu);
+    }
+
+    .sonuc {
+      display: none;
+      margin-top: 22px;
+      border: 1px solid var(--kenar);
+      background: #fbfaff;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .sonuc h3 {
+      margin-top: 0;
+    }
+
+    .puan {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--mor-koyu);
+      margin: 6px 0;
+    }
+
+    .soru-geribildirim {
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+
+    .basari {
+      color: var(--yesil);
+    }
+
+    .basarisiz {
+      color: var(--kirmizi);
+    }
+
+    .alt-bilgi {
+      background: #f0eaff;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      color: var(--mor-koyu);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--kenar);
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--ikincil);
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .sayfa {
+        grid-template-columns: 1fr;
+      }
+
+      .yan-menu {
+        position: static;
+      }
+
+      .yan-menu nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .menu-icerik {
+        padding: 12px 15px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .geri-link {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+
+      .hero {
+        padding: 42px 18px;
+      }
+
+      .sayfa {
+        padding: 0 13px;
+        margin-top: 20px;
+      }
+
+      .ders-bolumu {
+        padding: 21px 17px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .kart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .yan-menu nav {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="ust-menu">
+    <div class="menu-icerik">
+      <a class="logo" href="index.html">ZEL<span>ORA</span></a>
+      <a class="geri-link" href="index.html">← Eğitimlere Dön</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-icerik">
+      <span class="etiket">ÜCRETSİZ DİJİTAL AKADEMİ</span>
+      <h1>İnternet Kullanımı ve Güvenlik</h1>
+      <p>
+        İnterneti bilinçli kullanmayı, kişisel bilgilerini korumayı,
+        sahte bağlantıları tanımayı ve dijital ortamda karşılaşabileceğin
+        tehlikelere karşı önlem almayı öğren.
+      </p>
+      <div class="bilgi-satiri">
+        <span class="bilgi-kutusu">📘 Konu anlatımı</span>
+        <span class="bilgi-kutusu">▶️ Eğitim videosu</span>
+        <span class="bilgi-kutusu">📝 20 soruluk test</span>
+        <span class="bilgi-kutusu">🎯 100 puan üzerinden değerlendirme</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="sayfa">
+
+    <aside class="yan-menu">
+      <h2>📚 Ders İçeriği</h2>
+      <nav>
+        <a href="#internet-nedir">1. İnternet Nedir?</a>
+        <a href="#internet-kullanimi">2. İnternetin Kullanımı</a>
+        <a href="#kisisel-veriler">3. Kişisel Veriler</a>
+        <a href="#sifre-guvenligi">4. Şifre Güvenliği</a>
+        <a href="#sahte-baglantilar">5. Sahte Bağlantılar</a>
+        <a href="#zararli-yazilimlar">6. Zararlı Yazılımlar</a>
+        <a href="#sosyal-medya">7. Sosyal Medya</a>
+        <a href="#alisveris">8. Güvenli Alışveriş</a>
+        <a href="#ortak-aglar">9. Ortak Wi-Fi Ağları</a>
+        <a href="#video">10. Eğitim Videosu</a>
+        <a href="#test">11. Bilgi Testi</a>
+      </nav>
+    </aside>
+
+    <div class="ders-icerigi">
+
+      <section class="ders-bolumu" id="internet-nedir">
+        <span class="bolum-no">KONU 01</span>
+        <h2>İnternet Nedir?</h2>
+
+        <p>
+          İnternet, dünyanın farklı yerlerindeki bilgisayarların, telefonların,
+          sunucuların ve diğer dijital cihazların birbirleriyle iletişim kurmasını
+          sağlayan küresel bir ağ sistemidir. İnsanlar internet aracılığıyla
+          bilgi arayabilir, mesajlaşabilir, eğitim alabilir, alışveriş yapabilir
+          ve dijital hizmetlerden yararlanabilir.
+        </p>
+
+        <p>
+          İnternet ile web aynı şey değildir. İnternet, cihazların birbirine
+          bağlandığı geniş altyapıdır. Web ise internet üzerinden erişilen
+          web siteleri ve sayfalardan oluşan hizmetlerden biridir. E-posta,
+          çevrim içi oyunlar ve bazı mesajlaşma hizmetleri de interneti kullanır.
+        </p>
+
+        <h3>İnternetin temel kullanım alanları</h3>
+        <div class="kart-grid">
+          <div class="mini-kart">
+            <h3>🎓 Eğitim</h3>
+            <p>Çevrim içi dersler, dijital kitaplar, araştırmalar ve uzaktan eğitim.</p>
+          </div>
+          <div class="mini-kart">
+            <h3>💬 İletişim</h3>
+            <p>E-posta, görüntülü görüşme ve mesajlaşma uygulamaları.</p>
+          </div>
+          <div class="mini-kart">
+            <h3>💼 İş ve üretim</h3>
+            <p>Uzaktan çalışma, dosya paylaşımı ve iş başvuruları.</p>
+          </div>
+          <div class="mini-kart">
+            <h3>🏦 Dijital hizmetler</h3>
+            <p>Bankacılık, kamu hizmetleri, fatura ödeme ve alışveriş işlemleri.</p>
+          </div>
+        </div>
+
+        <h3>Tarayıcı ve arama motoru arasındaki fark</h3>
+        <p>
+          Tarayıcı, web sitelerini açmak için kullanılan programdır.
+          Chrome, Firefox, Edge ve Safari tarayıcı örnekleridir.
+          Arama motoru ise internette bilgi bulmaya yardımcı olur.
+          Google ve Bing arama motorlarına örnektir.
+        </p>
+
+        <div class="vurgu">
+          <strong>Örnek:</strong> Chrome'u açıp bir arama motoruna
+          “bilgisayar kullanımı” yazdığında tarayıcıyı kullanarak
+          arama motorundan yararlanmış olursun.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="internet-kullanimi">
+        <span class="bolum-no">KONU 02</span>
+        <h2>İnterneti Bilinçli ve Doğru Kullanmak</h2>
+
+        <p>
+          İnternet bilgiye hızlı ulaşmayı sağlar ancak internette bulunan
+          her bilgi doğru değildir. Bir içerik paylaşılmadan veya o bilgiye
+          dayanarak karar verilmeden önce kaynağı değerlendirilmelidir.
+        </p>
+
+        <h3>Bilginin güvenilirliği nasıl kontrol edilir?</h3>
+        <ul>
+          <li>İçeriği kimin yayımladığını kontrol et.</li>
+          <li>Yazının yayımlanma veya güncellenme tarihine bak.</li>
+          <li>Önemli bilgileri başka güvenilir kaynaklarla karşılaştır.</li>
+          <li>Başlık çok şaşırtıcı veya korkutucuysa hemen paylaşma.</li>
+          <li>Resmî işlemler için kurumların gerçek internet sitelerini kullan.</li>
+        </ul>
+
+        <h3>İnternette davranış kuralları</h3>
+        <p>
+          Dijital ortamda da gerçek hayattaki gibi saygılı davranmak gerekir.
+          İnsanları küçük düşüren, tehdit eden veya özel bilgilerini izinsiz
+          paylaşan davranışlardan kaçınılmalıdır. Bir içeriğin internette
+          yayımlanabiliyor olması, onu paylaşmanın her zaman doğru veya
+          yasal olduğu anlamına gelmez.
+        </p>
+
+        <p>
+          Ayrıca internette geçirilen zaman dengeli olmalıdır. Ders, iş,
+          uyku, hareket ve sosyal yaşam için yeterli zaman ayırmak sağlıklı
+          bir dijital alışkanlığın parçasıdır.
+        </p>
+      </section>
+
+      <section class="ders-bolumu" id="kisisel-veriler">
+        <span class="bolum-no">KONU 03</span>
+        <h2>Kişisel Veriler ve Gizlilik</h2>
+
+        <p>
+          Kişisel veri, doğrudan veya dolaylı olarak bir kişiyle ilişkilendirilebilen
+          bilgidir. Bazı bilgiler tek başına, bazıları ise başka bilgilerle
+          birleştirildiğinde kişiyi tanımaya veya bulmaya yardımcı olabilir.
+        </p>
+
+        <h3>Kişisel veri örnekleri</h3>
+        <ul>
+          <li>Ad, soyad ve doğum tarihi</li>
+          <li>Telefon numarası ve e-posta adresi</li>
+          <li>Ev adresi ve konum bilgisi</li>
+          <li>Fotoğraf, video ve ses kaydı</li>
+          <li>Kullanıcı adı, hesap bilgileri ve bazı cihaz bilgileri</li>
+          <li>Kimlik numarası ve finansal bilgiler</li>
+        </ul>
+
+        <p>
+          Her kişisel bilgi aynı derecede hassas değildir. Kimlik bilgileri,
+          sağlık bilgileri, banka bilgileri ve hesaplara erişim sağlayan
+          bilgiler özellikle dikkatli korunmalıdır.
+        </p>
+
+        <h3>Gizliliğini korumak için neler yapmalısın?</h3>
+        <ul>
+          <li>Gerekli olmadığı sürece kişisel bilgilerini paylaşma.</li>
+          <li>Tanımadığın kişilere kimlik belgesi veya özel fotoğraf gönderme.</li>
+          <li>Uygulamaların istediği izinleri kontrol et.</li>
+          <li>Konum paylaşımını yalnızca gerektiğinde aç.</li>
+          <li>Hesaplarının gizlilik ayarlarını düzenli olarak incele.</li>
+          <li>Bir başkasının fotoğrafını veya bilgisini izni olmadan yayımlama.</li>
+        </ul>
+
+        <div class="uyari">
+          <strong>Dikkat:</strong> İnternette paylaştığın bir fotoğrafı veya
+          mesajı daha sonra silsen bile başkaları bunu önceden kaydetmiş
+          ya da ekran görüntüsünü almış olabilir.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="sifre-guvenligi">
+        <span class="bolum-no">KONU 04</span>
+        <h2>Güçlü Şifre Oluşturma ve Hesap Güvenliği</h2>
+
+        <p>
+          Şifreler, dijital hesaplarına erişimi korumaya yardımcı olur.
+          Kısa, tahmin edilebilir veya birçok hesapta tekrar kullanılan
+          şifreler hesabının ele geçirilmesi riskini artırabilir.
+        </p>
+
+        <h3>Güçlü bir şifrenin özellikleri</h3>
+        <ul>
+          <li>Yeterince uzun olmalıdır; mümkünse uzun bir parola cümlesi kullan.</li>
+          <li>Kolay tahmin edilen isim, doğum tarihi veya “123456” gibi dizilerden kaçın.</li>
+          <li>Her hesap için farklı bir şifre kullan.</li>
+          <li>Şifrelerini mesajla veya başkalarıyla paylaşma.</li>
+          <li>Güvenilir bir parola yöneticisinden yararlanmayı değerlendir.</li>
+        </ul>
+
+        <p>
+          Büyük ve küçük harfler, sayılar ve semboller kullanmak bazı durumlarda
+          yardımcı olabilir; ancak yalnızca sembol eklemek, kısa ve tahmin
+          edilebilir bir şifreyi güçlü hâle getirmez. Uzunluk ve her hesapta
+          farklı parola kullanmak önemlidir.
+        </p>
+
+        <h3>İki aşamalı doğrulama nedir?</h3>
+        <p>
+          İki aşamalı doğrulama, şifrenin yanında ikinci bir doğrulama
+          adımı kullanır. Bu adım bir doğrulama uygulamasından gelen kod,
+          güvenlik anahtarı veya hizmetin sunduğu başka bir doğrulama
+          yöntemi olabilir. Böylece şifren öğrenilse bile hesabına
+          erişmek zorlaşabilir.
+        </p>
+
+        <div class="vurgu">
+          <strong>Önemli:</strong> Doğrulama kodlarını kimseyle paylaşma.
+          Kendini banka, destek ekibi veya kamu kurumu çalışanı olarak
+          tanıtan biri istese bile kodu vermeden önce dur ve kontrol et.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="sahte-baglantilar">
+        <span class="bolum-no">KONU 05</span>
+        <h2>Sahte Siteler, Oltalama ve İnternet Dolandırıcılığı</h2>
+
+        <p>
+          Oltalama (phishing), kullanıcıları kandırarak şifre, banka bilgisi
+          veya başka özel bilgileri ele geçirmeyi amaçlayan bir dolandırıcılık
+          yöntemidir. Saldırganlar bazen banka, kargo firması, alışveriş sitesi
+          veya kamu kurumu gibi davranabilir.
+        </p>
+
+        <h3>Şüpheli bir mesajın işaretleri</h3>
+        <ul>
+          <li>“Hemen tıkla, yoksa hesabın kapatılacak” gibi baskı kuran ifadeler.</li>
+          <li>Beklemediğin bir ödül, hediye veya para kazandığını söylemesi.</li>
+          <li>Gönderen adresinde yazım hataları veya alışılmadık alan adları bulunması.</li>
+          <li>Şifre, banka bilgisi veya doğrulama kodu istemesi.</li>
+          <li>Beklenmedik bir dosyayı indirmeni veya çalıştırmanı istemesi.</li>
+        </ul>
+
+        <h3>Bir bağlantının güvenliğini nasıl kontrol edersin?</h3>
+        <p>
+          Bağlantının görünen metnine tek başına güvenme. Bilgisayarda,
+          bağlantıya tıklamadan önce imleci üzerine getirerek hedef adresi
+          görebilirsin. Telefonda ise bağlantıya basılı tutmak bazı
+          uygulamalarda adresi önizlemene yardımcı olur.
+        </p>
+
+        <p>
+          Adresin doğru yazıldığını ve beklediğin kuruma ait olduğunu kontrol
+          et. HTTPS ve kilit simgesi bağlantının şifrelenmesine işaret eder;
+          ancak sitenin dürüst veya dolandırıcılık içermeyen bir site olduğunu
+          tek başına kanıtlamaz.
+        </p>
+
+        <div class="uyari">
+          <strong>Güvenli yöntem:</strong> Banka veya kamu işlemi yapacaksan
+          mesajdaki bağlantıya tıklamak yerine kurumun adresini kendin yaz
+          ya da daha önce doğruladığın resmî uygulamayı aç.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="zararli-yazilimlar">
+        <span class="bolum-no">KONU 06</span>
+        <h2>Zararlı Yazılımlar ve Cihaz Güvenliği</h2>
+
+        <p>
+          Zararlı yazılım, bilgisayara veya telefona zarar vermek, bilgileri
+          çalmak ya da cihazı izinsiz kullanmak için tasarlanmış yazılımların
+          genel adıdır.
+        </p>
+
+        <h3>Yaygın zararlı yazılım türleri</h3>
+        <ul>
+          <li><strong>Virüs:</strong> Başka dosyalara veya programlara bulaşarak yayılabilen yazılım türü.</li>
+          <li><strong>Truva atı:</strong> Yararlı bir program gibi görünerek kullanıcıyı kandırabilir.</li>
+          <li><strong>Casus yazılım:</strong> Kullanıcı etkinlikleri veya bilgileri hakkında izinsiz veri toplayabilir.</li>
+          <li><strong>Fidye yazılımı:</strong> Dosyaları kilitleyebilir veya şifreleyerek para talep edebilir.</li>
+          <li><strong>Reklam yazılımı:</strong> İstenmeyen reklamlar gösterebilir; bazı türleri risk oluşturabilir.</li>
+        </ul>
+
+        <h3>Cihazını nasıl koruyabilirsin?</h3>
+        <ul>
+          <li>İşletim sistemini ve uygulamalarını güncel tut.</li>
+          <li>Programları resmî veya güvenilir kaynaklardan indir.</li>
+          <li>Tanımadığın e-posta eklerini açma.</li>
+          <li>Güvenlik yazılımlarını ve cihazın yerleşik koruma özelliklerini kullan.</li>
+          <li>Önemli dosyalarının yedeklerini ayrı bir yerde sakla.</li>
+          <li>İhtiyaç duymadığın uygulamaları ve izinleri gözden geçir.</li>
+        </ul>
+
+        <p>
+          Cihazında beklenmedik pencereler açılması, bilinmeyen uygulamaların
+          belirmesi veya hesaplarında tanımadığın işlemler görülmesi şüphe
+          uyandırabilir. Böyle bir durumda güvenilir bir cihazdan önemli
+          hesaplarının şifrelerini değiştirmen ve cihazı güvenlik taramasından
+          geçirmen gerekebilir.
+        </p>
+      </section>
+
+      <section class="ders-bolumu" id="sosyal-medya">
+        <span class="bolum-no">KONU 07</span>
+        <h2>Sosyal Medya Güvenliği ve Siber Zorbalık</h2>
+
+        <p>
+          Sosyal medya insanlarla iletişim kurmayı ve içerik paylaşmayı
+          kolaylaştırır. Bununla birlikte sahte hesaplar, kimlik taklidi,
+          istenmeyen mesajlar ve kişisel bilgilerin izinsiz yayılması gibi
+          riskler de vardır.
+        </p>
+
+        <h3>Sosyal medya hesabını koruma yolları</h3>
+        <ul>
+          <li>Güçlü ve başka hesaplarda kullanmadığın bir şifre belirle.</li>
+          <li>İki aşamalı doğrulamayı etkinleştir.</li>
+          <li>Hesabını kimlerin görebileceğini gizlilik ayarlarından düzenle.</li>
+          <li>Tanımadığın kişilerin gönderdiği dosya ve bağlantılara dikkat et.</li>
+          <li>Hesabına bağlı cihazları ve oturumları düzenli kontrol et.</li>
+          <li>Başka birinin kimliğini taklit eden hesapları platforma bildir.</li>
+        </ul>
+
+        <h3>Siber zorbalık nedir?</h3>
+        <p>
+          Siber zorbalık; dijital araçlarla bir kişiyi sürekli rahatsız etmek,
+          tehdit etmek, küçük düşürmek veya hedef göstermek gibi davranışları
+          kapsayabilir. Kötü niyetli mesajlar, izinsiz fotoğraf paylaşımı ve
+          çevrim içi gruplarda hedef gösterme buna örnek olabilir.
+        </p>
+
+        <p>
+          Böyle bir durumla karşılaşırsan mesajları ve tarihleri kanıt olarak
+          saklayabilir, hesabı engelleyebilir ve platforma şikâyet edebilirsin.
+          Tehdit veya ciddi bir güvenlik riski varsa güvendiğin bir kişiden
+          destek alıp gerekli resmî mercilere başvurabilirsin. Tehlike
+          altındaysan acil yardım istemeyi geciktirme.
+        </p>
+      </section>
+
+      <section class="ders-bolumu" id="alisveris">
+        <span class="bolum-no">KONU 08</span>
+        <h2>İnternetten Güvenli Alışveriş ve Ödeme</h2>
+
+        <p>
+          İnternetten alışveriş zaman kazandırabilir; ancak sahte mağazalar,
+          taklit ürünler ve ödeme dolandırıcılıklarıyla karşılaşmak mümkündür.
+          Satın alma işlemi yapmadan önce mağazayı ve ödeme yöntemini kontrol et.
+        </p>
+
+        <h3>Alışveriş öncesi kontrol listesi</h3>
+        <ul>
+          <li>Satıcının kim olduğunu, iletişim ve iade bilgilerini incele.</li>
+          <li>Ürün fiyatını ve satıcı hakkındaki değerlendirmeleri karşılaştır.</li>
+          <li>Adresin doğru olduğundan ve sahte bir siteye girmediğinden emin ol.</li>
+          <li>Gereksiz kişisel bilgi isteyen sitelere karşı dikkatli ol.</li>
+          <li>Şüpheli bir ödeme sayfasına kart bilgilerini girme.</li>
+          <li>İşlem bildirimlerini takip et ve hesap hareketlerini kontrol et.</li>
+        </ul>
+
+        <p>
+          Bir satıcı yalnızca havale veya para transferi istiyor, olağan dışı
+          derecede düşük fiyat sunuyor ya da acele karar vermen için baskı
+          yapıyorsa dikkatli ol. Alışveriş platformunun sunduğu güvenli
+          ödeme ve uyuşmazlık çözüm yollarını tercih et.
+        </p>
+
+        <div class="vurgu">
+          <strong>Unutma:</strong> Banka veya kart bilgilerini telefonla,
+          mesajla ya da sosyal medya üzerinden tanımadığın kişilere gönderme.
+          Şüpheli bir işlem fark edersen bankanın resmî iletişim kanalıyla
+          hemen görüş.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="ortak-aglar">
+        <span class="bolum-no">KONU 09</span>
+        <h2>Ortak Wi-Fi Ağları ve Güvenli Bağlantı</h2>
+
+        <p>
+          Kafe, havaalanı, otel veya diğer ortak alanlarda sunulan Wi-Fi
+          ağları kullanışlıdır. Ancak ağın adı tek başına güvenilir olduğunu
+          kanıtlamaz. Bazen saldırganlar gerçek ağa benzeyen sahte ağlar
+          oluşturabilir.
+        </p>
+
+        <h3>Ortak ağ kullanırken dikkat edilecekler</h3>
+        <ul>
+          <li>Ağın doğru adını işletmeden doğrula.</li>
+          <li>Gerekmediğinde otomatik Wi-Fi bağlantısını kapat.</li>
+          <li>Güncel olmayan cihaz ve uygulamalarla hassas işlemler yapmaktan kaçın.</li>
+          <li>Güvenmediğin ağlarda dosya paylaşımını kapalı tut.</li>
+          <li>Hassas işlemler için mümkünse güvenilir mobil bağlantını kullan.</li>
+          <li>İşin bitince ortak ağdan ayrıl ve kayıtlı ağları gözden geçir.</li>
+        </ul>
+
+        <p>
+          HTTPS kullanan bir site ile cihaz arasındaki veri aktarımı
+          şifrelenir; ancak bu durum sahte bir siteyi güvenilir yapmaz.
+          Bu nedenle bağlantının şifreli olmasının yanında, doğru siteye
+          bağlandığından da emin olmalısın.
+        </p>
+      </section>
+
+      <section class="ders-bolumu" id="guvenlik-plani">
+        <span class="bolum-no">KONU 10</span>
+        <h2>Kendine Bir İnternet Güvenliği Alışkanlığı Oluştur</h2>
+
+        <p>
+          İnternet güvenliği tek seferlik bir işlem değildir. Küçük ama
+          düzenli alışkanlıklar, hesaplarını ve cihazlarını korumana yardımcı olur.
+        </p>
+
+        <div class="tablo-kapsayici">
+          <table>
+            <thead>
+              <tr>
+                <th>Ne zaman?</th>
+                <th>Yapılacak işlem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Her gün</td>
+                <td>Şüpheli bağlantılara tıklamamak ve doğrulama kodlarını paylaşmamak.</td>
+              </tr>
+              <tr>
+                <td>Düzenli olarak</td>
+                <td>Telefon ve bilgisayar güncellemelerini kontrol etmek.</td>
+              </tr>
+              <tr>
+                <td>Hesap oluştururken</td>
+                <td>Her hesap için farklı, uzun bir parola kullanmak.</td>
+              </tr>
+              <tr>
+                <td>Hesap ayarlarında</td>
+                <td>İki aşamalı doğrulamayı ve gizlilik seçeneklerini kontrol etmek.</td>
+              </tr>
+              <tr>
+                <td>Önemli dosyalarda</td>
+                <td>Yedek almak ve yedeklerin gerektiğinde açılabildiğini kontrol etmek.</td>
+              </tr>
+              <tr>
+                <td>Şüpheli işlemde</td>
+                <td>Resmî kanaldan destek almak, oturumları kapatmak ve gerekirse şifre değiştirmek.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alt-bilgi">
+          İnternette güvende olmanın en önemli adımı, karşılaştığın her bağlantıya
+          ve mesaja hemen güvenmek yerine önce kontrol etmektir.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="video">
+        <span class="bolum-no">EĞİTİM VİDEOSU</span>
+        <h2>Güvenli İnternet Kullanımı</h2>
+
+        <p>
+          Konuyu pekiştirmek için Millî Eğitim Bakanlığı tarafından yayımlanan
+          güvenli internet kullanımı videosunu izle. İzlerken kişisel bilgileri
+          koruma, şüpheli içerikleri tanıma ve güvenli davranışlar konularına
+          dikkat et.
+        </p>
+
+        <div class="video-kapsayici">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/gNcXskkYrXY"
+            title="Güvenli İnternet Kullanımı - T.C. Millî Eğitim Bakanlığı"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p>
+          Video açılmazsa YouTube üzerinden izleyebilirsin:
+          <a
+            class="video-link"
+            href="https://www.youtube.com/watch?v=gNcXskkYrXY"
+            target="_blank"
+            rel="noopener noreferrer">
+            Videoyu YouTube'da aç ↗
+          </a>
+        </p>
+
+        <div class="vurgu">
+          <strong>Not:</strong> Video üçüncü taraf bir platformdan yüklenir.
+          Tarayıcı, ağ veya platform ayarları nedeniyle gömülü oynatıcı
+          çalışmazsa yukarıdaki bağlantıyı kullan.
+        </div>
+      </section>
+
+      <section class="ders-bolumu" id="test">
+        <span class="bolum-no">KONU SONU DEĞERLENDİRMESİ</span>
+        <h2>İnternet Güvenliği Bilgi Testi</h2>
+        <p class="test-aciklama">
+          Toplam 20 soru bulunur. Her doğru cevap 5 puandır.
+          Tüm soruları cevapladıktan sonra “Testi Değerlendir” düğmesine bas.
+          Yanıtların ve doğru seçenekler sonuç bölümünde gösterilecektir.
+        </p>
+
+        <form id="sinavForm">
+          <div id="soruAlani"></div>
+
+          <div class="test-butonlari">
+            <button class="buton buton-ana" type="submit">
+              Testi Değerlendir
+            </button>
+            <button class="buton buton-ikincil" type="button" id="yenidenBaslat">
+              Testi Yeniden Çöz
+            </button>
+          </div>
+        </form>
+
+        <div class="sonuc" id="sonucAlani" aria-live="polite">
+          <h3>Test Sonucun</h3>
+          <div class="puan" id="puanMetni">0 / 100</div>
+          <p id="sonucMesaji"></p>
+          <p id="dogruYanlis"></p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© <span id="yil"></span> ZELORA | Ücretsiz Dijital Akademi</p>
+    <p>Bilgini geliştir, dijital dünyada bilinçli hareket et.</p>
+  </footer>
+
+  <script>
+    document.getElementById("yil").textContent = new Date().getFullYear();
+
+    const sorular = [
+      {
+        soru: "1. İnternet nedir?",
+        secenekler: [
+          "Yalnızca yazı yazmak için kullanılan bir programdır.",
+          "Dünya çapındaki cihazların iletişim kurmasını sağlayan ağ sistemidir.",
+          "Sadece oyun oynamaya yarayan bir uygulamadır.",
+          "Bir bilgisayar markasıdır."
+        ],
+        dogru: 1,
+        aciklama: "İnternet, dünya çapında cihazların ve ağların iletişim kurmasını sağlar."
+      },
+      {
+        soru: "2. Aşağıdakilerden hangisi web tarayıcısına örnektir?",
+        secenekler: [
+          "Microsoft Excel",
+          "Windows Hesap Makinesi",
+          "Google Chrome",
+          "Paint"
+        ],
+        dogru: 2,
+        aciklama: "Google Chrome bir web tarayıcısıdır."
+      },
+      {
+        soru: "3. Kişisel veri örneği hangisidir?",
+        secenekler: [
+          "Telefon numarası",
+          "Rastgele bir matematik işlemi",
+          "Genel bir hava durumu bilgisi",
+          "Herkese açık bir şekil"
+        ],
+        dogru: 0,
+        aciklama: "Telefon numarası bir kişiyle ilişkilendirilebilen kişisel bilgidir."
+      },
+      {
+        soru: "4. Güçlü şifre oluştururken hangi yaklaşım daha uygundur?",
+        secenekler: [
+          "Her yerde 123456 kullanmak",
+          "Doğum tarihini şifre yapmak",
+          "Uzun ve her hesap için farklı bir parola kullanmak",
+          "Şifreyi herkesle paylaşmak"
+        ],
+        dogru: 2,
+        aciklama: "Uzun ve farklı parolalar, hesap güvenliğini artırmaya yardımcı olur."
+      },
+      {
+        soru: "5. Oltalama (phishing) nedir?",
+        secenekler: [
+          "Bilgisayarın ekranını temizlemek",
+          "Kullanıcıyı kandırarak özel bilgilerini ele geçirmeye çalışmak",
+          "Dosyaları klasörlere ayırmak",
+          "İnternet hızını ölçmek"
+        ],
+        dogru: 1,
+        aciklama: "Oltalama, kullanıcıdan hassas bilgi almak için yapılan kandırma girişimidir."
+      },
+      {
+        soru: "6. Tanımadığın bir kişiden şifre isteyen mesaj gelirse ne yapmalısın?",
+        secenekler: [
+          "Şifreni hemen göndermelisin.",
+          "Mesajı bütün arkadaşlarına iletmelisin.",
+          "Mesajdaki her bağlantıyı açmalısın.",
+          "Bilgini paylaşmamalı ve mesajı doğrulamalısın."
+        ],
+        dogru: 3,
+        aciklama: "Şifreler paylaşılmamalı; mesajın gerçekliği bağımsız bir kanaldan kontrol edilmelidir."
+      },
+      {
+        soru: "7. İki aşamalı doğrulamanın amacı nedir?",
+        secenekler: [
+          "İnternet hızını iki katına çıkarmak",
+          "Hesaba erişimde ek bir doğrulama adımı sağlamak",
+          "Bilgisayarı kapatmak",
+          "Bütün mesajları silmek"
+        ],
+        dogru: 1,
+        aciklama: "İkinci bir doğrulama adımı, hesabın korunmasına yardımcı olur."
+      },
+      {
+        soru: "8. HTTPS ve kilit simgesi neyi tek başına garanti etmez?",
+        secenekler: [
+          "Bağlantının şifrelenmesini",
+          "Verilerin aktarım sırasında korunmasına yardımcı olmayı",
+          "Sitenin kesinlikle dürüst ve dolandırıcılık içermeyen bir site olmasını",
+          "Tarayıcının bir bağlantı kurduğunu"
+        ],
+        dogru: 2,
+        aciklama: "HTTPS şifreli bağlantıyı gösterir; sitenin güvenilirliğini tek başına kanıtlamaz."
+      },
+      {
+        soru: "9. Aşağıdakilerden hangisi zararlı yazılım türüdür?",
+        secenekler: [
+          "Truva atı",
+          "Monitör",
+          "Klavye",
+          "Hoparlör"
+        ],
+        dogru: 0,
+        aciklama: "Truva atı, kendini yararlı bir program gibi gösterebilen zararlı yazılım türüdür."
+      },
+      {
+        soru: "10. Bilinmeyen bir e-posta ekine karşı ne yapmalısın?",
+        secenekler: [
+          "Hemen açmalısın.",
+          "Bütün cihazlarına kopyalamalısın.",
+          "Göndereni ve ekin güvenilirliğini kontrol etmeden açmamalısın.",
+          "Şifreni ekin içine yazmalısın."
+        ],
+        dogru: 2,
+        aciklama: "Bilinmeyen ekler zararlı yazılım içerebilir; açmadan önce doğrulanmalıdır."
+      },
+      {
+        soru: "11. Sosyal medyada en güvenli davranış hangisidir?",
+        secenekler: [
+          "Herkese ev adresini göndermek",
+          "Gizlilik ayarlarını kontrol etmek",
+          "Şifreyi profilinde paylaşmak",
+          "Her arkadaşlık isteğini kabul etmek"
+        ],
+        dogru: 1,
+        aciklama: "Gizlilik ayarlarını kontrol etmek, kişisel bilgilerin kimler tarafından görülebildiğini yönetmene yardımcı olur."
+      },
+      {
+        soru: "12. Siber zorbalıkla karşılaşırsan ne yapabilirsin?",
+        secenekler: [
+          "Daha fazla kişiyi hedef göstermek",
+          "Şifrelerini zorba kişiye göndermek",
+          "Kanıtları saklamak, kişiyi engellemek ve şikâyet etmek",
+          "Herkesin kişisel bilgilerini paylaşmak"
+        ],
+        dogru: 2,
+        aciklama: "Kanıtları saklamak, engellemek ve bildirmek uygun adımlardır."
+      },
+      {
+        soru: "13. İnternetteki bir bilginin doğruluğunu nasıl kontrol edersin?",
+        secenekler: [
+          "Yalnızca başlığına bakarak",
+          "Kaynağı ve tarihi inceleyip başka güvenilir kaynaklarla karşılaştırarak",
+          "Çok paylaşıldıysa kesin doğrudur diyerek",
+          "İlk gördüğün mesaja inanarak"
+        ],
+        dogru: 1,
+        aciklama: "Kaynak, tarih ve bağımsız doğrulama bilgiyi değerlendirmeye yardımcı olur."
+      },
+      {
+        soru: "14. Ortak Wi-Fi ağı kullanırken hangi davranış daha güvenlidir?",
+        secenekler: [
+          "Ağın adını kontrol etmek ve hassas işlemlerde dikkatli olmak",
+          "Her ağa otomatik bağlanmak",
+          "Dosya paylaşımını herkese açmak",
+          "Bütün güvenlik güncellemelerini kapatmak"
+        ],
+        dogru: 0,
+        aciklama: "Ağın gerçekliğini kontrol etmek ve hassas işlemlerde dikkatli olmak önemlidir."
+      },
+      {
+        soru: "15. Programları nereden indirmek daha güvenlidir?",
+        secenekler: [
+          "Herhangi bir açılır reklamdan",
+          "Tanımadığın kişilerin gönderdiği dosyalardan",
+          "Resmî veya güvenilir kaynaklardan",
+          "Kaynağı belli olmayan bağlantılardan"
+        ],
+        dogru: 2,
+        aciklama: "Resmî ve güvenilir kaynaklar zararlı yazılım riskini azaltmaya yardımcı olur."
+      },
+      {
+        soru: "16. Şüpheli bir banka mesajındaki bağlantı için ne yapmalısın?",
+        secenekler: [
+          "Hemen tıklayıp şifreni girmek",
+          "Bağlantıya bütün arkadaşlarını yönlendirmek",
+          "Mesajı kontrol etmeden ödeme yapmak",
+          "Bankanın resmî uygulamasını veya doğruladığın adresini kullanmak"
+        ],
+        dogru: 3,
+        aciklama: "Bankaya mesaj bağlantısı yerine resmî uygulama veya doğrulanmış adres üzerinden ulaş."
+      },
+      {
+        soru: "17. Dosyaların yedeğini almak neden önemlidir?",
+        secenekler: [
+          "Ekranı daha parlak yapmak için",
+          "Dosyalar kaybolur veya zarar görürse kurtarmaya yardımcı olmak için",
+          "İnterneti tamamen kapatmak için",
+          "Şifreleri herkese göstermek için"
+        ],
+        dogru: 1,
+        aciklama: "Yedekler, dosyalar kaybolduğunda veya fidye yazılımı gibi olaylarda kurtarmaya yardımcı olabilir."
+      },
+      {
+        soru: "18. Uygulama izinlerini neden kontrol etmelisin?",
+        secenekler: [
+          "Uygulamanın gereksiz yere konum, mikrofon veya başka verilere erişmesini önlemek için",
+          "Bütün şifrelerini herkese göstermek için",
+          "Telefonu internete kapatmak için",
+          "Her uygulamanın bütün verilere erişmesini sağlamak için"
+        ],
+        dogru: 0,
+        aciklama: "İzinleri kontrol etmek, uygulamaların erişebildiği bilgileri sınırlamaya yardımcı olur."
+      },
+      {
+        soru: "19. Doğrulama kodunu isteyen tanımadığın kişiye ne yapmalısın?",
+        secenekler: [
+          "Kodu hemen göndermelisin.",
+          "Kodu sosyal medyada yayımlamalısın.",
+          "Kodu paylaşmamalı ve isteği doğrulamalısın.",
+          "Kodu bütün hesaplarında kullanmalısın."
+        ],
+        dogru: 2,
+        aciklama: "Doğrulama kodları hesabına erişim sağlayabilir; başkalarıyla paylaşılmamalıdır."
+      },
+      {
+        soru: "20. İnternet güvenliği için en doğru yaklaşım hangisidir?",
+        secenekler: [
+          "Her bağlantıya güvenmek",
+          "Şifreleri tekrar tekrar kullanmak",
+          "Güncellemeleri hiç yapmamak",
+          "Dikkatli olmak, hesapları korumak ve cihazları güncel tutmak"
+        ],
+        dogru: 3,
+        aciklama: "Güvenli internet kullanımı birden fazla alışkanlığın birlikte uygulanmasıyla güçlenir."
+      }
+    ];
+
+    const soruAlani = document.getElementById("soruAlani");
+    const sonucAlani = document.getElementById("sonucAlani");
+    const sinavForm = document.getElementById("sinavForm");
+
+    function sorulariGoster() {
+      soruAlani.innerHTML = sorular.map((soru, index) => {
+        const secenekler = soru.secenekler.map((secenek, secenekIndex) => `
+          <label class="secenek" data-soru="${index}" data-secenek="${secenekIndex}">
+            <input
+              type="radio"
+              name="soru${index}"
+              value="${secenekIndex}"
+              aria-label="${secenek}">
+            <span>${String.fromCharCode(65 + secenekIndex)}. ${secenek}</span>
+          </label>
+        `).join("");
+
+        return `
+          <div class="soru" id="soru-kart-${index}">
+            <h3>${soru.soru}</h3>
+            <div>${secenekler}</div>
+            <div class="soru-geribildirim" id="geri-${index}"></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    sorulariGoster();
+
+    sinavForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let dogruSayisi = 0;
+      let cevaplanan = 0;
+
+      sorular.forEach((soru, index) => {
+        const secilen = document.querySelector(
+          `input[name="soru${index}"]:checked`
+        );
+
+        const secenekEtiketleri = document.querySelectorAll(
+          `.secenek[data-soru="${index}"]`
+        );
+
+        const geriBildirim = document.getElementById(`geri-${index}`);
+
+        secenekEtiketleri.forEach((etiket) => {
+          etiket.classList.remove("dogru-secim", "yanlis-secim");
+        });
+
+        const dogruEtiket = document.querySelector(
+          `.secenek[data-soru="${index}"][data-secenek="${soru.dogru}"]`
+        );
+
+        dogruEtiket.classList.add("dogru-secim");
+
+        if (secilen) {
+          cevaplanan++;
+
+          const secilenIndex = Number(secilen.value);
+
+          if (secilenIndex === soru.dogru) {
+            dogruSayisi++;
+            geriBildirim.textContent = "Doğru cevap! " + soru.aciklama;
+            geriBildirim.className = "soru-geribildirim basari";
+          } else {
+            const yanlisEtiket = document.querySelector(
+              `.secenek[data-soru="${index}"][data-secenek="${secilenIndex}"]`
+            );
+            yanlisEtiket.classList.add("yanlis-secim");
+
+            geriBildirim.textContent =
+              "Yanlış cevap. Doğru seçenek: " +
+              String.fromCharCode(65 + soru.dogru) + ". " +
+              soru.secenekler[soru.dogru] + " — " + soru.aciklama;
+
+            geriBildirim.className = "soru-geribildirim basarisiz";
+          }
+        } else {
+          geriBildirim.textContent =
+            "Bu soru cevaplanmadı. Doğru cevap: " +
+            String.fromCharCode(65 + soru.dogru) + ". " +
+            soru.secenekler[soru.dogru] + " — " + soru.aciklama;
+
+          geriBildirim.className = "soru-geribildirim basarisiz";
+        }
+      });
+
+      const puan = dogruSayisi * 5;
+
+      document.getElementById("puanMetni").textContent =
+        puan + " / 100";
+
+      document.getElementById("dogruYanlis").textContent =
+        "Doğru: " + dogruSayisi +
+        " · Yanlış: " + (cevaplanan - dogruSayisi) +
+        " · Boş: " + (sorular.length - cevaplanan);
+
+      let mesaj;
+
+      if (puan >= 90) {
+        mesaj = "Harika! İnternet güvenliği konusunda çok iyi bir sonuç elde ettin.";
+      } else if (puan >= 70) {
+        mesaj = "Güzel sonuç! Birkaç konuyu daha tekrar ederek bilgini güçlendirebilirsin.";
+      } else if (puan >= 50) {
+        mesaj = "İyi bir başlangıç. Yanlış cevapların açıklamalarını inceleyip dersi tekrar oku.";
+      } else {
+        mesaj = "Konu anlatımını yeniden gözden geçirmeni ve testi tekrar çözmeni öneririz.";
+      }
+
+      document.getElementById("sonucMesaji").textContent = mesaj;
+      sonucAlani.style.display = "block";
+      sonucAlani.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("yenidenBaslat").addEventListener("click", function() {
+      sinavForm.reset();
+
+      document.querySelectorAll(".secenek").forEach((etiket) => {
+        etiket.classList.remove("dogru-secim", "yanlis-secim");
+      });
+
+      document.querySelectorAll(".soru-geribildirim").forEach((geriBildirim) => {
+        geriBildirim.textContent = "";
+        geriBildirim.className = "soru-geribildirim";
+      });
+
+      sonucAlani.style.display = "none";
+
+      document.getElementById("test").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  </script>
+
+</body>
+</html>

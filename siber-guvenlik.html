@@ -1,0 +1,1629 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17112d">
+<title>Siber Güvenlik | ZELORA Ücretsiz Dijital Akademi</title>
+
+<style>
+:root {
+  --bg: #f7f5fc;
+  --card: #ffffff;
+  --purple: #7045c5;
+  --purple-dark: #281747;
+  --purple-light: #eee7ff;
+  --text: #28243a;
+  --muted: #777287;
+  --border: #e8e2f2;
+  --green: #16845b;
+  --red: #c43f52;
+  --shadow: 0 8px 28px rgba(44, 26, 80, .07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+a {
+  color: var(--purple);
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(23, 17, 45, .97);
+  color: white;
+  padding: 14px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 3px 18px #00000020;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #c7adff;
+}
+
+.topbar small {
+  color: #d8cbed;
+  font-size: 12px;
+}
+
+.layout {
+  width: min(1450px, 94%);
+  margin: 28px auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sidebar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 16px;
+  position: sticky;
+  top: 85px;
+  box-shadow: var(--shadow);
+}
+
+.sidebar h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--purple-dark);
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: #5b536c;
+  padding: 8px 10px;
+  margin: 3px 0;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sidebar a:hover {
+  background: var(--purple-light);
+  color: var(--purple);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #eae5f3;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #7045c5, #b69aff);
+  transition: width .3s;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+main {
+  min-width: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #201438, #50318b 70%, #7653bc);
+  color: white;
+  border-radius: 22px;
+  padding: 38px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+
+.hero .eyebrow {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #ffffff1c;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.25;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #e6dcf9;
+  max-width: 750px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero-stats span {
+  padding: 7px 12px;
+  border: 1px solid #ffffff40;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.lesson-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+
+.lesson-card h2 {
+  font-size: 23px;
+  color: var(--purple-dark);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.lesson-card h3 {
+  font-size: 17px;
+  color: #49316f;
+  margin: 22px 0 8px;
+}
+
+.lesson-card p {
+  margin: 10px 0;
+}
+
+.lesson-card ul,
+.lesson-card ol {
+  padding-left: 23px;
+  margin: 10px 0 16px;
+}
+
+.lesson-card li {
+  margin: 6px 0;
+}
+
+.callout {
+  background: #f1ecff;
+  border-left: 4px solid var(--purple);
+  padding: 15px 17px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+
+.warning {
+  background: #fff4e5;
+  border-left: 4px solid #e99a26;
+  padding: 15px 17px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+
+.success {
+  background: #eaf8f1;
+  border-left: 4px solid var(--green);
+  padding: 15px 17px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 18px;
+}
+
+.term {
+  background: #faf8ff;
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.term strong {
+  display: block;
+  color: var(--purple);
+  margin-bottom: 5px;
+}
+
+.action-btn,
+.primary-btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 9px;
+  padding: 10px 16px;
+  background: var(--purple);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.action-btn:hover,
+.primary-btn:hover {
+  background: #5833a4;
+}
+
+.secondary-btn {
+  background: #eee8f9;
+  color: var(--purple-dark);
+}
+
+.reveal {
+  display: none;
+  background: #f5f1ff;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #17112d;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 18px 0;
+}
+
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-fallback {
+  background: #f5f1ff;
+  border-radius: 12px;
+  padding: 17px;
+}
+
+.checklist label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.checklist input {
+  margin-top: 7px;
+  accent-color: var(--purple);
+  flex-shrink: 0;
+}
+
+.checklist label:has(input:checked) span {
+  color: var(--green);
+  text-decoration: line-through;
+}
+
+.password-demo {
+  background: #faf8ff;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.password-demo input {
+  width: 100%;
+  border: 1px solid #d7cde8;
+  border-radius: 9px;
+  padding: 12px;
+  margin: 10px 0;
+  outline-color: var(--purple);
+}
+
+#passwordResult {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.quiz-question {
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 18px;
+  margin: 16px 0;
+}
+
+.quiz-question h3 {
+  margin: 0 0 12px;
+  color: var(--purple-dark);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid #e8e2f2;
+  padding: 10px 12px;
+  border-radius: 9px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #f7f3ff;
+}
+
+.option input {
+  margin-top: 6px;
+  accent-color: var(--purple);
+  flex-shrink: 0;
+}
+
+.option.correct {
+  background: #eaf8f1;
+  border-color: #70c8a1;
+}
+
+.option.incorrect {
+  background: #fff0f1;
+  border-color: #e4a0a8;
+}
+
+.explanation {
+  display: none;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 10px;
+  background: #f7f5fc;
+  border-radius: 8px;
+}
+
+#quizResult {
+  display: none;
+  padding: 20px;
+  margin-top: 18px;
+  border-radius: 12px;
+  background: #f1ecff;
+}
+
+.footer {
+  text-align: center;
+  padding: 28px 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .sidebar nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px;
+  }
+
+  .hero {
+    padding: 27px;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    padding: 12px 4%;
+  }
+
+  .topbar small {
+    display: none;
+  }
+
+  .layout {
+    width: 94%;
+    margin: 15px auto;
+  }
+
+  .lesson-card {
+    padding: 19px;
+  }
+
+  .lesson-card h2 {
+    font-size: 20px;
+  }
+
+  .term-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar nav {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="logo">ZEL<span>ORA</span></a>
+  <small>Ücretsiz Dijital Akademi</small>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h3>🛡️ Siber Güvenlik</h3>
+    <p class="progress-text">Ders ilerlemen</p>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p class="progress-text" id="progressText">0 / 10 konu görüntülendi</p>
+
+    <nav>
+      <a href="#baslangic">📘 Derse Başlangıç</a>
+      <a href="#temeller">1. Güvenlik Temelleri</a>
+      <a href="#tehditler">2. Siber Tehditler</a>
+      <a href="#parola">3. Şifre ve MFA</a>
+      <a href="#oltalama">4. Oltalama Saldırıları</a>
+      <a href="#web">5. İnternet ve Web</a>
+      <a href="#wifi">6. Wi-Fi Güvenliği</a>
+      <a href="#gizlilik">7. Kişisel Veriler</a>
+      <a href="#cihaz">8. Cihaz Güvenliği</a>
+      <a href="#olay">9. Saldırı Sonrası</a>
+      <a href="#uygulama">🧪 Uygulamalar</a>
+      <a href="#video">🎬 Video Eğitimi</a>
+      <a href="#test">📝 20 Soruluk Test</a>
+    </nav>
+
+    <a class="back-link" href="index.html">← Ana sayfaya dön</a>
+  </aside>
+
+  <main>
+
+    <section class="hero" id="baslangic" data-section>
+      <span class="eyebrow">ZELORA • ÜCRETSİZ EĞİTİM</span>
+      <h1>Siber Güvenlik</h1>
+      <p>
+        Dijital dünyada hesaplarını, cihazlarını ve kişisel bilgilerini
+        korumayı öğren. Tehditleri tanı, güvenli alışkanlıklar geliştir
+        ve öğrendiklerini uygulamalarla pekiştir.
+      </p>
+      <div class="hero-stats">
+        <span>📚 9 konu başlığı</span>
+        <span>🎬 Video destekli</span>
+        <span>🧪 Uygulamalı öğrenme</span>
+        <span>📝 20 soruluk sınav</span>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="temeller" data-section>
+      <h2>1. Siber Güvenliğin Temelleri</h2>
+
+      <h3>Siber güvenlik nedir?</h3>
+      <p>
+        Siber güvenlik; bilgisayarları, telefonları, ağları, yazılımları
+        ve dijital verileri yetkisiz erişimden, kötü amaçlı yazılımlardan,
+        veri kaybından ve dijital saldırılardan korumaya yönelik yöntemlerin
+        bütünüdür.
+      </p>
+      <p>
+        İnternet bankacılığı kullanmak, e-posta göndermek, sosyal medyada
+        paylaşım yapmak ve çevrim içi alışveriş yapmak dijital güvenlikle
+        doğrudan ilişkilidir. Güvenlik yalnızca uzmanların işi değildir.
+        Her kullanıcı doğru alışkanlıklarla riskleri azaltabilir.
+      </p>
+
+      <h3>Siber güvenliğin üç temel ilkesi</h3>
+      <div class="term-grid">
+        <div class="term">
+          <strong>🔒 Gizlilik</strong>
+          Bilgilere yalnızca yetkili kişilerin erişebilmesini sağlar.
+          Örneğin, banka hesabının şifresini başkalarıyla paylaşmamak.
+        </div>
+        <div class="term">
+          <strong>✅ Bütünlük</strong>
+          Verilerin izinsiz değiştirilmemesini ve doğruluğunun korunmasını
+          hedefler. Örneğin, bir belgenin habersiz değiştirilmemesi.
+        </div>
+        <div class="term">
+          <strong>⚡ Erişilebilirlik</strong>
+          Yetkili kişilerin ihtiyaç duyduklarında sistem ve verilere
+          erişebilmesini ifade eder. Yedekleme bu açıdan önemlidir.
+        </div>
+        <div class="term">
+          <strong>🧩 Kimlik doğrulama</strong>
+          Bir kişinin veya sistemin gerçekten iddia ettiği kişi ya da
+          sistem olduğunu doğrulama işlemidir.
+        </div>
+      </div>
+
+      <h3>Tehdit, güvenlik açığı ve risk arasındaki fark</h3>
+      <ul>
+        <li><strong>Tehdit:</strong> Zarara neden olabilecek durum veya eylem.</li>
+        <li><strong>Güvenlik açığı:</strong> Sistemde bulunan zayıflık.</li>
+        <li><strong>Risk:</strong> Bir tehdidin açıktan yararlanıp zarar oluşturma ihtimali ve etkisi.</li>
+        <li><strong>Önlem:</strong> Olasılığı veya zararı azaltmak için yapılan çalışma.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Örnek:</strong> Güncellenmeyen bir yazılım güvenlik açığı
+        içerebilir. Bu açıktan yararlanabilecek saldırgan tehdittir.
+        Açığın kullanılması sonucu oluşabilecek zarar ise risk kapsamındadır.
+      </div>
+
+      <h3>Siber güvenlik neden önemlidir?</h3>
+      <p>
+        Kişisel fotoğraflar, kimlik bilgileri, banka hesapları, iş belgeleri
+        ve müşteri kayıtları dijital ortamlarda tutulabilir. Bu verilerin
+        kaybolması, çalınması veya değiştirilmesi maddi ve kişisel zararlara
+        yol açabilir. Güvenlik önlemleri bu ihtimalleri azaltır.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="tehditler" data-section>
+      <h2>2. Yaygın Siber Tehditler</h2>
+
+      <h3>Virüs ve kötü amaçlı yazılımlar</h3>
+      <p>
+        Kötü amaçlı yazılım, cihazlara veya verilere zarar vermek, bilgi
+        toplamak ya da izinsiz işlem yapmak amacıyla hazırlanan yazılımların
+        genel adıdır. Her zararlı yazılım aynı şekilde çalışmaz.
+      </p>
+
+      <div class="term-grid">
+        <div class="term">
+          <strong>Virüs</strong>
+          Kendini başka dosyalara ekleyerek yayılabilen zararlı yazılım türüdür.
+        </div>
+        <div class="term">
+          <strong>Truva atı</strong>
+          Yararlı veya normal bir program gibi görünerek kullanıcıyı
+          kandırmaya çalışabilir.
+        </div>
+        <div class="term">
+          <strong>Casus yazılım</strong>
+          Kullanıcı veya cihaz hakkında gizlice bilgi toplamayı amaçlar.
+        </div>
+        <div class="term">
+          <strong>Fidye yazılımı</strong>
+          Dosyaları şifreleyerek erişimi engelleyebilir ve para talep edebilir.
+        </div>
+        <div class="term">
+          <strong>Solucan</strong>
+          Bazı türleri başka dosyalara eklenmeden ağlar üzerinden yayılabilir.
+        </div>
+        <div class="term">
+          <strong>Botnet</strong>
+          Saldırganın uzaktan kontrol ettiği, zararlı faaliyetlerde
+          kullanılabilen cihazlar topluluğudur.
+        </div>
+      </div>
+
+      <h3>Hizmet engelleme saldırıları</h3>
+      <p>
+        DoS veya DDoS saldırıları, bir hizmeti yoğun isteklerle veya başka
+        yöntemlerle kullanılamaz hâle getirmeye çalışır. DDoS saldırılarında
+        çoğunlukla çok sayıda kaynaktan gelen trafik kullanılır.
+      </p>
+
+      <h3>Sosyal mühendislik</h3>
+      <p>
+        Sosyal mühendislikte saldırgan teknik bir açığı kullanmak yerine
+        insanları korku, merak, acele veya güven duygusuyla yönlendirmeye
+        çalışabilir. Örneğin kendisini teknik destek çalışanı gibi tanıtıp
+        şifre istemesi bu yönteme örnektir.
+      </p>
+
+      <h3>Tehditlerden korunmak için</h3>
+      <ul>
+        <li>Yazılımları resmî kaynaklardan indir.</li>
+        <li>İşletim sistemini ve uygulamaları güncel tut.</li>
+        <li>Beklenmeyen dosyaları ve bağlantıları dikkatle incele.</li>
+        <li>Önemli verilerin yedeklerini ayrı bir yerde sakla.</li>
+        <li>Güvenlik uyarılarını görmezden gelme.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-card" id="parola" data-section>
+      <h2>3. Güçlü Şifreler ve Çok Faktörlü Kimlik Doğrulama</h2>
+
+      <h3>Güçlü parola nasıl oluşturulur?</h3>
+      <p>
+        Parola, bir hesaba erişimi koruyan önemli bir güvenlik katmanıdır.
+        Uzun, benzersiz ve tahmin edilmesi zor parolalar tercih edilmelidir.
+        Bir hesapta kullandığın parolayı diğer hesaplarda tekrar kullanmak,
+        bir hesabın ele geçirilmesinin diğerlerini de riske atmasına neden olabilir.
+      </p>
+
+      <ul>
+        <li>Uzun bir parola veya parola cümlesi kullan.</li>
+        <li>Her hesap için farklı parola belirle.</li>
+        <li>Ad, doğum tarihi veya kolay tahmin edilen ifadelerden kaçın.</li>
+        <li>Parolalarını güvenilir bir parola yöneticisinde saklamayı değerlendir.</li>
+        <li>Parolanı e-posta veya mesaj yoluyla başkalarına gönderme.</li>
+      </ul>
+
+      <h3>Çok faktörlü kimlik doğrulama (MFA)</h3>
+      <p>
+        MFA, hesaba girişte birden fazla doğrulama faktörünün kullanılmasını
+        gerektirir. Örneğin parola yanında bir kimlik doğrulama uygulamasından
+        onay vermek. Böylece parolan ele geçirilse bile hesabın korunmasına
+        yardımcı olan ek bir katman bulunur.
+      </p>
+      <p>
+        Mümkün olduğunda kimlik doğrulama uygulaması, geçiş anahtarı veya
+        güvenlik anahtarı gibi güçlü seçenekleri değerlendir. SMS ile
+        doğrulama da hiç ek doğrulama olmamasından daha iyi olabilir;
+        ancak her durumda en güçlü seçenek değildir.
+      </p>
+
+      <div class="warning">
+        <strong>Önemli:</strong> Hiçbir zaman gerçek banka, e-posta veya
+        sosyal medya parolanı aşağıdaki örnek alana yazma. Bu alan yalnızca
+        yerel bir eğitim gösterimidir ve gerçek parolanın güvenli olup
+        olmadığını kesin olarak belirleyemez.
+      </div>
+
+      <div class="password-demo">
+        <h3>🧪 Örnek parola kontrolü</h3>
+        <p>Gerçek bir parola yerine örnek bir ifade dene.</p>
+        <input type="text" id="demoPassword" placeholder="Örnek bir parola yaz">
+        <button class="action-btn" id="checkPassword">Örneği değerlendir</button>
+        <p id="passwordResult" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="oltalama" data-section>
+      <h2>4. Oltalama (Phishing) Saldırıları</h2>
+
+      <p>
+        Oltalama, saldırganın kendisini banka, kargo şirketi, kamu kurumu,
+        iş arkadaşı veya tanınan bir marka gibi göstererek kişiyi kandırmaya
+        çalışmasıdır. Amaç parola, doğrulama kodu veya kişisel bilgi elde
+        etmek ya da zararlı bir bağlantıya tıklatmaktır.
+      </p>
+
+      <h3>Şüpheli mesajların belirtileri</h3>
+      <ul>
+        <li>Hesabının hemen kapatılacağı gibi korkutucu ifadeler.</li>
+        <li>Ödül kazandığını söyleyip beklenmedik şekilde ödeme istemesi.</li>
+        <li>Gönderen adresinin kurumun gerçek adresiyle uyuşmaması.</li>
+        <li>Yazım hataları veya alışılmadık bir anlatım.</li>
+        <li>Şifre, kart bilgisi ya da tek kullanımlık kod talep edilmesi.</li>
+        <li>Gerçek adresinden farklı veya yanıltıcı bir internet bağlantısı.</li>
+      </ul>
+
+      <h3>Bağlantıyı kontrol etme</h3>
+      <p>
+        Bir bağlantının üzerinde görünen metin, açacağı adresle aynı
+        olmayabilir. Adresi dikkatle kontrol et; yalnızca kilit simgesine
+        veya HTTPS kullanımına bakarak bir sitenin güvenilir olduğuna karar
+        verme. Sahte siteler de HTTPS kullanabilir.
+      </p>
+
+      <div class="callout">
+        <strong>Güvenli davranış:</strong> Mesajdaki bağlantıya tıklamak yerine
+        ilgili kurumun adresini kendin tarayıcıya yaz veya resmî uygulamasını
+        aç. Şüpheli bir mesajı kurumun doğrulanmış iletişim kanalından kontrol et.
+      </div>
+
+      <h3>Senaryo: Kargo mesajı</h3>
+      <p>
+        Telefonuna “Paketiniz teslim edilemedi. Yeniden teslimat için hemen
+        ödeme yapın” mesajı geliyor. Mesajda tanımadığın bir bağlantı var.
+      </p>
+      <button class="action-btn secondary-btn" data-reveal="scenario1">
+        Bu durumda ne yapmalısın?
+      </button>
+      <div class="reveal" id="scenario1">
+        Bağlantıyı açma ve ödeme bilgilerini girme. Kargo şirketinin resmî
+        uygulamasından veya kendi yazdığın resmî internet adresinden gönderi
+        durumunu kontrol et. Mesajı şüpheli olarak bildir.
+      </div>
+
+      <h3>Senaryo: Doğrulama kodu talebi</h3>
+      <p>
+        Kendini müşteri temsilcisi olarak tanıtan biri seni arıyor ve
+        telefonuna gelen doğrulama kodunu istiyor.
+      </p>
+      <button class="action-btn secondary-btn" data-reveal="scenario2">
+        Doğru yaklaşım nedir?
+      </button>
+      <div class="reveal" id="scenario2">
+        Tek kullanımlık doğrulama kodunu paylaşma. Görüşmeyi sonlandır ve
+        kuruma ait resmî numarayı kendin bularak iletişime geç.
+      </div>
+    </section>
+
+    <section class="lesson-card" id="web" data-section>
+      <h2>5. İnternet ve Web Güvenliği</h2>
+
+      <h3>HTTPS ne anlama gelir?</h3>
+      <p>
+        HTTPS, tarayıcı ile web sitesi arasındaki iletişimin TLS kullanılarak
+        şifrelenmesini sağlar. Bu, aktarım sırasında bilgilerin korunmasına
+        yardımcı olur. Ancak sitenin mutlaka dürüst veya güvenilir olduğu
+        anlamına gelmez.
+      </p>
+
+      <h3>Tarayıcı güvenliği</h3>
+      <ul>
+        <li>Tarayıcını ve eklentilerini güncel tut.</li>
+        <li>Gereksiz veya güvenmediğin eklentileri kaldır.</li>
+        <li>Tanımadığın sitelere gereksiz izinler verme.</li>
+        <li>Ortak bilgisayarlarda hesabından çıkış yap.</li>
+        <li>Tarayıcıya kaydedilen parolaları korumak için cihaz güvenliğini kullan.</li>
+        <li>İndirdiğin dosyaların kaynağını ve türünü kontrol et.</li>
+      </ul>
+
+      <h3>Çerezler ve oturumlar</h3>
+      <p>
+        Çerezler, web sitelerinin tercihleri hatırlaması veya oturumları
+        yönetmesi gibi amaçlarla kullanılabilir. Bazı çerezler takip amacıyla
+        da kullanılır. Ortak cihazlarda oturumunu kapatmak ve gereksiz
+        kayıtları temizlemek gizliliğini korumaya yardımcı olur.
+      </p>
+
+      <h3>İndirmeler ve dosya ekleri</h3>
+      <p>
+        Dosya adı, simgesi veya gönderenin görünen adı tek başına güvenlik
+        kanıtı değildir. Beklenmeyen ekleri açma. İş veya okul ortamında
+        şüpheli dosyaları kurumunun güvenlik ekibine bildir.
+      </p>
+
+      <div class="warning">
+        <strong>Unutma:</strong> Bir web sitesinin profesyonel görünmesi,
+        tanıdık bir logosu olması veya arama sonuçlarında üst sıralarda
+        çıkması onun güvenilirliğini tek başına kanıtlamaz.
+      </div>
+    </section>
+
+    <section class="lesson-card" id="wifi" data-section>
+      <h2>6. Wi-Fi ve Ağ Güvenliği</h2>
+
+      <h3>Ev ağını koruma</h3>
+      <ul>
+        <li>Modemin yönetici parolasını değiştir ve benzersiz bir parola kullan.</li>
+        <li>Wi-Fi için WPA2-AES veya varsa daha yeni WPA3 gibi güvenli seçenekleri kullan.</li>
+        <li>Modemin yazılımını üretici güncellemeleriyle güncel tut.</li>
+        <li>WPS gibi kullanmadığın özellikleri kapatmayı değerlendir.</li>
+        <li>Misafir cihazları için ayrı bir misafir ağı kullanmayı düşün.</li>
+      </ul>
+
+      <h3>Halka açık Wi-Fi</h3>
+      <p>
+        Kafe, otel, havaalanı gibi yerlerde sunulan ağların gerçek işletmeye
+        ait olduğundan emin olmaya çalış. Aynı isimde sahte ağlar kurulabilir.
+        Hassas işlemlerde kendi mobil bağlantını tercih etmek daha güvenli
+        olabilir.
+      </p>
+      <p>
+        HTTPS kullanımı önemli bir korumadır; ancak sahte giriş sayfalarını,
+        zararlı yazılımları veya cihazındaki tüm riskleri ortadan kaldırmaz.
+        VPN, bağlantının belirli bölümlerini korumaya yardımcı olabilir ama
+        seni her türlü dolandırıcılıktan korumaz.
+      </p>
+
+      <h3>Bluetooth ve yakın bağlantılar</h3>
+      <p>
+        Bluetooth'u kullanmadığında kapatmayı düşünebilirsin. Bilinmeyen
+        eşleştirme isteklerini kabul etme ve cihazını gereksiz yere
+        keşfedilebilir durumda bırakma.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="gizlilik" data-section>
+      <h2>7. Kişisel Veriler ve Dijital Gizlilik</h2>
+
+      <p>
+        Kişisel veri, bir kişiyi doğrudan veya dolaylı olarak belirlemeye
+        yarayabilecek bilgidir. Ad, telefon numarası, kimlik bilgileri,
+        konum verileri ve bazı çevrim içi tanımlayıcılar kişisel veri
+        kapsamına girebilir.
+      </p>
+
+      <h3>Paylaşmadan önce düşün</h3>
+      <ul>
+        <li>Kimlik belgesi fotoğraflarını herkese açık ortamlarda paylaşma.</li>
+        <li>Canlı konumunu yalnızca gerektiğinde ve güvendiğin kişilerle paylaş.</li>
+        <li>Fotoğrafların konum veya başka metadata içerebileceğini unutma.</li>
+        <li>Sosyal medya hesaplarının gizlilik ayarlarını düzenli kontrol et.</li>
+        <li>Uygulamaların kamera, mikrofon ve konum izinlerini gözden geçir.</li>
+        <li>Tanımadığın kişilerle doğrulama kodlarını veya hesap bilgilerini paylaşma.</li>
+      </ul>
+
+      <h3>Veri minimizasyonu</h3>
+      <p>
+        Bir hizmete yalnızca gerekli bilgileri vermek, olası veri sızıntılarının
+        etkisini azaltmaya yardımcı olur. Bir uygulama gereksiz izinler
+        istiyorsa bu izinlerin neden gerekli olduğunu sorgula.
+      </p>
+
+      <h3>Yedekleme neden gereklidir?</h3>
+      <p>
+        Cihaz kaybolabilir, bozulabilir veya fidye yazılımı nedeniyle
+        dosyalar erişilemez hâle gelebilir. Önemli dosyaları düzenli olarak
+        yedekle. Yedeklerin gerçekten geri yüklenebildiğini zaman zaman test et
+        ve mümkünse bir kopyayı ana cihazdan ayrı tut.
+      </p>
+
+      <div class="callout">
+        <strong>3-2-1 yedekleme yaklaşımı:</strong> Verinin üç kopyasını
+        bulundurmak, iki farklı depolama türü kullanmak ve bir kopyayı
+        farklı bir yerde tutmak yaygın bir yedekleme önerisidir.
+      </div>
+    </section>
+
+    <section class="lesson-card" id="cihaz" data-section>
+      <h2>8. Bilgisayar ve Telefon Güvenliği</h2>
+
+      <h3>Güncellemeler</h3>
+      <p>
+        İşletim sistemi, tarayıcı ve uygulama güncellemeleri yeni özelliklerin
+        yanında güvenlik açıklarını kapatan düzeltmeler de içerebilir.
+        Otomatik güncellemeleri mümkün olduğunda açık tut.
+      </p>
+
+      <h3>Antivirüs ve güvenlik duvarı</h3>
+      <p>
+        Güvenlik yazılımları zararlı faaliyetleri tespit etmeye ve bazı
+        saldırıları engellemeye yardımcı olur. Güvenlik duvarı, ağ trafiğini
+        belirlenen kurallara göre kontrol eder. Bu araçlar faydalıdır ancak
+        güncelleme, yedekleme ve dikkatli kullanımın yerini tutmaz.
+      </p>
+
+      <h3>Ekran kilidi ve cihaz şifreleme</h3>
+      <p>
+        Telefonunda ve bilgisayarında güçlü bir ekran kilidi kullan.
+        Cihaz destekliyorsa disk şifrelemesini etkinleştir. Kurtarma
+        anahtarlarını güvenli bir yerde sakla; aksi durumda verilere
+        erişimini kaybedebilirsin.
+      </p>
+
+      <h3>USB bellek güvenliği</h3>
+      <p>
+        Kaynağını bilmediğin USB bellekleri bilgisayarına takma. Kurum
+        bilgisayarlarında onaylanmamış harici depolama aygıtlarını kullanma.
+        Şüpheli dosyaları açmadan önce güvenlik kontrollerini uygula.
+      </p>
+
+      <h3>Uzaktan erişim</h3>
+      <p>
+        Uzaktan erişim programlarını yalnızca gerektiğinde kullan, güçlü
+        kimlik doğrulama etkinleştir ve tanımadığın kişilere cihazının
+        kontrolünü verme. “Sorunu çözmek için bu uygulamayı kur” diyen
+        beklenmedik aramalara karşı dikkatli ol.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="olay" data-section>
+      <h2>9. Bir Güvenlik Olayı Yaşarsan Ne Yapmalısın?</h2>
+
+      <p>
+        Şüpheli bir bağlantıya tıkladıysan, hesabının ele geçirildiğini
+        düşünüyorsan veya zararlı yazılımdan şüpheleniyorsan hızlı ama
+        dikkatli davranmak önemlidir.
+      </p>
+
+      <ol>
+        <li>
+          <strong>Durumu değerlendir:</strong> Şüpheli işlemleri sürdürme;
+          bilgi girişi yapmayı ve şüpheli dosyaları açmayı bırak.
+        </li>
+        <li>
+          <strong>Güvenliği sağla:</strong> Zararlı yazılımdan şüphelenilen
+          cihazı ağdan ayırmak gerekebilir. Kurum cihazlarında kurumunun
+          güvenlik prosedürünü izle.
+        </li>
+        <li>
+          <strong>Temiz bir cihaz kullan:</strong> Hesap şifrelerini,
+          güvenli olduğundan emin olduğun başka bir cihazdan değiştir.
+        </li>
+        <li>
+          <strong>Oturumları kontrol et:</strong> Bilinmeyen oturumları
+          kapat, kurtarma bilgilerini ve çok faktörlü doğrulamayı gözden geçir.
+        </li>
+        <li>
+          <strong>Finansal hesapları koru:</strong> Banka bilgilerini
+          paylaştıysan bankanın resmî kanalından hemen iletişime geç.
+        </li>
+        <li>
+          <strong>Kanıtları sakla:</strong> Mesajları, tarihleri ve işlem
+          kayıtlarını güvenli biçimde muhafaza et; gerekli durumlarda bildir.
+        </li>
+        <li>
+          <strong>Destek al:</strong> İş yerindeysen bilgi işlem veya
+          güvenlik ekibine, gerekiyorsa ilgili kurumlara başvur.
+        </li>
+      </ol>
+
+      <div class="warning">
+        <strong>Önemli:</strong> Her durumda cihazı hemen kapatmak veya
+        dosyaları silmek doğru olmayabilir. Özellikle iş yeri veya ciddi
+        olaylarda, delillerin korunması için uzman yönlendirmesini izle.
+      </div>
+
+      <h3>Güvenlik kariyerine giriş</h3>
+      <p>
+        Siber güvenlik alanında ilerlemek isteyenler ağ temelleri, işletim
+        sistemleri, Linux, web teknolojileri, kimlik doğrulama ve günlük
+        kayıtlarının incelenmesi gibi konularla başlayabilir. Sonrasında
+        savunma, güvenlik izleme, olay müdahalesi, uygulama güvenliği ve
+        güvenlik testleri gibi alanlara yönelinebilir.
+      </p>
+      <p>
+        Uygulama yaparken yalnızca kendi sistemlerini veya açıkça izin
+        verilmiş eğitim laboratuvarlarını kullan. Başkasının hesabına,
+        ağına veya sistemine izinsiz erişmeye çalışma.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="uygulama" data-section>
+      <h2>🧪 Uygulama Alanı</h2>
+
+      <h3>Güvenlik kontrol listem</h3>
+      <p>
+        Aşağıdaki maddeleri kontrol et. İşaretlemelerin bu tarayıcıda
+        kaydedilir; başka cihazlarda otomatik olarak görünmeyebilir.
+      </p>
+
+      <div class="checklist" id="securityChecklist">
+        <label>
+          <input type="checkbox" data-check="1">
+          <span>Önemli hesaplarımda birbirinden farklı parolalar kullanıyorum.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="2">
+          <span>Önemli hesaplarımda çok faktörlü kimlik doğrulamayı açtım.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="3">
+          <span>Telefonum ve bilgisayarım güncel.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="4">
+          <span>Önemli dosyalarımın yedeği var.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="5">
+          <span>Uygulamaların izinlerini ve gizlilik ayarlarını kontrol ettim.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="6">
+          <span>Şüpheli bağlantılara tıklamadan önce adresi kontrol ediyorum.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="7">
+          <span>Halka açık bilgisayarlarda hesaplarımdan çıkış yapıyorum.</span>
+        </label>
+        <label>
+          <input type="checkbox" data-check="8">
+          <span>Telefonumda ve bilgisayarımda ekran kilidi kullanıyorum.</span>
+        </label>
+      </div>
+
+      <p id="checklistResult" class="progress-text" aria-live="polite">
+        0 / 8 güvenlik adımı tamamlandı.
+      </p>
+
+      <h3>Kendini test et: Oltalama mı, gerçek mi?</h3>
+      <p>
+        Bir mesaj, banka hesabında şüpheli işlem olduğunu söylüyor ve
+        bir bağlantıdan giriş yapmanı istiyor. En güvenli ilk adım nedir?
+      </p>
+      <button class="action-btn" data-reveal="practiceAnswer">
+        Cevabı göster
+      </button>
+      <div class="reveal" id="practiceAnswer">
+        Mesajdaki bağlantıya tıklamak yerine bankanın resmî uygulamasını
+        aç veya adresini kendin yaz. Şüpheli işlemi resmî kanaldan kontrol et.
+      </div>
+    </section>
+
+    <section class="lesson-card" id="video" data-section>
+      <h2>🎬 Siber Güvenlik Video Eğitimi</h2>
+      <p>
+        Konuyu pekiştirmek için aşağıdaki video eğitimini izleyebilirsin.
+        Video alanı YouTube üzerinden yüklenir.
+      </p>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/F2RKK9cSFNU"
+          title="Yeni başlayanlar için siber güvenlik eğitimi"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="video-fallback">
+        <strong>Video görünmüyor veya oynatılmıyor mu?</strong>
+        <p>
+          Bazı videolar gömülü oynatmaya izin vermez. İnternet bağlantısı,
+          tarayıcı ayarları veya içerik kısıtlamaları da oynatmayı etkileyebilir.
+          Videoyu doğrudan YouTube'da açmayı dene.
+        </p>
+        <a
+          class="primary-btn"
+          href="https://www.youtube.com/watch?v=F2RKK9cSFNU"
+          target="_blank"
+          rel="noopener noreferrer">
+          ▶ Videoyu YouTube'da aç
+        </a>
+        <p>
+          <a
+            href="https://www.youtube.com/results?search_query=yeni+baslayanlar+icin+siber+guvenlik+egitimi"
+            target="_blank"
+            rel="noopener noreferrer">
+            Alternatif siber güvenlik eğitimleri ara
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="test" data-section>
+      <h2>📝 Siber Güvenlik Bilgi Testi</h2>
+      <p>
+        Toplam 20 soru vardır. Her doğru cevap 5 puandır.
+        Testi tamamladığında puanını ve cevap açıklamalarını görebilirsin.
+      </p>
+
+      <div id="quiz"></div>
+
+      <button class="primary-btn" id="submitQuiz">Testi değerlendir</button>
+      <button class="action-btn secondary-btn" id="resetQuiz">Testi yeniden çöz</button>
+
+      <div id="quizResult" aria-live="polite"></div>
+    </section>
+
+    <div class="footer">
+      <p><strong>ZELORA</strong> — Ücretsiz Dijital Akademi</p>
+      <p>Bilgiyi öğren, uygula ve güvenli dijital alışkanlıklar geliştir.</p>
+      <a href="index.html">Ana sayfaya dön</a>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ==============================
+   KONU İLERLEMESİ
+============================== */
+
+const sections = [...document.querySelectorAll("[data-section]")];
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const viewedSections = new Set();
+
+function updateProgress() {
+  const count = viewedSections.size;
+  const percent = Math.round(count / sections.length * 100);
+
+  progressFill.style.width = percent + "%";
+  progressText.textContent =
+    count + " / " + sections.length + " konu görüntülendi";
+}
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        viewedSections.add(entry.target.id);
+        updateProgress();
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(section => observer.observe(section));
+} else {
+  sections.forEach(section => viewedSections.add(section.id));
+  updateProgress();
+}
+
+/* ==============================
+   AÇILIR AÇIKLAMALAR
+============================== */
+
+document.querySelectorAll("[data-reveal]").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = document.getElementById(button.dataset.reveal);
+    if (!target) return;
+
+    const isOpen = target.style.display === "block";
+    target.style.display = isOpen ? "none" : "block";
+    button.textContent = isOpen ? "Cevabı göster" : "Cevabı gizle";
+  });
+});
+
+/* ==============================
+   ÖRNEK PAROLA DEĞERLENDİRİCİ
+   Gerçek parolaları girmeyin.
+============================== */
+
+document.getElementById("checkPassword").addEventListener("click", () => {
+  const value = document.getElementById("demoPassword").value;
+  const result = document.getElementById("passwordResult");
+
+  if (!value) {
+    result.textContent = "Lütfen bir örnek ifade yaz.";
+    result.style.color = "#c43f52";
+    return;
+  }
+
+  let score = 0;
+  const tips = [];
+
+  if (value.length >= 14) score++;
+  else tips.push("Daha uzun bir ifade dene.");
+
+  if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+  else tips.push("Büyük ve küçük harf çeşitliliğini değerlendir.");
+
+  if (/[0-9]/.test(value)) score++;
+  else tips.push("Rakam içeren bir örnek deneyebilirsin.");
+
+  if (/[^A-Za-z0-9]/.test(value)) score++;
+  else tips.push("Özel karakter kullanmayı değerlendirebilirsin.");
+
+  if (/(12345|password|qwerty|abcdef|11111)/i.test(value)) {
+    score = 0;
+    tips.push("Yaygın ve tahmin edilmesi kolay örüntülerden kaçın.");
+  }
+
+  if (score >= 4) {
+    result.textContent =
+      "Bu basit kontrolün ölçütlerinin çoğunu karşılıyor. Bu, güvenli olduğunun garantisi değildir.";
+    result.style.color = "#16845b";
+  } else {
+    result.textContent =
+      "Bu örneği geliştirebilirsin. " + tips.join(" ");
+    result.style.color = "#c43f52";
+  }
+});
+
+/* ==============================
+   GÜVENLİK KONTROL LİSTESİ
+============================== */
+
+const checklist = [...document.querySelectorAll("[data-check]")];
+const checklistResult = document.getElementById("checklistResult");
+
+function updateChecklist() {
+  const completed = checklist.filter(item => item.checked).length;
+
+  checklistResult.textContent =
+    completed + " / " + checklist.length + " güvenlik adımı tamamlandı.";
+
+  checklistResult.style.color =
+    completed === checklist.length ? "#16845b" : "#777287";
+
+  try {
+    localStorage.setItem(
+      "zeloraSiberChecklist",
+      JSON.stringify(checklist.map(item => item.checked))
+    );
+  } catch (error) {
+    // Tarayıcı yerel kayıtları engelliyorsa sayfa yine çalışır.
+  }
+}
+
+try {
+  const savedChecklist = JSON.parse(
+    localStorage.getItem("zeloraSiberChecklist") || "null"
+  );
+
+  if (Array.isArray(savedChecklist)) {
+    checklist.forEach((item, index) => {
+      item.checked = savedChecklist[index] === true;
+    });
+  }
+} catch (error) {
+  // Kayıt okunamazsa boş listeyle devam edilir.
+}
+
+checklist.forEach(item => {
+  item.addEventListener("change", updateChecklist);
+});
+
+updateChecklist();
+
+/* ==============================
+   20 SORULUK TEST
+============================== */
+
+const questions = [
+  {
+    q: "Siber güvenliğin temel amaçlarından biri hangisidir?",
+    a: [
+      "Bilgisayarları yalnızca hızlandırmak",
+      "Dijital sistemleri ve verileri korumak",
+      "Bütün dosyaları internete açmak",
+      "Her internet sitesini engellemek"
+    ],
+    correct: 1,
+    why: "Siber güvenlik, sistemleri, ağları ve verileri tehditlere karşı korumayı amaçlar."
+  },
+  {
+    q: "Bilgilere yalnızca yetkili kişilerin erişmesini ifade eden ilke hangisidir?",
+    a: ["Gizlilik", "Erişilebilirlik", "Bütünlük", "Sıkıştırma"],
+    correct: 0,
+    why: "Gizlilik, bilginin yetkisiz kişiler tarafından görülmesini önlemeyi hedefler."
+  },
+  {
+    q: "Bir sistemdeki güvenlik açığı nedir?",
+    a: [
+      "Her zaman zararsız olan bir dosya",
+      "İnternet bağlantısının adı",
+      "Saldırıda kullanılabilecek bir zayıflık",
+      "Güçlü bir parola türü"
+    ],
+    correct: 2,
+    why: "Güvenlik açığı, bir tehdidin yararlanabileceği zayıflıktır."
+  },
+  {
+    q: "Fidye yazılımı ne yapabilir?",
+    a: [
+      "Monitörün parlaklığını artırır",
+      "Dosyaları şifreleyip para talep edebilir",
+      "İnternet hızını her zaman artırır",
+      "Sadece yazıcıları çalıştırır"
+    ],
+    correct: 1,
+    why: "Fidye yazılımları dosyalara erişimi engelleyebilir ve fidye talep edebilir."
+  },
+  {
+    q: "Oltalama saldırısının temel amacı genellikle nedir?",
+    a: [
+      "Ekran çözünürlüğünü değiştirmek",
+      "Bilgisayarı temizlemek",
+      "İnternet hızını ölçmek",
+      "Kullanıcıyı kandırarak bilgi veya erişim elde etmek"
+    ],
+    correct: 3,
+    why: "Oltalama, sahte mesaj veya sitelerle kullanıcıları kandırmaya çalışır."
+  },
+  {
+    q: "Beklenmedik bir mesaj, hesabının kapanacağını ve hemen bağlantıya tıklamanı söylüyor. Ne yapmalısın?",
+    a: [
+      "Panikleyip hemen tıklamalısın",
+      "Mesajı tüm arkadaşlarına göndermelisin",
+      "Kurumun resmî kanalından durumu kontrol etmelisin",
+      "Şifreni mesajı gönderen kişiye vermelisin"
+    ],
+    correct: 2,
+    why: "Acele ettiren mesajlara güvenmek yerine resmî kanallardan kontrol yapılmalıdır."
+  },
+  {
+    q: "Güçlü parola alışkanlığı hangisidir?",
+    a: [
+      "Her hesapta aynı parolayı kullanmak",
+      "Uzun ve benzersiz parola kullanmak",
+      "Parolayı herkesle paylaşmak",
+      "Yalnızca doğum tarihini kullanmak"
+    ],
+    correct: 1,
+    why: "Uzun ve benzersiz parolalar, hesapların topluca ele geçirilmesi riskini azaltır."
+  },
+  {
+    q: "Çok faktörlü kimlik doğrulama (MFA) ne sağlar?",
+    a: [
+      "Ek bir kimlik doğrulama katmanı",
+      "Her dosyayı otomatik silme",
+      "İnternet bağlantısını kapatma",
+      "Parolayı herkese gösterme"
+    ],
+    correct: 0,
+    why: "MFA, parolanın yanında başka bir doğrulama faktörü isteyebilir."
+  },
+  {
+    q: "HTTPS hakkında doğru ifade hangisidir?",
+    a: [
+      "Her HTTPS sitesi kesinlikle dürüsttür",
+      "Virüsleri her zaman temizler",
+      "Bütün çevrim içi dolandırıcılıkları önler",
+      "Tarayıcı ile site arasındaki bağlantıyı şifrelemeye yardımcı olur"
+    ],
+    correct: 3,
+    why: "HTTPS aktarımı korur ancak sitenin güvenilirliğini tek başına kanıtlamaz."
+  },
+  {
+    q: "Halka açık Wi-Fi kullanırken daha güvenli davranış hangisidir?",
+    a: [
+      "Her bağlantıya güvenmek",
+      "Bütün parolaları başkalarıyla paylaşmak",
+      "Ağı doğrulamak ve hassas işlemlerde dikkatli olmak",
+      "Güvenlik uyarılarını kapatmak"
+    ],
+    correct: 2,
+    why: "Sahte ağlar olabilir; ağın kaynağını doğrulamak önemlidir."
+  },
+  {
+    q: "Kötü amaçlı yazılım nedir?",
+    a: [
+      "Sadece bir belge türü",
+      "Zarar vermek veya izinsiz işlem yapmak için hazırlanmış yazılım",
+      "Her zaman güvenilir bir güncelleme",
+      "Bilgisayar kasasının bir parçası"
+    ],
+    correct: 1,
+    why: "Kötü amaçlı yazılım; bilgi çalma, zarar verme veya sistemi kontrol etme amacı taşıyabilir."
+  },
+  {
+    q: "Yazılım güncellemeleri neden önemlidir?",
+    a: [
+      "Bazı güvenlik açıklarını kapatabildikleri için",
+      "Her dosyayı internete yükledikleri için",
+      "Parolaları herkese gösterdikleri için",
+      "Bilgisayarı her zaman bozdukları için"
+    ],
+    correct: 0,
+    why: "Güncellemeler yeni özelliklerin yanında güvenlik düzeltmeleri de içerir."
+  },
+  {
+    q: "Sosyal mühendislik hangi yönteme dayanır?",
+    a: [
+      "Yalnızca donanım değiştirmeye",
+      "Ekran boyutunu ölçmeye",
+      "İnsanları psikolojik yöntemlerle kandırmaya",
+      "Dosya boyutunu küçültmeye"
+    ],
+    correct: 2,
+    why: "Sosyal mühendislik, insan güveni ve duygularından yararlanabilir."
+  },
+  {
+    q: "Yedekleme neden yapılır?",
+    a: [
+      "Bütün parolaları herkese dağıtmak için",
+      "Dosyaları kurtarabilmek için",
+      "Güncellemeleri durdurmak için",
+      "Ekranı kilitlemek için"
+    ],
+    correct: 1,
+    why: "Yedekler, veri kaybı veya erişim sorunu durumunda dosyaların geri alınmasına yardımcı olur."
+  },
+  {
+    q: "Tanımadığın bir kişinin gönderdiği doğrulama kodu talebine nasıl yaklaşmalısın?",
+    a: [
+      "Kodu hemen göndermelisin",
+      "Kodu sosyal medyada paylaşmalısın",
+      "Bütün hesaplarını kapatmalısın",
+      "Kodu paylaşmamalı ve talebi resmî kanaldan doğrulamalısın"
+    ],
+    correct: 3,
+    why: "Tek kullanımlık kodlar hesabına erişim sağlamak için kullanılabilir."
+  },
+  {
+    q: "Güvenlik duvarının temel işlevi hangisidir?",
+    a: [
+      "Ağ trafiğini belirlenen kurallara göre kontrol etmek",
+      "Monitörü temizlemek",
+      "Bütün parolaları hatırlamak",
+      "Dosyaları otomatik yazdırmak"
+    ],
+    correct: 0,
+    why: "Güvenlik duvarı, kurallara göre ağ trafiğine izin verir veya trafiği engeller."
+  },
+  {
+    q: "Bir uygulama gereksiz yere konum izni istiyorsa ne yapmak uygundur?",
+    a: [
+      "Her zaman izin vermek",
+      "Uygulamayı tüm arkadaşlarına göndermek",
+      "İznin gerekli olup olmadığını değerlendirip ayarları kontrol etmek",
+      "Telefonun şifresini uygulamaya vermek"
+    ],
+    correct: 2,
+    why: "Uygulamalara yalnızca ihtiyaç duydukları izinleri vermek gizliliği korumaya yardımcı olur."
+  },
+  {
+    q: "Bir cihazın fidye yazılımından etkilendiğinden şüpheleniyorsan ne yapmalısın?",
+    a: [
+      "Rastgele programlar indirip çalıştırmalısın",
+      "Duruma uygun şekilde cihazı ağdan ayırmalı ve güvenilir destek almalısın",
+      "Bütün parolalarını aynı yapmalısın",
+      "Dosyaların yedeğini kontrol etmeden her şeyi silmelisin"
+    ],
+    correct: 1,
+    why: "Şüpheli cihazı ağdan ayırmak yayılma riskini azaltabilir; uygun müdahale için güvenilir destek alınmalıdır."
+  },
+  {
+    q: "Parola yöneticisinin yararı ne olabilir?",
+    a: [
+      "Bütün hesapları herkese açmak",
+      "Virüs bulaşmasını kesin olarak önlemek",
+      "İnternet bağlantısını hızlandırmak",
+      "Benzersiz parolaları güvenli biçimde yönetmeye yardımcı olmak"
+    ],
+    correct: 3,
+    why: "Güvenilir bir parola yöneticisi farklı ve güçlü parolaları yönetmeyi kolaylaştırır."
+  },
+  {
+    q: "Siber güvenlik öğrenirken en doğru uygulama hangisidir?",
+    a: [
+      "Yalnızca izinli sistemlerde ve eğitim laboratuvarlarında pratik yapmak",
+      "Başkasının hesabına izinsiz girmek",
+      "İzinsiz olarak kurum ağlarını taramak",
+      "Başkalarının verilerini kopyalamak"
+    ],
+    correct: 0,
+    why: "Güvenlik çalışmaları yalnızca izinli sistemlerde veya açıkça yetkilendirilmiş ortamlarda yapılmalıdır."
+  }
+];
+
+const quizContainer = document.getElementById("quiz");
+const quizResult = document.getElementById("quizResult");
+
+function renderQuiz() {
+  quizContainer.innerHTML = "";
+
+  questions.forEach((question, index) => {
+    const article = document.createElement("article");
+    article.className = "quiz-question";
+    article.id = "question-" + index;
+
+    const heading = document.createElement("h3");
+    heading.textContent = (index + 1) + ". " + question.q;
+    article.appendChild(heading);
+
+    question.a.forEach((answer, answerIndex) => {
+      const label = document.createElement("label");
+      label.className = "option";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "question-" + index;
+      input.value = answerIndex;
+
+      const span = document.createElement("span");
+      span.textContent = answer;
+
+      label.appendChild(input);
+      label.appendChild(span);
+      article.appendChild(label);
+    });
+
+    const explanation = document.createElement("div");
+    explanation.className = "explanation";
+    explanation.id = "explanation-" + index;
+    article.appendChild(explanation);
+
+    quizContainer.appendChild(article);
+  });
+}
+
+function gradeQuiz() {
+  let score = 0;
+  let answered = 0;
+
+  questions.forEach((question, index) => {
+    const article = document.getElementById("question-" + index);
+    const selected = article.querySelector(
+      'input[name="question-' + index + '"]:checked'
+    );
+
+    const labels = article.querySelectorAll(".option");
+    const explanation = document.getElementById("explanation-" + index);
+
+    labels.forEach(label => {
+      label.classList.remove("correct", "incorrect");
+    });
+
+    if (selected) {
+      answered++;
+      const chosen = Number(selected.value);
+
+      if (chosen === question.correct) {
+        score += 5;
+      } else {
+        labels[chosen].classList.add("incorrect");
+      }
+    }
+
+    labels[question.correct].classList.add("correct");
+
+    explanation.style.display = "block";
+    explanation.textContent =
+      "Doğru cevap: " + question.a[question.correct] +
+      ". Açıklama: " + question.why;
+  });
+
+  const resultTitle = score >= 85
+    ? "Harika! Konuyu çok iyi anlamışsın."
+    : score >= 60
+      ? "Güzel ilerleme! Konuları tekrar ederek puanını artırabilirsin."
+      : "Biraz daha çalışıp testi yeniden deneyebilirsin.";
+
+  quizResult.style.display = "block";
+  quizResult.innerHTML = "";
+
+  const title = document.createElement("h3");
+  title.textContent = "Sonucun: " + score + " / 100";
+  quizResult.appendChild(title);
+
+  const detail = document.createElement("p");
+  detail.textContent =
+    answered + " / " + questions.length +
+    " soruyu cevapladın. " + resultTitle;
+  quizResult.appendChild(detail);
+
+  const info = document.createElement("p");
+  info.textContent =
+    "Her doğru cevap 5 puandır. Yanlış ve boş cevaplar puan kazandırmaz.";
+  quizResult.appendChild(info);
+
+  quizResult.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+document.getElementById("submitQuiz").addEventListener("click", gradeQuiz);
+
+document.getElementById("resetQuiz").addEventListener("click", () => {
+  renderQuiz();
+  quizResult.style.display = "none";
+  quizResult.innerHTML = "";
+  document.getElementById("test").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+renderQuiz();
+</script>
+
+</body>
+</html>

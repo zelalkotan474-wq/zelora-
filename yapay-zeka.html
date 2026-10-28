@@ -1,0 +1,1674 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ZELORA ücretsiz yapay zekâ eğitimi. Yapay zekânın temellerini, makine öğrenmesini ve üretken yapay zekâyı öğren.">
+<title>Yapay Zekâ | ZELORA Dijital Akademi</title>
+
+<style>
+:root {
+  --bg: #f7f5ff;
+  --card: #ffffff;
+  --primary: #7054c8;
+  --primary-dark: #49338d;
+  --text: #25213a;
+  --muted: #77738b;
+  --border: #e8e2f5;
+  --success: #16845b;
+  --danger: #c33d54;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--primary-dark);
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.header-link {
+  background: var(--primary);
+  color: white;
+  padding: 9px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.header-link:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 25px;
+  align-items: start;
+}
+
+.sidebar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  position: sticky;
+  top: 88px;
+}
+
+.sidebar h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 9px 11px;
+  margin: 4px 0;
+  border-radius: 9px;
+  color: #514b69;
+  font-size: 14px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #f0eaff;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 18px;
+  margin-bottom: 7px;
+}
+
+.progress-track {
+  height: 8px;
+  background: #ece8f5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  transition: width .25s ease;
+}
+
+main {
+  min-width: 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #32245f, #7657cc);
+  color: white;
+  border-radius: 22px;
+  padding: 35px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(255,255,255,.15);
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 4vw, 39px);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #eee8ff;
+  max-width: 720px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hero-meta span {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: 7px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+.lesson-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  margin-bottom: 20px;
+  scroll-margin-top: 95px;
+}
+
+.lesson-card h2 {
+  font-size: 23px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  color: var(--primary-dark);
+}
+
+.lesson-card h3 {
+  font-size: 17px;
+  margin: 20px 0 8px;
+}
+
+.lesson-card p {
+  margin: 10px 0;
+}
+
+.lesson-card ul,
+.lesson-card ol {
+  padding-left: 23px;
+  margin: 10px 0;
+}
+
+.lesson-card li {
+  margin: 6px 0;
+}
+
+.info {
+  background: #f4f0ff;
+  border-left: 4px solid var(--primary);
+  padding: 15px;
+  border-radius: 9px;
+  margin: 16px 0;
+}
+
+.example {
+  background: #f8f8fc;
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 13px 0;
+}
+
+.example strong {
+  color: var(--primary-dark);
+}
+
+.code-example {
+  display: block;
+  background: #25213a;
+  color: #f4edff;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 12px 0;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #211b36;
+  margin: 16px 0;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.button {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: inherit;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+.button.secondary {
+  background: #eee8ff;
+  color: var(--primary-dark);
+}
+
+.button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0 !important;
+}
+
+.checklist li {
+  margin: 9px 0;
+}
+
+.checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checklist input {
+  margin-top: 7px;
+  accent-color: var(--primary);
+}
+
+.prompt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid #dcd4ee;
+  border-radius: 9px;
+  padding: 11px;
+  font: inherit;
+  background: #fff;
+  color: var(--text);
+}
+
+.field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.generated-prompt {
+  background: #f4f0ff;
+  border: 1px solid #ded4fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.question {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.question:last-child {
+  border-bottom: 0;
+}
+
+.question h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin: 7px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.option:hover {
+  background: #faf8ff;
+}
+
+.option input {
+  margin-top: 6px;
+  accent-color: var(--primary);
+}
+
+.option.correct {
+  border-color: #80c9aa;
+  background: #edfaf3;
+}
+
+.option.wrong {
+  border-color: #e6a1ad;
+  background: #fff0f2;
+}
+
+.answer-explanation {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+.result {
+  display: none;
+  padding: 18px;
+  background: #f4f0ff;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.result h3 {
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 28px 15px;
+  font-size: 13px;
+}
+
+@media (max-width: 850px) {
+  .layout {
+    grid-template-columns: 1fr;
+    margin-top: 18px;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .sidebar nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .hero {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-inner {
+    padding: 12px 15px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .layout {
+    padding: 0 12px;
+    gap: 15px;
+  }
+
+  .lesson-card {
+    padding: 18px;
+  }
+
+  .lesson-card h2 {
+    font-size: 20px;
+  }
+
+  .prompt-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar nav {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ZEL<span>ORA</span></a>
+    <a class="header-link" href="index.html">← Eğitimlere Dön</a>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h3>📚 Ders İçeriği</h3>
+    <nav>
+      <a href="#baslangic" class="active">1. Yapay Zekâ Nedir?</a>
+      <a href="#turler">2. Yapay Zekâ Türleri</a>
+      <a href="#makine">3. Makine Öğrenmesi</a>
+      <a href="#derin">4. Derin Öğrenme</a>
+      <a href="#uretken">5. Üretken Yapay Zekâ</a>
+      <a href="#komut">6. Etkili Komut Yazma</a>
+      <a href="#veri">7. Veri ve Eğitim</a>
+      <a href="#kullanim">8. Kullanım Alanları</a>
+      <a href="#etik">9. Etik ve Güvenlik</a>
+      <a href="#uygulama">10. Uygulama Alanı</a>
+      <a href="#video">🎬 Video Anlatım</a>
+      <a href="#test">📝 20 Soruluk Test</a>
+    </nav>
+
+    <div class="progress-label">
+      Öğrenme ilerlemesi: <strong id="progressText">0%</strong>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <p style="font-size:12px;color:#77738b;margin-top:10px;">
+      Tamamladığın konuları işaretleyerek ilerlemeni takip edebilirsin.
+    </p>
+  </aside>
+
+  <main>
+
+    <section class="hero">
+      <span class="eyebrow">ÜCRETSİZ DİJİTAL AKADEMİ</span>
+      <h1>Yapay Zekâ: Temelden Uygulamaya</h1>
+      <p>
+        Yapay zekânın ne olduğunu, nasıl öğrendiğini, hangi alanlarda
+        kullanıldığını ve bu teknolojiden nasıl yararlanabileceğini
+        adım adım öğren.
+      </p>
+      <div class="hero-meta">
+        <span>📘 9 konu</span>
+        <span>🧠 Başlangıç seviyesi</span>
+        <span>📝 20 soruluk sınav</span>
+        <span>💻 Uygulamalı öğrenme</span>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="baslangic">
+      <h2>1. Yapay Zekâ Nedir?</h2>
+
+      <p>
+        Yapay zekâ (Artificial Intelligence - AI), bilgisayarların ve
+        yazılımların normalde insan zekâsıyla ilişkilendirilen bazı
+        görevleri gerçekleştirmesini sağlayan teknoloji ve yöntemlerin
+        genel adıdır. Bu görevler arasında dili anlama, görüntüleri
+        tanıma, örüntüleri bulma, tahmin yapma ve içerik üretme bulunur.
+      </p>
+
+      <p>
+        Geleneksel bir programda geliştirici, bilgisayara belirli
+        kuralları açıkça yazar. Yapay zekâ sistemlerinde ise bazı
+        yöntemler, örnek verilerden örüntüler öğrenerek yeni durumlar
+        hakkında tahmin veya çıktı oluşturabilir.
+      </p>
+
+      <div class="example">
+        <strong>Günlük hayattan örnek:</strong>
+        Telefonunun fotoğrafları insan, hayvan ve manzara gibi
+        kategorilere ayırması; e-posta uygulamasının istenmeyen
+        mesajları belirlemesi; harita uygulamasının trafik yoğunluğuna
+        göre varış süresini tahmin etmesi.
+      </div>
+
+      <h3>Yapay zekâ insan gibi mi düşünür?</h3>
+      <p>
+        Hayır. Bir sistemin akıcı konuşması, insan gibi bilinçli olduğu
+        veya her şeyi anladığı anlamına gelmez. Yapay zekâ sistemleri
+        belirli görevlerde çok başarılı olabilirken başka bir konuda
+        hata yapabilir. Ürettikleri sonuçları kontrol etmek gerekir.
+      </p>
+
+      <h3>Temel kavramlar</h3>
+      <ul>
+        <li><strong>Algoritma:</strong> Bir problemi çözmek için izlenen adımlar.</li>
+        <li><strong>Veri:</strong> Sistemlerin işleyebildiği metin, sayı, resim ve diğer bilgiler.</li>
+        <li><strong>Model:</strong> Verilerden öğrenilmiş örüntüleri kullanarak tahmin veya çıktı oluşturan yapı.</li>
+        <li><strong>Eğitim:</strong> Bir modelin veriler üzerinden öğrenme süreci.</li>
+        <li><strong>Tahmin:</strong> Modelin öğrendiği örüntülerden yararlanarak sonuç üretmesi.</li>
+      </ul>
+
+      <div class="info">
+        <strong>Unutma:</strong> Yapay zekâ tek bir programın adı değildir.
+        Birçok farklı yöntem, model ve uygulamayı kapsayan geniş bir alandır.
+      </div>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="baslangic">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="turler">
+      <h2>2. Yapay Zekâ Türleri</h2>
+
+      <p>
+        Yapay zekâ, yeteneklerine ve çalışma biçimine göre farklı
+        şekillerde sınıflandırılabilir. Günümüzde kullanılan
+        sistemlerin büyük çoğunluğu belirli görevlerde uzmanlaşır.
+      </p>
+
+      <h3>Dar yapay zekâ</h3>
+      <p>
+        Belirli bir görev veya görev grubu için tasarlanır. Örneğin
+        sesli komutları tanıyan sistemler, çeviri uygulamaları,
+        öneri sistemleri ve görüntü tanıma yazılımları bu gruptadır.
+        Dar yapay zekâ bir görevde başarılı olsa bile her konuda
+        insan gibi genel yeteneğe sahip değildir.
+      </p>
+
+      <h3>Genel yapay zekâ</h3>
+      <p>
+        Farklı alanlarda insanın genel öğrenme ve akıl yürütme
+        yeteneklerine benzer geniş bir yeterlilik gösterebilecek
+        varsayımsal bir sistem fikridir. Bu kavram, bugün yaygın
+        kullanılan belirli bir ürünle aynı şey değildir.
+      </p>
+
+      <h3>Süper yapay zekâ</h3>
+      <p>
+        Çok sayıda zihinsel görevde insan kapasitesini aşacağı
+        varsayılan teorik bir kavramdır. Gerçekleşmiş bir teknoloji
+        gibi değerlendirilmemelidir.
+      </p>
+
+      <h3>Görevlerine göre örnekler</h3>
+      <ul>
+        <li><strong>Sınıflandırma:</strong> Bir e-postanın istenmeyen mesaj olup olmadığını belirlemek.</li>
+        <li><strong>Tahmin:</strong> Geçmiş verilere göre talep miktarını tahmin etmek.</li>
+        <li><strong>Öneri:</strong> Kullanıcının ilgilenebileceği içerikleri sıralamak.</li>
+        <li><strong>Üretim:</strong> Yeni metin, görsel veya bilgisayar kodu oluşturmak.</li>
+      </ul>
+
+      <div class="example">
+        <strong>Örnek:</strong> Bir müzik uygulamasının sana şarkı
+        önermesi ile bir metin asistanının dilekçe taslağı hazırlaması
+        aynı amaç için kullanılmaz. İkisi de yapay zekâ tekniklerinden
+        yararlanabilir ama farklı görevleri yerine getirir.
+      </div>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="turler">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="makine">
+      <h2>3. Makine Öğrenmesi</h2>
+
+      <p>
+        Makine öğrenmesi (Machine Learning), bilgisayarların
+        verilerdeki örüntülerden yararlanarak tahmin veya karar
+        üretmesini sağlayan yapay zekâ alanıdır. Geliştirici her
+        örnek için bütün kuralları tek tek yazmak yerine bir
+        modelin örnekler üzerinden öğrenmesini sağlayabilir.
+      </p>
+
+      <h3>Denetimli öğrenme</h3>
+      <p>
+        Model, doğru cevabı veya etiketi bilinen örneklerle eğitilir.
+        Örneğin, üzerinde “kedi” veya “köpek” etiketi bulunan çok
+        sayıda görsel kullanılarak yeni görselleri sınıflandıran
+        bir model geliştirilebilir.
+      </p>
+
+      <h3>Denetimsiz öğrenme</h3>
+      <p>
+        Verilerde önceden verilmiş doğru cevaplar olmadan benzerlikler
+        ve gruplar aranır. Örneğin bir işletme, müşterilerini alışveriş
+        davranışlarına göre gruplandırmak için bu yöntemlerden
+        yararlanabilir.
+      </p>
+
+      <h3>Pekiştirmeli öğrenme</h3>
+      <p>
+        Bir sistem, ortamda eylemler gerçekleştirir ve sonuçlarına
+        göre ödül veya ceza benzeri geri bildirimler alır. Amaç,
+        zaman içinde toplam ödülü artıran bir davranış politikası
+        öğrenmektir.
+      </p>
+
+      <h3>Model nasıl öğrenir?</h3>
+      <ol>
+        <li>Amaca uygun veriler hazırlanır.</li>
+        <li>Bir model ve öğrenme yöntemi seçilir.</li>
+        <li>Model, eğitim verilerindeki örüntüleri öğrenir.</li>
+        <li>Ayrı verilerle performansı değerlendirilir.</li>
+        <li>Gerekirse model veya veri hazırlama süreci iyileştirilir.</li>
+      </ol>
+
+      <div class="info">
+        <strong>Önemli:</strong> Eğitim verilerinin hatalı, eksik veya
+        tek taraflı olması modelin sonuçlarını da olumsuz etkileyebilir.
+        Başarılı bir eğitim, her koşulda doğru sonuç garantisi değildir.
+      </div>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="makine">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="derin">
+      <h2>4. Derin Öğrenme ve Sinir Ağları</h2>
+
+      <p>
+        Derin öğrenme (Deep Learning), çok katmanlı yapay sinir
+        ağlarından yararlanan bir makine öğrenmesi alanıdır.
+        Bu ağlar, verilerdeki karmaşık örüntüleri öğrenebilir.
+        Görüntü tanıma, konuşma işleme ve dil modellerinde yaygın
+        biçimde kullanılır.
+      </p>
+
+      <h3>Yapay sinir ağı nedir?</h3>
+      <p>
+        Yapay sinir ağı, birbirine bağlı hesaplama birimlerinden
+        oluşan matematiksel bir modeldir. Bu birimler katmanlar
+        hâlinde düzenlenir. Ağ, eğitim sırasında bağlantı ağırlıklarını
+        güncelleyerek verilen görevi daha iyi yapmaya çalışır.
+      </p>
+
+      <ul>
+        <li><strong>Girdi katmanı:</strong> Modele verilen bilgiyi alır.</li>
+        <li><strong>Gizli katmanlar:</strong> Veriyi çeşitli hesaplamalarla işler.</li>
+        <li><strong>Çıktı katmanı:</strong> Tahmin veya sonuç üretir.</li>
+      </ul>
+
+      <div class="example">
+        <strong>Örnek:</strong> Bir görüntü modeline çok sayıda
+        etiketlenmiş kedi fotoğrafı verildiğinde model, görüntülerde
+        kedilerle ilişkili görsel örüntüleri öğrenebilir. Daha sonra
+        daha önce görmediği bir fotoğraf için tahminde bulunabilir.
+      </div>
+
+      <h3>Derin öğrenmenin sınırları</h3>
+      <p>
+        Derin öğrenme büyük miktarda veri ve hesaplama kaynağı
+        gerektirebilir. Ayrıca model, eğitim sırasında karşılaşmadığı
+        durumlarda hata yapabilir. Modelin güvenilirliği, kullanılan
+        veri, görev ve değerlendirme yöntemine bağlıdır.
+      </p>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="derin">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="uretken">
+      <h2>5. Üretken Yapay Zekâ</h2>
+
+      <p>
+        Üretken yapay zekâ (Generative AI), öğrendiği örüntülerden
+        yararlanarak yeni içerikler oluşturan sistemleri kapsar.
+        Metin, görsel, ses, video ve bilgisayar kodu üretebilen
+        örnekleri vardır.
+      </p>
+
+      <h3>Metin üreten sistemler</h3>
+      <p>
+        Soruları yanıtlayabilir, metinleri özetleyebilir, yazı
+        taslakları hazırlayabilir, farklı diller arasında çeviri
+        yapabilir ve kod örnekleri oluşturabilir. Ancak yanıtlarının
+        doğru olduğunu varsaymak yerine kontrol etmek gerekir.
+      </p>
+
+      <h3>Görsel üreten sistemler</h3>
+      <p>
+        Yazılı bir açıklamadan hareketle görsel oluşturabilir.
+        Sonucun niteliği, verilen açıklamanın yanı sıra modelin
+        yeteneklerine ve sınırlamalarına bağlıdır.
+      </p>
+
+      <h3>Kod üreten sistemler</h3>
+      <p>
+        HTML, CSS, JavaScript veya Python gibi dillerde örnekler
+        hazırlayabilir, kodları açıklayabilir ve hataları bulmaya
+        yardımcı olabilir. Üretilen kod çalıştırılmadan ve
+        incelenmeden güvenilir kabul edilmemelidir.
+      </p>
+
+      <div class="info">
+        <strong>Halüsinasyon:</strong> Yapay zekânın kulağa inandırıcı
+        gelen ancak yanlış veya uydurulmuş bilgi üretmesine verilen
+        adlardan biridir. Özellikle tarih, istatistik, mevzuat,
+        kaynak ve teknik bilgiler doğrulanmalıdır.
+      </div>
+
+      <h3>Yapay zekâyı yardımcı olarak kullanmak</h3>
+      <ul>
+        <li>Bir konuyu basit örneklerle açıklatabilirsin.</li>
+        <li>Uzun metinlerden ana fikirleri çıkartabilirsin.</li>
+        <li>Çalışma planı veya soru seti hazırlatabilirsin.</li>
+        <li>Bir kod parçasının ne yaptığını adım adım öğrenebilirsin.</li>
+        <li>Bir metnin dilini ve anlatımını iyileştirebilirsin.</li>
+      </ul>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="uretken">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="komut">
+      <h2>6. Yapay Zekâya Etkili Komut Yazma</h2>
+
+      <p>
+        Yapay zekâdan daha faydalı sonuç almak için ne istediğini
+        açıkça belirtmelisin. Yapay zekâya verdiğin talimat veya
+        isteğe çoğunlukla “prompt” ya da “komut” denir.
+      </p>
+
+      <h3>İyi bir komutun parçaları</h3>
+      <ul>
+        <li><strong>Rol:</strong> Nasıl bir yardımcı olmasını istiyorsun?</li>
+        <li><strong>Görev:</strong> Tam olarak ne yapmasını istiyorsun?</li>
+        <li><strong>Bağlam:</strong> Hangi bilgi ve koşulları bilmeli?</li>
+        <li><strong>Biçim:</strong> Yanıtı liste, tablo veya adım adım mı istiyorsun?</li>
+        <li><strong>Sınırlar:</strong> Uzunluk, dil, seviye veya diğer koşullar neler?</li>
+      </ul>
+
+      <div class="example">
+        <strong>Zayıf komut:</strong>
+        Bana bilgisayar anlat.
+
+        <hr style="border:0;border-top:1px solid #e8e2f5;margin:12px 0;">
+
+        <strong>Daha iyi komut:</strong>
+        Bilgisayar kullanmayı yeni öğrenen birine bilgisayarın
+        temel parçalarını anlat. Her parçanın görevini günlük
+        hayattan bir örnekle açıkla. Türkçe kullan, başlıklar
+        ekle ve sonunda 5 soruluk bir test hazırla.
+      </div>
+
+      <h3>Kendi komutunu oluştur</h3>
+      <p>Aşağıdaki alanları doldur ve sana özel bir komut taslağı oluştur.</p>
+
+      <div class="prompt-grid">
+        <div class="field">
+          <label for="promptRole">Yapay zekânın rolü</label>
+          <input id="promptRole" placeholder="Örn. bilgisayar öğretmeni">
+        </div>
+
+        <div class="field">
+          <label for="promptTask">Görev</label>
+          <input id="promptTask" placeholder="Örn. HTML öğret">
+        </div>
+
+        <div class="field">
+          <label for="promptLevel">Seviye</label>
+          <select id="promptLevel">
+            <option>Başlangıç seviyesi</option>
+            <option>Orta seviye</option>
+            <option>İleri seviye</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="promptFormat">Yanıt biçimi</label>
+          <select id="promptFormat">
+            <option>Başlıklar ve örneklerle</option>
+            <option>Adım adım anlatım</option>
+            <option>Tablo ve maddeler hâlinde</option>
+            <option>Alıştırmalar ve test ile</option>
+          </select>
+        </div>
+
+        <div class="field" style="grid-column:1/-1;">
+          <label for="promptContext">Ek açıklama</label>
+          <textarea id="promptContext" placeholder="Örn. Her konudan sonra uygulama yaptır."></textarea>
+        </div>
+      </div>
+
+      <button class="button" id="generatePrompt" type="button">
+        Komut Oluştur
+      </button>
+
+      <div class="generated-prompt" id="promptOutput" hidden></div>
+
+      <button class="button secondary" id="copyPrompt" type="button" hidden>
+        Komutu Kopyala
+      </button>
+
+      <label class="checklist" style="margin-top:20px;">
+        <input type="checkbox" data-topic="komut">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="veri">
+      <h2>7. Veri, Eğitim ve Model Değerlendirme</h2>
+
+      <p>
+        Yapay zekâ sistemlerinin başarısı yalnızca seçilen algoritmaya
+        bağlı değildir. Verinin kalitesi, temsil ettiği örneklerin
+        çeşitliliği, eğitim yöntemi ve değerlendirme biçimi de önemlidir.
+      </p>
+
+      <h3>Eğitim, doğrulama ve test verileri</h3>
+      <ul>
+        <li><strong>Eğitim verisi:</strong> Modelin örüntüleri öğrenmek için kullandığı örneklerdir.</li>
+        <li><strong>Doğrulama verisi:</strong> Model ve ayarları geliştirirken performansı karşılaştırmaya yardımcı olur.</li>
+        <li><strong>Test verisi:</strong> Modelin daha önce görmediği örneklerde nasıl çalıştığını değerlendirmek için kullanılır.</li>
+      </ul>
+
+      <h3>Aşırı öğrenme nedir?</h3>
+      <p>
+        Aşırı öğrenme (overfitting), modelin eğitim verisine çok fazla
+        uyum sağlayıp yeni örneklerde daha kötü sonuç vermesidir.
+        Bir sınavın yalnızca cevaplarını ezberleyen ama yeni soruları
+        çözemeyen öğrenciye benzetilebilir.
+      </p>
+
+      <h3>Veri kalitesi neden önemlidir?</h3>
+      <p>
+        Yanlış etiketler, eksik kayıtlar, dengesiz örnekler veya
+        geçmişteki ayrımcı uygulamaları yansıtan veriler sorunlara
+        yol açabilir. Bu nedenle veri hazırlama ve sonuç değerlendirme
+        süreçleri dikkatle yürütülmelidir.
+      </p>
+
+      <div class="info">
+        <strong>Örnek:</strong> Bir işe alım modeli yalnızca geçmişteki
+        işe alım kararlarıyla eğitilmişse, geçmişteki adaletsizlikleri
+        de öğrenebilir. Modelin kullanılması adil sonuç vereceği
+        anlamına gelmez.
+      </div>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="veri">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="kullanim">
+      <h2>8. Yapay Zekânın Kullanım Alanları</h2>
+
+      <h3>Eğitim</h3>
+      <p>
+        Öğrencilerin seviyelerine uygun alıştırmalar hazırlamak,
+        bir konuyu farklı örneklerle açıklamak, dil öğrenimine
+        yardımcı olmak ve öğretmenlerin materyal taslağı
+        hazırlamasını kolaylaştırmak için kullanılabilir.
+      </p>
+
+      <h3>Sağlık</h3>
+      <p>
+        Tıbbi görüntülerin incelenmesine, araştırma verilerinin
+        analizine ve bazı idari süreçlere destek olabilir. Sağlık
+        alanındaki çıktılar uzman değerlendirmesinin yerini
+        kendiliğinden almaz.
+      </p>
+
+      <h3>İşletmeler ve muhasebe</h3>
+      <p>
+        Belgeleri sınıflandırma, rapor taslakları hazırlama,
+        metinlerden bilgi çıkarma, müşteri sorularını yanıtlamaya
+        yardımcı olma ve tekrarlanan iş akışlarını destekleme
+        gibi görevlerde kullanılabilir. Finansal kayıtlar ve
+        hesaplamalar kontrol edilmelidir.
+      </p>
+
+      <h3>Yazılım geliştirme</h3>
+      <p>
+        Kod açıklama, test örneği üretme, hata ayıklama önerileri
+        hazırlama ve teknik belgeleri özetleme gibi alanlarda
+        fayda sağlayabilir. Kodun güvenliği, doğruluğu ve lisans
+        koşulları ayrıca değerlendirilmelidir.
+      </p>
+
+      <h3>Günlük yaşam</h3>
+      <ul>
+        <li>Metin yazma ve düzeltme</li>
+        <li>Çeviri ve dil pratiği</li>
+        <li>Gezi veya çalışma planı hazırlama</li>
+        <li>Bilgi gruplandırma ve özetleme</li>
+        <li>Fikir geliştirme ve içerik taslağı oluşturma</li>
+      </ul>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="kullanim">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="etik">
+      <h2>9. Etik, Gizlilik ve Güvenli Kullanım</h2>
+
+      <p>
+        Yapay zekâ araçlarını kullanırken yalnızca hız ve kolaylık
+        değil, güvenlik, doğruluk, adalet ve mahremiyet de
+        düşünülmelidir.
+      </p>
+
+      <h3>Gizlilik</h3>
+      <p>
+        Herkese açık olmayan kişisel bilgiler, parolalar, kimlik
+        numaraları, banka bilgileri veya iş yerine ait gizli belgeler
+        paylaşılmadan önce aracın veri politikası ve kurum kuralları
+        dikkate alınmalıdır. Gereksiz kişisel verileri komutlara ekleme.
+      </p>
+
+      <h3>Yanlış bilgi</h3>
+      <p>
+        Yapay zekâ yanlış cevaplar, hatalı hesaplamalar veya var
+        olmayan kaynaklar üretebilir. Önemli bilgileri güvenilir
+        kaynaklarla karşılaştır. Emin olmadığında doğrulama iste
+        ve sonucu kendin kontrol et.
+      </p>
+
+      <h3>Önyargı ve adalet</h3>
+      <p>
+        Eğitim verilerindeki dengesizlikler bazı kişi veya gruplar
+        için daha kötü sonuçlara yol açabilir. Özellikle işe alım,
+        eğitim, finans ve sağlık gibi önemli kararlar otomatik
+        sonuçlara bırakılmamalıdır.
+      </p>
+
+      <h3>Telif ve sorumluluk</h3>
+      <p>
+        Oluşturulan içerikleri kullanmadan önce ilgili aracın
+        koşullarını, telif haklarını ve kullanım amacına ilişkin
+        kuralları kontrol et. Başkasına ait metin veya görselleri
+        izinsiz kullanma. Yapay zekânın ürettiği sonucu kendi
+        kontrolünden geçirmeden yayımlama.
+      </p>
+
+      <div class="info">
+        <strong>Güvenli kullanım kuralı:</strong> Yapay zekâyı yardımcı
+        olarak kullan; özel bilgilerini koru, önemli sonuçları doğrula
+        ve nihai kararların sorumluluğunu göz ardı etme.
+      </div>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="etik">
+        Bu konuyu tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="uygulama">
+      <h2>10. Mini Uygulama: Yapay Zekâ ile Öğrenme Planı</h2>
+
+      <p>
+        Bu uygulamada kendi öğrenme hedefin için bir komut hazırlayacaksın.
+        Oluşturduğun metni kopyalayıp kullandığın bir yapay zekâ
+        aracına yapıştırabilirsin. Bu alan tek başına yapay zekâ
+        modeline bağlanmaz; yalnızca komut metni oluşturur.
+      </p>
+
+      <div class="example">
+        <strong>Uygulama görevi:</strong>
+        Bilgisayar programcılığı öğrenmek istediğini düşün.
+        Yapay zekâdan başlangıç seviyesine uygun, haftalara bölünmüş
+        bir çalışma planı hazırlamasını iste. Her hafta için konu,
+        uygulama ve kendini değerlendirme soruları bulunsun.
+      </div>
+
+      <h3>Kontrol listesi</h3>
+      <ul>
+        <li>Hedefimi açıkça belirttim mi?</li>
+        <li>Başlangıç seviyesinde olduğumu söyledim mi?</li>
+        <li>İstediğim çıktı biçimini belirttim mi?</li>
+        <li>Gerçekçi bir süre verdim mi?</li>
+        <li>Sonucu kontrol etmek için ölçüt ekledim mi?</li>
+      </ul>
+
+      <label class="checklist">
+        <input type="checkbox" data-topic="uygulama">
+        Uygulamayı tamamladım.
+      </label>
+    </section>
+
+    <section class="lesson-card" id="video">
+      <h2>🎬 Video Anlatım</h2>
+
+      <p>
+        Bu bölümde yapay zekâ konusunu videoyla pekiştirebilirsin.
+        Gömülü videolar, YouTube'un izinlerine veya ağ bağlantısına
+        bağlı olarak açılmayabilir. Bu nedenle doğrudan izleme
+        bağlantısını da ekledik.
+      </p>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/D0NTkVrWG4Q"
+          title="Yapay zekâ hakkında video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p>
+        Video açılmazsa aşağıdaki bağlantılardan birini kullan.
+        İlk bağlantı doğrudan videoya, ikincisi ise Türkçe yapay
+        zekâ anlatımları için YouTube aramasına gider.
+      </p>
+
+      <a
+        class="button"
+        href="https://www.youtube.com/watch?v=D0NTkVrWG4Q"
+        target="_blank"
+        rel="noopener noreferrer">
+        YouTube'da Videoyu Aç ↗
+      </a>
+
+      <a
+        class="button secondary"
+        href="https://www.youtube.com/results?search_query=yapay+zeka+nedir+Türkçe+eğitim"
+        target="_blank"
+        rel="noopener noreferrer">
+        Alternatif Türkçe Videolar ↗
+      </a>
+
+      <p style="font-size:13px;color:#77738b;margin-top:14px;">
+        Not: Videonun sayfa içinde çalışması, videoyu yayımlayan
+        kanalın gömme iznine bağlıdır. Doğrudan bağlantı da
+        kullanılamıyorsa alternatif arama bağlantısını kullan.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="test">
+      <h2>📝 Yapay Zekâ Bilgi Testi</h2>
+
+      <p>
+        Toplam 20 soru vardır. Her doğru cevap 5 puandır.
+        Testi bitirdiğinde puanını 100 üzerinden görebilirsin.
+        Soruları cevapladıktan sonra sonuçlarını kontrol et.
+      </p>
+
+      <div id="quiz"></div>
+
+      <button class="button" id="submitQuiz" type="button">
+        Testi Bitir ve Puanımı Gör
+      </button>
+
+      <button class="button secondary" id="resetQuiz" type="button">
+        Testi Yeniden Çöz
+      </button>
+
+      <div class="result" id="quizResult" aria-live="polite"></div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  © <span id="year"></span> ZELORA Dijital Akademi · Ücretsiz Öğren, Kendini Geliştir.
+</footer>
+
+<script>
+"use strict";
+
+/* Sayfa yılı */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Ders ilerlemesi */
+const topicChecks = Array.from(
+  document.querySelectorAll('input[data-topic]')
+);
+
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+
+function updateProgress() {
+  const completed = topicChecks.filter(item => item.checked).length;
+  const percentage = Math.round(
+    (completed / topicChecks.length) * 100
+  );
+
+  progressText.textContent = percentage + "%";
+  progressFill.style.width = percentage + "%";
+}
+
+try {
+  topicChecks.forEach(item => {
+    const key = "zelora-ai-topic-" + item.dataset.topic;
+    item.checked = localStorage.getItem(key) === "true";
+
+    item.addEventListener("change", () => {
+      try {
+        localStorage.setItem(key, String(item.checked));
+      } catch (error) {
+        console.warn("İlerleme bu tarayıcıda kaydedilemedi.", error);
+      }
+
+      updateProgress();
+    });
+  });
+} catch (error) {
+  console.warn("Kayıtlı ilerleme okunamadı.", error);
+}
+
+updateProgress();
+
+/* Komut oluşturucu */
+const generatePromptButton = document.getElementById("generatePrompt");
+const copyPromptButton = document.getElementById("copyPrompt");
+const promptOutput = document.getElementById("promptOutput");
+
+generatePromptButton.addEventListener("click", () => {
+  const role =
+    document.getElementById("promptRole").value.trim() ||
+    "yardımcı bir öğretmen";
+
+  const task =
+    document.getElementById("promptTask").value.trim() ||
+    "seçtiğim konuyu öğret";
+
+  const level = document.getElementById("promptLevel").value;
+  const format = document.getElementById("promptFormat").value;
+
+  const context =
+    document.getElementById("promptContext").value.trim();
+
+  let prompt =
+    "Sen " + role + " olarak hareket et.\n" +
+    "Görevin: " + task + ".\n" +
+    "Seviye: " + level + ".\n" +
+    "Yanıt biçimi: " + format + ".\n" +
+    "Açık, doğru ve anlaşılır bir Türkçe kullan. " +
+    "Gerekli yerlerde örnek ver. Emin olmadığın bilgileri " +
+    "kesinmiş gibi sunma; önemli iddiaların doğrulanması " +
+    "gerektiğini belirt.";
+
+  if (context) {
+    prompt += "\nEk istekler: " + context;
+  }
+
+  promptOutput.textContent = prompt;
+  promptOutput.hidden = false;
+  copyPromptButton.hidden = false;
+});
+
+copyPromptButton.addEventListener("click", async () => {
+  const textToCopy = promptOutput.textContent;
+
+  try {
+    await navigator.clipboard.writeText(textToCopy);
+    copyPromptButton.textContent = "Kopyalandı!";
+  } catch (error) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+
+    range.selectNodeContents(promptOutput);
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    copyPromptButton.textContent =
+      "Metin seçildi; Ctrl+C ile kopyala";
+  }
+});
+
+/* 20 soruluk test */
+const questions = [
+  {
+    q: "Yapay zekâ genel olarak neyi amaçlar?",
+    options: [
+      "Bilgisayarların bazı zekâ gerektiren görevleri yapmasını",
+      "Bütün bilgisayarları internete bağlamayı",
+      "Yalnızca bilgisayarları hızlandırmayı",
+      "Sadece oyun geliştirmeyi"
+    ],
+    answer: 0,
+    explanation: "Yapay zekâ, dil işleme, tanıma, tahmin ve içerik üretme gibi görevlerde kullanılabilir."
+  },
+  {
+    q: "Algoritma nedir?",
+    options: [
+      "Bir bilgisayarın fiziksel parçası",
+      "Bir problemi çözmek için izlenen adımlar",
+      "Yalnızca fotoğraf dosyası",
+      "Bir internet bağlantısı"
+    ],
+    answer: 1,
+    explanation: "Algoritma, bir görevin nasıl gerçekleştirileceğini belirleyen adımlar dizisidir."
+  },
+  {
+    q: "Aşağıdakilerden hangisi dar yapay zekâya örnektir?",
+    options: [
+      "Her konuda insan gibi yetenekli olduğu kanıtlanmış sistem",
+      "Bütün işleri kendi başına yapan evrensel sistem",
+      "E-postaları istenmeyen mesaj olarak sınıflandıran sistem",
+      "Elektrik kablosu"
+    ],
+    answer: 2,
+    explanation: "Dar yapay zekâ, belirli bir görev veya görev grubu için tasarlanır."
+  },
+  {
+    q: "Makine öğrenmesi ne yapar?",
+    options: [
+      "Her zaman elle yazılmış bütün kuralları kullanır",
+      "Verilerden örüntüler öğrenerek tahmin veya sonuç üretir",
+      "Sadece ekran rengini değiştirir",
+      "Bilgisayarı fiziksel olarak onarır"
+    ],
+    answer: 1,
+    explanation: "Makine öğrenmesi, verilerdeki örüntülerden yararlanır."
+  },
+  {
+    q: "Denetimli öğrenmede genellikle ne bulunur?",
+    options: [
+      "Doğru cevabı veya etiketi bilinen örnekler",
+      "Hiçbir veri",
+      "Sadece rastgele resimler ve cevap anahtarı olmaması",
+      "Yalnızca bilgisayar donanımı"
+    ],
+    answer: 0,
+    explanation: "Denetimli öğrenmede örneklerin doğru etiketleri eğitim sırasında kullanılır."
+  },
+  {
+    q: "Denetimsiz öğrenmenin temel amaçlarından biri nedir?",
+    options: [
+      "Her örneğin cevabını önceden vermek",
+      "Verileri tamamen silmek",
+      "Verilerdeki benzerlikleri ve grupları bulmak",
+      "Ekrana yazı yazmak"
+    ],
+    answer: 2,
+    explanation: "Denetimsiz yöntemler, önceden verilmiş etiketler olmadan örüntü veya gruplar bulabilir."
+  },
+  {
+    q: "Pekiştirmeli öğrenmede hangi kavram önemlidir?",
+    options: [
+      "Yalnızca ekran çözünürlüğü",
+      "Ödül veya geri bildirim",
+      "Dosya uzantısı",
+      "Klavye dili"
+    ],
+    answer: 1,
+    explanation: "Sistem, eylemlerinin sonuçlarından gelen ödül benzeri geri bildirimlerle öğrenir."
+  },
+  {
+    q: "Derin öğrenme en çok hangi yapıyla ilişkilidir?",
+    options: [
+      "Yapay sinir ağları",
+      "Yalnızca hesap makineleri",
+      "Yazıcı kartuşları",
+      "Klasör isimleri"
+    ],
+    answer: 0,
+    explanation: "Derin öğrenme, çok katmanlı yapay sinir ağlarını yaygın biçimde kullanır."
+  },
+  {
+    q: "Üretken yapay zekâ ne yapabilir?",
+    options: [
+      "Sadece dosya silebilir",
+      "Yalnızca internet hızını ölçer",
+      "Metin, görsel veya kod gibi içerikler üretebilir",
+      "Her bilgiyi kesin olarak bilir"
+    ],
+    answer: 2,
+    explanation: "Üretken sistemler farklı türlerde içerik oluşturabilir ancak hata da yapabilir."
+  },
+  {
+    q: "Yapay zekâya verilen görev ve talimat için hangi terim kullanılır?",
+    options: [
+      "Monitör",
+      "Prompt",
+      "Klasör",
+      "Sürücü"
+    ],
+    answer: 1,
+    explanation: "Prompt, modelden ne yapmasının istendiğini belirten talimat veya girdidir."
+  },
+  {
+    q: "Daha etkili bir prompt için hangisi yararlıdır?",
+    options: [
+      "Görevi belirsiz bırakmak",
+      "Hiç bağlam vermemek",
+      "İstenen biçimi ve hedefi açıklamak",
+      "Birbiriyle çelişen talimatlar yazmak"
+    ],
+    answer: 2,
+    explanation: "Görev, bağlam, hedef kitle ve çıktı biçimi belirtmek daha kullanışlı sonuçlar sağlayabilir."
+  },
+  {
+    q: "Yapay zekânın inandırıcı görünen yanlış bilgi üretmesine ne denebilir?",
+    options: [
+      "Halüsinasyon",
+      "Ekran kartı",
+      "Dosya sıkıştırma",
+      "Ağ kablosu"
+    ],
+    answer: 0,
+    explanation: "Halüsinasyon terimi, modelin yanlış veya uydurulmuş içerik üretmesi için kullanılır."
+  },
+  {
+    q: "Eğitim verisi ne amaçla kullanılır?",
+    options: [
+      "Sadece bilgisayarı kapatmak",
+      "Modelin örüntüleri öğrenmesine yardımcı olmak",
+      "İnternet bağlantısını kesmek",
+      "Monitörü temizlemek"
+    ],
+    answer: 1,
+    explanation: "Eğitim verisi, modelin öğrenme sürecinde kullandığı örnekleri içerir."
+  },
+  {
+    q: "Aşırı öğrenme (overfitting) ne anlama gelir?",
+    options: [
+      "Modelin bütün görevlerde kusursuz olması",
+      "Bilgisayarın çok ısınması",
+      "Modelin eğitim verisine aşırı uyup yeni örneklerde zorlanması",
+      "İnternetin hızlı olması"
+    ],
+    answer: 2,
+    explanation: "Aşırı öğrenmede eğitim performansı iyi görünürken yeni verilerde performans düşebilir."
+  },
+  {
+    q: "Test verisinin kullanılma amaçlarından biri nedir?",
+    options: [
+      "Modelin daha önce görmediği örneklerde performansını değerlendirmek",
+      "Ekran parlaklığını artırmak",
+      "Klavye tuşlarını değiştirmek",
+      "Bütün verileri silmek"
+    ],
+    answer: 0,
+    explanation: "Ayrı tutulan test verisi, modelin genelleme performansını ölçmeye yardımcı olur."
+  },
+  {
+    q: "Bir yapay zekâ modelinin çıktısı neden kontrol edilmelidir?",
+    options: [
+      "Çünkü hiçbir model metin üretemez",
+      "Çünkü bütün cevaplar rastgeledir",
+      "Çünkü yapay zekâ yalnızca oyunlarda çalışır",
+      "Çünkü model yanlış veya eksik bilgi üretebilir"
+    ],
+    answer: 3,
+    explanation: "Yapay zekâ sonuçları hatalı olabilir; önemli bilgiler güvenilir kaynaklarla doğrulanmalıdır."
+  },
+  {
+    q: "Kişisel ve gizli bilgiler konusunda en doğru yaklaşım hangisidir?",
+    options: [
+      "Her bilgiyi tüm araçlara yüklemek",
+      "Gereksiz hassas bilgileri paylaşmamak ve gizlilik koşullarını kontrol etmek",
+      "Parolaları herkese açık komutlara yazmak",
+      "Kimlik bilgilerini örnek olarak yayımlamak"
+    ],
+    answer: 1,
+    explanation: "Gizli ve kişisel bilgiler korunmalı, gereksiz yere paylaşılmamalıdır."
+  },
+  {
+    q: "Yapay zekâdaki önyargı hangi durumla ilişkili olabilir?",
+    options: [
+      "Yalnızca bilgisayarın renginin değişmesi",
+      "Sadece ekran boyutunun büyümesi",
+      "Eğitim verilerindeki dengesizlik ve geçmişteki ayrımcılık",
+      "Klavye tuşlarının yer değiştirmesi"
+    ],
+    answer: 2,
+    explanation: "Verilerdeki dengesizlikler ve tarihsel önyargılar model sonuçlarını etkileyebilir."
+  },
+  {
+    q: "Kod üreten bir yapay zekâdan alınan kod için ne yapılmalıdır?",
+    options: [
+      "Kontrol etmeden doğrudan her yerde çalıştırmak",
+      "Kaynağına bakmadan yönetici izni vermek",
+      "Her durumda hatasız olduğunu kabul etmek",
+      "Kodu incelemek, test etmek ve güvenliğini değerlendirmek"
+    ],
+    answer: 3,
+    explanation: "Üretilen kodda hata veya güvenlik sorunu bulunabilir; çalıştırmadan önce incelenmelidir."
+  },
+  {
+    q: "Yapay zekâyı kullanmanın en sağlıklı yaklaşımı hangisidir?",
+    options: [
+      "Her kararı sorgulamadan modele bırakmak",
+      "Onu yardımcı olarak kullanıp önemli sonuçları doğrulamak",
+      "Bütün kaynakları gereksiz görmek",
+      "Gizli bilgileri her zaman paylaşmak"
+    ],
+    answer: 1,
+    explanation: "Yapay zekâ yararlı bir yardımcı olabilir; doğrulama ve insan değerlendirmesi önemini korur."
+  }
+];
+
+const quizContainer = document.getElementById("quiz");
+const quizResult = document.getElementById("quizResult");
+const submitQuizButton = document.getElementById("submitQuiz");
+const resetQuizButton = document.getElementById("resetQuiz");
+
+function renderQuiz() {
+  quizContainer.innerHTML = "";
+
+  questions.forEach((question, index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "question";
+    wrapper.dataset.questionIndex = String(index);
+
+    const heading = document.createElement("h3");
+    heading.textContent = (index + 1) + ". " + question.q;
+    wrapper.appendChild(heading);
+
+    question.options.forEach((option, optionIndex) => {
+      const label = document.createElement("label");
+      label.className = "option";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "question-" + index;
+      input.value = String(optionIndex);
+
+      const span = document.createElement("span");
+      span.textContent = option;
+
+      label.appendChild(input);
+      label.appendChild(span);
+      wrapper.appendChild(label);
+    });
+
+    const explanation = document.createElement("p");
+    explanation.className = "answer-explanation";
+    explanation.hidden = true;
+    wrapper.appendChild(explanation);
+
+    quizContainer.appendChild(wrapper);
+  });
+}
+
+function submitQuiz() {
+  let correctCount = 0;
+  let answeredCount = 0;
+
+  questions.forEach((question, index) => {
+    const wrapper = quizContainer.querySelector(
+      '[data-question-index="' + index + '"]'
+    );
+
+    const selected = wrapper.querySelector(
+      'input[name="question-' + index + '"]:checked'
+    );
+
+    const labels = wrapper.querySelectorAll(".option");
+    const explanation = wrapper.querySelector(".answer-explanation");
+
+    labels.forEach((label, optionIndex) => {
+      label.classList.remove("correct", "wrong");
+
+      if (optionIndex === question.answer) {
+        label.classList.add("correct");
+      }
+    });
+
+    if (selected) {
+      answeredCount++;
+
+      if (Number(selected.value) === question.answer) {
+        correctCount++;
+      } else {
+        labels[Number(selected.value)].classList.add("wrong");
+      }
+    }
+
+    explanation.textContent =
+      "Doğru cevap: " + question.options[question.answer] +
+      ". " + question.explanation;
+    explanation.hidden = false;
+
+    wrapper.querySelectorAll("input").forEach(input => {
+      input.disabled = true;
+    });
+  });
+
+  const score = correctCount * 5;
+  let message;
+
+  if (score >= 90) {
+    message = "Harika! Konuyu çok iyi öğrenmişsin.";
+  } else if (score >= 70) {
+    message = "Güzel sonuç! Birkaç konuyu tekrar ederek daha da gelişebilirsin.";
+  } else if (score >= 50) {
+    message = "İyi bir başlangıç. Yanlış cevapların açıklamalarını incele.";
+  } else {
+    message = "Dersleri tekrar gözden geçir ve testi yeniden çöz.";
+  }
+
+  quizResult.style.display = "block";
+  quizResult.replaceChildren();
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Test Sonucun: " + score + " / 100";
+
+  const detail = document.createElement("p");
+  detail.textContent =
+    "Doğru cevap: " + correctCount + " / " + questions.length +
+    " · Cevaplanan soru: " + answeredCount + " / " + questions.length;
+
+  const advice = document.createElement("p");
+  advice.textContent = message;
+
+  quizResult.append(heading, detail, advice);
+
+  submitQuizButton.disabled = true;
+  quizResult.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function resetQuiz() {
+  renderQuiz();
+  quizResult.style.display = "none";
+  quizResult.replaceChildren();
+  submitQuizButton.disabled = false;
+  document.getElementById("test").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+submitQuizButton.addEventListener("click", submitQuiz);
+resetQuizButton.addEventListener("click", resetQuiz);
+
+renderQuiz();
+
+/* Menüde aktif başlık */
+const sectionLinks = Array.from(
+  document.querySelectorAll(".sidebar nav a")
+);
+
+const lessonSections = sectionLinks
+  .map(link => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        sectionLinks.forEach(link => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+        });
+      }
+    });
+  }, {
+    rootMargin: "-20% 0px -65% 0px"
+  });
+
+  lessonSections.forEach(section => observer.observe(section));
+}
+</script>
+
+</body>
+</html>

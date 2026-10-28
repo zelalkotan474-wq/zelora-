@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ZELORA Linux eğitimleri: Linux temelleri, komut satırı, dosyalar, kullanıcılar ve sistem yönetimi.">
+<title>Linux Eğitimi | ZELORA</title>
+
+<style>
+:root {
+  --mor: #7256c9;
+  --mor-koyu: #4c378f;
+  --arka: #f7f5fc;
+  --kart: #ffffff;
+  --yazi: #252238;
+  --soluk: #716d80;
+  --kenar: #e8e3f2;
+  --yesil: #18875a;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--arka);
+  color: var(--yazi);
+  line-height: 1.75;
+}
+a { color: var(--mor-koyu); }
+button, input { font: inherit; }
+.ust {
+  background: #211a38;
+  color: white;
+  padding: 17px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+.logo span { color: #c5b3ff; }
+.ust a.geri {
+  color: #eee8ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.kahraman {
+  background: linear-gradient(135deg, #352454, #7558c8);
+  color: white;
+  padding: 48px 6%;
+}
+.kahraman-ic {
+  max-width: 1100px;
+  margin: auto;
+}
+.etiket {
+  display: inline-block;
+  border: 1px solid #ffffff70;
+  border-radius: 30px;
+  padding: 5px 13px;
+  font-size: 13px;
+}
+.kahraman h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.2;
+  margin: 17px 0 12px;
+}
+.kahraman p {
+  max-width: 760px;
+  color: #f0eaff;
+}
+.buton {
+  display: inline-block;
+  border: 0;
+  border-radius: 10px;
+  background: var(--mor);
+  color: white;
+  padding: 11px 17px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.buton:hover { filter: brightness(.94); }
+.buton.acik {
+  background: white;
+  color: var(--mor-koyu);
+  margin-top: 10px;
+}
+.istatistik {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.istatistik div {
+  background: #ffffff18;
+  border: 1px solid #ffffff30;
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+.ilerleme-alani {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  padding: 0 18px;
+}
+.ilerleme-kutu {
+  background: white;
+  border: 1px solid var(--kenar);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+.ilerleme-baslik {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ilerleme-cizgi {
+  height: 9px;
+  background: #eee9f7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+#ilerlemeCubugu {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #8b6de0, #36ad80);
+  transition: width .25s;
+}
+.duzen {
+  max-width: 1100px;
+  margin: 24px auto 60px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.kart {
+  background: var(--kart);
+  border: 1px solid var(--kenar);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  min-width: 0;
+  box-shadow: 0 5px 20px #2c1a4b08;
+}
+.kart h2 {
+  font-size: 24px;
+  margin: 0 0 14px;
+  line-height: 1.35;
+}
+.kart h3 {
+  margin-top: 25px;
+  color: var(--mor-koyu);
+}
+.kart p { margin: 10px 0; }
+.kart li { margin-bottom: 7px; }
+.menukutu {
+  position: sticky;
+  top: 15px;
+}
+.menukutu h3 { margin-top: 0; }
+.menulink {
+  display: block;
+  padding: 9px 11px;
+  margin: 5px 0;
+  border-radius: 8px;
+  color: #48405e;
+  text-decoration: none;
+  font-size: 14px;
+}
+.menulink:hover { background: #f0ebfc; }
+.menulink.tamamlandi {
+  color: var(--yesil);
+  background: #eaf8f0;
+}
+.bilgi {
+  background: #f1edff;
+  border-left: 4px solid var(--mor);
+  border-radius: 7px;
+  padding: 13px 15px;
+  margin: 15px 0;
+}
+.uyari {
+  background: #fff7e7;
+  border-left: 4px solid #e3a63b;
+  border-radius: 7px;
+  padding: 13px 15px;
+  margin: 15px 0;
+}
+.ornek {
+  background: #211d30;
+  color: #f4edff;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 12px 0;
+  overflow-x: auto;
+}
+.ornek code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.tablo-kapsa { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid var(--kenar);
+  text-align: left;
+}
+th { background: #f1edfa; }
+.video-kutu {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #171522;
+}
+.video-kutu iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-yedek {
+  margin-top: 14px;
+  padding: 13px;
+  border-radius: 10px;
+  background: #f1edff;
+}
+.video-yedek a { font-weight: 700; }
+.komut-alani {
+  background: #211d30;
+  border-radius: 12px;
+  padding: 15px;
+  color: white;
+}
+#komutGirisi {
+  width: 100%;
+  background: #14111e;
+  color: #b9f6ca;
+  border: 1px solid #514563;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+#terminalSonuc {
+  min-height: 90px;
+  background: #14111e;
+  color: #d5f6dc;
+  padding: 13px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Consolas, monospace;
+}
+.soru {
+  border: 1px solid var(--kenar);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 15px 0;
+}
+.soru p { font-weight: 700; }
+.secenek {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.secenek:hover { background: #f5f1fc; }
+.secenek input { margin-right: 8px; }
+.sonuc {
+  margin-top: 15px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f1edff;
+  font-weight: 700;
+}
+.konu-alt {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+.konu-alt button { margin-left: 8px; }
+.alt {
+  background: #211a38;
+  color: #e6def8;
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 14px;
+}
+@media (max-width: 800px) {
+  .duzen { grid-template-columns: 1fr; }
+  .menukutu { position: static; }
+  .menukutu nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .kahraman { padding: 35px 20px; }
+  .kart { padding: 18px; }
+}
+@media (max-width: 430px) {
+  .menukutu nav { grid-template-columns: 1fr; }
+  .ust { padding: 15px 18px; }
+  .kart h2 { font-size: 21px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="ust">
+  <a class="logo" href="index.html">ZEL<span>ORA</span></a>
+  <a class="geri" href="index.html">← Akademi ana sayfasına dön</a>
+</header>
+
+<section class="kahraman">
+  <div class="kahraman-ic">
+    <span class="etiket">ÜCRETSİZ DİJİTAL AKADEMİ</span>
+    <h1>Linux İşletim Sistemi</h1>
+    <p>
+      Linux'un ne olduğunu, terminal komutlarını, dosya ve klasör yönetimini,
+      kullanıcı izinlerini ve temel sistem yönetimini adım adım öğren.
+      Dersleri tamamla, komut laboratuvarında pratik yap ve bilgini test et.
+    </p>
+    <a class="buton acik" href="#dersler">Eğitime Başla ↓</a>
+    <div class="istatistik">
+      <div>📚 10 ders bölümü</div>
+      <div>💻 Komut laboratuvarı</div>
+      <div>📝 20 test sorusu</div>
+    </div>
+  </div>
+</section>
+
+<div class="ilerleme-alani">
+  <div class="ilerleme-kutu">
+    <div class="ilerleme-baslik">
+      <strong>📈 Eğitim ilerlemen</strong>
+      <span id="ilerlemeYazi">0 / 10 ders tamamlandı</span>
+    </div>
+    <div class="ilerleme-cizgi">
+      <div id="ilerlemeCubugu"></div>
+    </div>
+  </div>
+</div>
+
+<div class="duzen">
+  <aside class="kart menukutu">
+    <h3>📖 Ders İçeriği</h3>
+    <nav id="dersMenusu">
+      <a class="menulink" href="#ders1">1. Linux nedir?</a>
+      <a class="menulink" href="#ders2">2. Linux dağıtımları</a>
+      <a class="menulink" href="#ders3">3. Terminal</a>
+      <a class="menulink" href="#ders4">4. Dosya ve klasörler</a>
+      <a class="menulink" href="#ders5">5. Dosya işlemleri</a>
+      <a class="menulink" href="#ders6">6. Kullanıcılar ve izinler</a>
+      <a class="menulink" href="#ders7">7. Paket yönetimi</a>
+      <a class="menulink" href="#ders8">8. İşlemler ve sistem</a>
+      <a class="menulink" href="#ders9">9. Ağ ve güvenlik</a>
+      <a class="menulink" href="#video">10. Video eğitimi</a>
+      <a class="menulink" href="#laboratuvar">Komut laboratuvarı</a>
+      <a class="menulink" href="#sinav">Bilgi testi</a>
+    </nav>
+  </aside>
+
+  <main id="dersler">
+
+    <section class="kart">
+      <h2>Bu eğitimde neler öğreneceksin?</h2>
+      <p>
+        Linux; sunucularda, yazılım geliştirme ortamlarında, bulut sistemlerinde,
+        ağ cihazlarında ve kişisel bilgisayarlarda kullanılan bir işletim sistemi
+        ailesinin temelidir. Bu eğitim, daha önce Linux kullanmamış kişiler için
+        hazırlanmıştır.
+      </p>
+      <p>
+        Derslerde komutların yalnızca adını ezberlemek yerine ne işe yaradığını,
+        hangi durumda kullanıldığını ve yanlış kullanıldığında nelere dikkat
+        edilmesi gerektiğini öğreneceksin.
+      </p>
+      <div class="bilgi">
+        <strong>Önemli:</strong> Bu sayfadaki komut laboratuvarı gerçek bir Linux
+        terminali değildir. Komutları eğitim amacıyla taklit eder; bilgisayarında
+        işlem yapmaz ve dosyalarını değiştirmez.
+      </div>
+    </section>
+
+    <section class="kart" id="ders1">
+      <h2>1. Linux Nedir?</h2>
+      <p>
+        Linux, bilgisayarın donanımı ile uygulamalar arasında çalışan işletim
+        sistemi çekirdeğidir. Günlük kullanımda “Linux” denildiğinde genellikle
+        Linux çekirdeğini ve onun çevresinde bulunan araçları bir araya getiren
+        işletim sistemi dağıtımları kastedilir.
+      </p>
+      <h3>İşletim sistemi ne yapar?</h3>
+      <p>
+        İşletim sistemi işlemci, bellek, disk, klavye, ekran ve ağ gibi donanım
+        kaynaklarını yönetir. Uygulamaların çalışmasını sağlar, dosyaları düzenler
+        ve kullanıcı ile bilgisayar arasında bir çalışma ortamı oluşturur.
+      </p>
+      <h3>Linux nerelerde kullanılır?</h3>
+      <ul>
+        <li>Web sitelerini ve uygulamaları barındıran sunucularda</li>
+        <li>Yazılım geliştirme ve test ortamlarında</li>
+        <li>Bulut bilişim ve sanallaştırma altyapılarında</li>
+        <li>Ağ cihazlarında, gömülü sistemlerde ve bazı akıllı cihazlarda</li>
+        <li>Kişisel bilgisayarlarda ve eğitim laboratuvarlarında</li>
+      </ul>
+      <h3>Linux ile Windows arasındaki fark</h3>
+      <p>
+        Windows genellikle masaüstü kullanımında yaygındır. Linux dağıtımları
+        ise farklı ihtiyaçlara göre özelleştirilebilir; birçok dağıtım ücretsiz
+        kullanılabilir ve açık kaynaklıdır. Komut satırı Linux'ta önemli bir
+        yönetim aracıdır, ancak çoğu dağıtım grafik arayüz de sunar.
+      </p>
+      <div class="bilgi">
+        <strong>Öğrenmen gereken:</strong> Linux yalnızca siyah bir terminal
+        ekranından ibaret değildir. Grafik arayüzle kullanılabilir; terminal
+        ise sistem üzerinde ayrıntılı kontrol sağlar.
+      </div>
+      <button class="buton dersiBitir" data-ders="1">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders2">
+      <h2>2. Linux Dağıtımları</h2>
+      <p>
+        Linux çekirdeği tek başına bütün masaüstü deneyimini oluşturmaz.
+        Çekirdeği, sistem araçlarını, paket yöneticisini ve çoğu zaman masaüstü
+        ortamını bir araya getiren sürümlere dağıtım denir.
+      </p>
+      <h3>Yaygın dağıtımlar</h3>
+      <ul>
+        <li><strong>Ubuntu:</strong> Yeni başlayanlar ve sunucular için yaygın bir seçenektir.</li>
+        <li><strong>Linux Mint:</strong> Masaüstünde alışılmış bir kullanım deneyimi sunmayı amaçlar.</li>
+        <li><strong>Debian:</strong> Kararlılığı ve geniş paket deposuyla bilinir.</li>
+        <li><strong>Fedora:</strong> Güncel teknolojileri ve geliştirici araçlarını takip eder.</li>
+        <li><strong>Rocky Linux / AlmaLinux:</strong> Kurumsal sunucu ortamlarında kullanılan seçeneklerdir.</li>
+        <li><strong>Arch Linux:</strong> Sistemi ayrıntılı biçimde özelleştirmek isteyenlere yöneliktir.</li>
+      </ul>
+      <h3>Dağıtım seçerken nelere bakılır?</h3>
+      <p>
+        Bilgisayarının donanımı, kullanım amacın, güncelleme yaklaşımı, topluluk
+        desteği ve ihtiyaç duyduğun yazılımlar önemlidir. İlk defa Linux
+        öğreneceksen Ubuntu veya Linux Mint gibi yaygın seçenekler başlangıç
+        için uygun olabilir.
+      </p>
+      <h3>Canlı USB ve sanal makine</h3>
+      <p>
+        Linux'u denemek için bir canlı USB veya sanal makine kullanılabilir.
+        Canlı USB, uyumlu bilgisayarı USB üzerinden başlatabilir. Sanal makine
+        ise başka bir işletim sistemi içinde ayrı bir bilgisayar ortamı oluşturur.
+        Yeni başlayanların asıl disklerini değiştirmeden önce yedek almaları
+        önemlidir.
+      </p>
+      <div class="uyari">
+        Linux kurulumunda disk bölümlerini silmek veri kaybına neden olabilir.
+        Kurulum seçeneklerini anlamadan mevcut işletim sistemini silme.
+      </div>
+      <button class="buton dersiBitir" data-ders="2">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders3">
+      <h2>3. Terminal ve Komut Satırı</h2>
+      <p>
+        Terminal, bilgisayara metin komutları vererek işlem yapmanı sağlayan
+        bir arayüzdür. Grafik arayüzde menülerle yaptığın birçok işlemi
+        terminal üzerinden de gerçekleştirebilirsin.
+      </p>
+      <h3>Temel komutlar</h3>
+      <div class="tablo-kapsa">
+        <table>
+          <thead><tr><th>Komut</th><th>Görevi</th></tr></thead>
+          <tbody>
+            <tr><td><code>pwd</code></td><td>Geçerli çalışma klasörünü gösterir.</td></tr>
+            <tr><td><code>ls</code></td><td>Klasör içeriğini listeler.</td></tr>
+            <tr><td><code>whoami</code></td><td>Oturum açmış kullanıcı adını gösterir.</td></tr>
+            <tr><td><code>date</code></td><td>Tarih ve saati gösterir.</td></tr>
+            <tr><td><code>uname -a</code></td><td>Çekirdek ve sistem bilgilerini gösterir.</td></tr>
+            <tr><td><code>clear</code></td><td>Terminal ekranını temizler.</td></tr>
+            <tr><td><code>man ls</code></td><td>ls komutunun kılavuzunu açar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Komut nasıl yazılır?</h3>
+      <p>
+        Komut satırında genellikle komut adı, seçenekler ve gerekiyorsa
+        parametreler bulunur. Örneğin <code>ls -l</code> komutu listeyi ayrıntılı
+        biçimde gösterir. Seçenekler komutun davranışını değiştirir.
+      </p>
+      <div class="ornek"><code>pwd
+ls
+ls -la
+whoami</code></div>
+      <p>
+        Komutları yazarken büyük ve küçük harf ayrımına dikkat et. Linux
+        dosya adlarında <code>Belge.txt</code> ile <code>belge.txt</code>
+        farklı isimler olabilir. Komutun ne yaptığını bilmeden yönetici
+        yetkisiyle çalıştırma.
+      </p>
+      <button class="buton dersiBitir" data-ders="3">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders4">
+      <h2>4. Dosya Sistemi ve Klasörler</h2>
+      <p>
+        Linux'ta dosya sistemi kök dizin olarak adlandırılan <code>/</code>
+        konumundan başlar. Windows'taki C: ve D: gibi sürücü harflerinden
+        farklı olarak depolama alanları tek bir dizin ağacına bağlanabilir.
+      </p>
+      <h3>Önemli dizinler</h3>
+      <div class="tablo-kapsa">
+        <table>
+          <thead><tr><th>Dizin</th><th>Açıklama</th></tr></thead>
+          <tbody>
+            <tr><td><code>/</code></td><td>Tüm dosya sisteminin kökü</td></tr>
+            <tr><td><code>/home</code></td><td>Kullanıcıların kişisel klasörleri</td></tr>
+            <tr><td><code>/etc</code></td><td>Birçok sistem yapılandırma dosyası</td></tr>
+            <tr><td><code>/var</code></td><td>Değişken veriler ve günlükler</td></tr>
+            <tr><td><code>/tmp</code></td><td>Geçici dosyalar</td></tr>
+            <tr><td><code>/bin</code></td><td>Temel komutların bulunduğu konum; bazı dağıtımlarda başka dizinlere bağlantıdır</td></tr>
+            <tr><td><code>/dev</code></td><td>Aygıt dosyaları</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Mutlak ve göreli yollar</h3>
+      <p>
+        Mutlak yol, kökten başlayarak dosyanın tam konumunu belirtir:
+        <code>/home/ayse/belgeler</code>. Göreli yol ise mevcut klasöre göre
+        tanımlanır. <code>.</code> mevcut dizini, <code>..</code> üst dizini
+        ifade eder.
+      </p>
+      <div class="ornek"><code>pwd
+ls /home
+cd /tmp
+cd ..
+pwd</code></div>
+      <p>
+        <code>cd</code> komutu dizin değiştirmek için kullanılır.
+        <code>cd ~</code> kullanıcının ev dizinine götürür. Bir yolun başında
+        <code>/</code> varsa kökten başlayan mutlak yol olması beklenir.
+      </p>
+      <button class="buton dersiBitir" data-ders="4">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders5">
+      <h2>5. Dosya ve Klasör İşlemleri</h2>
+      <p>
+        Linux'ta dosyaları oluşturmak, kopyalamak, taşımak ve silmek için
+        çeşitli komutlar bulunur. Önce işlem yapacağın dizini kontrol etmen
+        ve önemli dosyaların yedeğini alman gerekir.
+      </p>
+      <div class="tablo-kapsa">
+        <table>
+          <thead><tr><th>Komut</th><th>İşlev</th><th>Örnek</th></tr></thead>
+          <tbody>
+            <tr><td><code>mkdir</code></td><td>Klasör oluşturur.</td><td><code>mkdir proje</code></td></tr>
+            <tr><td><code>touch</code></td><td>Boş dosya oluşturabilir veya zaman bilgisini günceller.</td><td><code>touch not.txt</code></td></tr>
+            <tr><td><code>cp</code></td><td>Dosya veya klasör kopyalar.</td><td><code>cp not.txt yedek.txt</code></td></tr>
+            <tr><td><code>mv</code></td><td>Taşır veya yeniden adlandırır.</td><td><code>mv eski.txt yeni.txt</code></td></tr>
+            <tr><td><code>cat</code></td><td>Dosya içeriğini görüntüler.</td><td><code>cat not.txt</code></td></tr>
+            <tr><td><code>less</code></td><td>Uzun dosyaları sayfa sayfa gösterir.</td><td><code>less gunluk.log</code></td></tr>
+            <tr><td><code>rm</code></td><td>Dosyaları siler.</td><td><code>rm deneme.txt</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Güvenli çalışma alışkanlığı</h3>
+      <p>
+        Silme ve üzerine yazma işlemleri geri alınamayabilir. Özellikle
+        <code>rm -r</code> bir dizin ağacını silebilir. <code>rm -rf</code>
+        gibi komutları ne yaptığını tam anlamadan kullanma. Komut satırında
+        dosyaların silinmesi çoğu zaman geri dönüşüm kutusuna gönderilmez.
+      </p>
+      <div class="ornek"><code>mkdir deneme
+cd deneme
+touch not.txt
+cp not.txt yedek.txt
+ls -l</code></div>
+      <p>
+        Bu örnek yeni bir klasör oluşturur, içine girer, boş bir dosya
+        yaratır, dosyanın bir kopyasını oluşturur ve içerikleri listeler.
+        Gerçek Linux ortamında çalıştırırken bulunduğun dizini kontrol et.
+      </p>
+      <button class="buton dersiBitir" data-ders="5">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders6">
+      <h2>6. Kullanıcılar ve Dosya İzinleri</h2>
+      <p>
+        Linux birden fazla kullanıcının aynı sistemde çalışmasına izin verir.
+        Her dosyanın bir sahibi, bir grubu ve farklı kullanıcı grupları için
+        erişim izinleri bulunabilir. Bu yapı, sistem güvenliğinin temelidir.
+      </p>
+      <h3>Üç temel izin</h3>
+      <ul>
+        <li><strong>r (read):</strong> Okuma izni</li>
+        <li><strong>w (write):</strong> Yazma veya değiştirme izni</li>
+        <li><strong>x (execute):</strong> Çalıştırma izni; dizinlerde içeriğe erişme anlamına da gelir</li>
+      </ul>
+      <p>
+        İzinler genellikle dosya sahibi, grup ve diğer kullanıcılar için
+        ayrı ayrı belirlenir. <code>ls -l</code> çıktısında
+        <code>-rw-r--r--</code> gibi ifadeler görebilirsin.
+      </p>
+      <h3>İzinleri görüntüleme ve değiştirme</h3>
+      <div class="ornek"><code>whoami
+id
+ls -l
+chmod 644 not.txt</code></div>
+      <p>
+        <code>chmod 644 not.txt</code>, dosya sahibine okuma-yazma; gruba ve
+        diğer kullanıcılara okuma izni verir. Bu örnek yalnızca gerçek Linux
+        ortamında çalıştırıldığında izinleri değiştirir.
+      </p>
+      <h3>sudo ne işe yarar?</h3>
+      <p>
+        <code>sudo</code>, yetkili kullanıcıların belirli komutları daha yüksek
+        ayrıcalıklarla çalıştırmasını sağlar. Yönetici yetkisiyle çalıştırılan
+        yanlış bir komut tüm sistemi etkileyebilir. Bu nedenle komutun
+        amacını ve etkisini anlamadan <code>sudo</code> kullanma.
+      </p>
+      <div class="uyari">
+        İnternetten kopyaladığın bir komutu yönetici yetkisiyle çalıştırmadan
+        önce ne yaptığını mutlaka araştır.
+      </div>
+      <button class="buton dersiBitir" data-ders="6">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders7">
+      <h2>7. Paket Yönetimi ve Yazılım Kurulumu</h2>
+      <p>
+        Linux dağıtımları yazılımları paketler halinde sunar. Paket yöneticileri
+        yazılım kurmayı, güncellemeyi, kaldırmayı ve bağımlılıkları yönetmeyi
+        kolaylaştırır. Komutlar kullanılan dağıtıma göre değişir.
+      </p>
+      <h3>Debian ve Ubuntu ailesi</h3>
+      <div class="ornek"><code>sudo apt update
+apt search paket-adi
+sudo apt install paket-adi
+sudo apt remove paket-adi</code></div>
+      <p>
+        <code>apt update</code> paket listelerini yeniler; kurulu yazılımları
+        tek başına yükseltmez. <code>apt install</code> paket kurar.
+        Örneklerdeki <code>paket-adi</code> ifadesini gerçek bir paket adıyla
+        değiştirmelisin.
+      </p>
+      <h3>Fedora ailesi</h3>
+      <div class="ornek"><code>sudo dnf search paket-adi
+sudo dnf install paket-adi
+sudo dnf remove paket-adi</code></div>
+      <h3>Yazılım kurarken dikkat</h3>
+      <p>
+        Yazılımları mümkün olduğunda dağıtımın resmi depolarından yükle.
+        Rastgele internet sitelerinden indirdiğin kurulum betiklerini
+        incelemeden yönetici yetkisiyle çalıştırma. Güncellemeleri düzenli
+        yapmak güvenlik ve kararlılık açısından önemlidir.
+      </p>
+      <button class="buton dersiBitir" data-ders="7">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders8">
+      <h2>8. İşlemler ve Sistem Kaynakları</h2>
+      <p>
+        Bir program çalıştığında işletim sistemi onu bir işlem olarak yönetir.
+        Her işlemin bir kimliği (PID) ve kullandığı sistem kaynakları bulunur.
+        İşlemci ve bellek kullanımını izlemek sorunları anlamana yardımcı olur.
+      </p>
+      <div class="tablo-kapsa">
+        <table>
+          <thead><tr><th>Komut</th><th>Açıklama</th></tr></thead>
+          <tbody>
+            <tr><td><code>ps</code></td><td>İşlemleri listeler.</td></tr>
+            <tr><td><code>top</code></td><td>İşlemleri ve kaynak kullanımını canlı izler.</td></tr>
+            <tr><td><code>free -h</code></td><td>Bellek kullanımını okunabilir biçimde gösterir.</td></tr>
+            <tr><td><code>df -h</code></td><td>Dosya sistemlerinin disk alanını gösterir.</td></tr>
+            <tr><td><code>du -sh klasor</code></td><td>Bir klasörün yaklaşık toplam alanını gösterir.</td></tr>
+            <tr><td><code>uptime</code></td><td>Sistemin çalışma süresi ve yük bilgilerini gösterir.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>İşlemleri sonlandırma</h3>
+      <p>
+        <code>kill PID</code>, belirtilen işlem kimliğine sinyal gönderir.
+        Önce doğru işlemi belirlemek önemlidir. <code>kill -9</code> işlemi
+        zorla sonlandırır ve son çare olarak düşünülmelidir; kaydedilmemiş
+        çalışmalar kaybolabilir.
+      </p>
+      <h3>Günlük kayıtları</h3>
+      <p>
+        Sistem günlükleri açılış, servisler ve hata durumları hakkında bilgi
+        sağlayabilir. Birçok sistemde <code>journalctl</code> günlükleri
+        görüntülemek için kullanılır. Günlüklerdeki mesajları tarih, servis
+        veya hata türüne göre inceleyebilirsin.
+      </p>
+      <button class="buton dersiBitir" data-ders="8">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="ders9">
+      <h2>9. Ağ Temelleri ve Güvenlik</h2>
+      <p>
+        Linux sistemleri çoğu zaman ağ üzerinden iletişim kurar. IP adresi
+        cihazın ağ üzerindeki adreslemesini, DNS ise alan adlarının IP
+        adreslerine çevrilmesini sağlar. Bağlantı sorunlarında bu bileşenleri
+        ayrı ayrı kontrol etmek gerekir.
+      </p>
+      <h3>Yaygın ağ komutları</h3>
+      <div class="ornek"><code>ip addr
+ip route
+ping -c 4 example.com
+ss -tuln</code></div>
+      <ul>
+        <li><code>ip addr</code> ağ arayüzleri ve IP adresleri hakkında bilgi verir.</li>
+        <li><code>ip route</code> yönlendirme tablosunu gösterir.</li>
+        <li><code>ping</code> hedefe erişilebilirliği test etmeye yardımcı olur; her ağ ICMP paketlerine izin vermeyebilir.</li>
+        <li><code>ss -tuln</code> dinleyen TCP ve UDP soketlerini listeler.</li>
+      </ul>
+      <h3>Temel güvenlik alışkanlıkları</h3>
+      <ul>
+        <li>Sistemi ve kurulu paketleri güncel tut.</li>
+        <li>Güçlü, benzersiz parolalar kullan.</li>
+        <li>Gereksiz servisleri açık bırakma.</li>
+        <li>Dosya ve kullanıcı izinlerini ihtiyaç kadar ver.</li>
+        <li>Önemli dosyaların düzenli yedeğini al.</li>
+        <li>Güvenlik duvarı ve uzak erişim ayarlarını kontrol et.</li>
+      </ul>
+      <div class="bilgi">
+        Güvenlik yalnızca bir program kurmak değildir. Güncellemeler,
+        doğru izinler, yedekler, güçlü kimlik doğrulama ve dikkatli kullanım
+        birlikte değerlendirilmelidir.
+      </div>
+      <button class="buton dersiBitir" data-ders="9">Bu dersi tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="video">
+      <h2>10. Linux Video Eğitimi</h2>
+      <p>
+        Aşağıdaki eğitim, Linux konularını Türkçe olarak takip etmene yardımcı
+        olabilir. Video oynatıcı bu sayfanın içinde açılacak şekilde
+        yerleştirilmiştir.
+      </p>
+      <div class="video-kutu">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/HNg0sbOi6K0"
+          title="Linux'u 1 Videoda Öğren - Türkçe Linux Eğitimi"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-yedek">
+        <strong>Video görünmüyor veya oynatılmıyor mu?</strong>
+        <p>
+          Bazı tarayıcı ayarları veya YouTube kısıtlamaları gömülü videoyu
+          engelleyebilir. Bu durumda videoyu doğrudan YouTube'da aç:
+        </p>
+        <a href="https://www.youtube.com/watch?v=HNg0sbOi6K0"
+           target="_blank" rel="noopener noreferrer">
+          Linux'u 1 Videoda Öğren – YouTube'da izle ↗
+        </a>
+      </div>
+      <p>
+        Video açılmazsa bu, sayfanın kodundan kaynaklanmak zorunda değildir;
+        video sahibi gömülü oynatmayı kapatmış olabilir.
+      </p>
+      <button class="buton dersiBitir" data-ders="10">Bu bölümü tamamladım ✓</button>
+    </section>
+
+    <section class="kart" id="laboratuvar">
+      <h2>💻 Komut Laboratuvarı</h2>
+      <p>
+        Aşağıdaki alana temel Linux komutlarından birini yaz. Bu eğitim
+        simülasyonu komutun örnek çıktısını gösterir. Gerçek dosyalarına
+        erişmez ve gerçek terminal komutlarını çalıştırmaz.
+      </p>
+      <div class="komut-alani">
+        <label for="komutGirisi">Komut gir:</label>
+        <input id="komutGirisi" type="text" placeholder="Örnek: ls" autocomplete="off">
+        <button class="buton" id="komutCalistir" type="button">Komutu dene</button>
+        <button class="buton" id="temizle" type="button">Temizle</button>
+        <div id="terminalSonuc" aria-live="polite">ZELORA Linux eğitim terminali hazır.
+Komutunu yaz ve “Komutu dene” düğmesine bas.</div>
+      </div>
+      <p style="color:var(--soluk);font-size:14px;">
+        Deneyebileceğin komutlar: pwd, ls, ls -l, whoami, date, uname -a,
+        clear, help, mkdir, touch, cat, free -h, df -h
+      </p>
+    </section>
+
+    <section class="kart" id="sinav">
+      <h2>📝 Linux Bilgi Testi</h2>
+      <p>
+        Toplam 20 soru vardır. Her doğru cevap 5 puandır; maksimum puan 100'dür.
+        Soruları işaretledikten sonra “Testi değerlendir” düğmesine bas.
+      </p>
+      <form id="testForm">
+        <div id="sorularAlani"></div>
+        <button class="buton" type="submit">Testi değerlendir</button>
+        <button class="buton" type="button" id="testSifirla" style="background:#777085;">
+          Testi yeniden çöz
+        </button>
+      </form>
+      <div id="testSonuc" class="sonuc" hidden aria-live="polite"></div>
+    </section>
+
+    <section class="kart">
+      <h2>🎉 Tebrikler!</h2>
+      <p>
+        Bu eğitimde Linux'un temel kavramlarını, komut satırını, dosya
+        işlemlerini, izinleri, paket yönetimini, sistem kaynaklarını ve
+        ağ güvenliğini gördün.
+      </p>
+      <p>
+        Kalıcı öğrenme için komutları güvenli bir sanal makinede veya deneme
+        ortamında uygulayabilir, bilmediğin seçenekleri komut kılavuzlarından
+        kontrol edebilirsin.
+      </p>
+      <a class="buton" href="index.html">ZELORA ana sayfasına dön</a>
+    </section>
+
+  </main>
+</div>
+
+<footer class="alt">
+  © <span id="yil"></span> ZELORA | Ücretsiz Dijital Akademi
+</footer>
+
+<script>
+document.getElementById("yil").textContent = new Date().getFullYear();
+
+/* Ders ilerlemesini kaydet */
+const ilerlemeAnahtari = "zeloraLinuxTamamlananDersler";
+let tamamlananDersler = [];
+
+try {
+  tamamlananDersler = JSON.parse(localStorage.getItem(ilerlemeAnahtari) || "[]");
+  if (!Array.isArray(tamamlananDersler)) tamamlananDersler = [];
+} catch (e) {
+  tamamlananDersler = [];
+}
+
+function ilerlemeyiGuncelle() {
+  const sayi = tamamlananDersler.length;
+  document.getElementById("ilerlemeYazi").textContent =
+    sayi + " / 10 ders tamamlandı";
+  document.getElementById("ilerlemeCubugu").style.width =
+    (sayi / 10 * 100) + "%";
+
+  document.querySelectorAll(".dersiBitir").forEach(function(buton) {
+    const id = Number(buton.dataset.ders);
+    const tamam = tamamlananDersler.includes(id);
+    buton.textContent = tamam ? "Tamamlandı ✓" : "Bu dersi tamamladım ✓";
+    buton.style.background = tamam ? "#18875a" : "";
+  });
+
+  document.querySelectorAll("#dersMenusu a").forEach(function(link) {
+    const eslesme = link.getAttribute("href").match(/^#ders(\d+)$/);
+    if (eslesme && tamamlananDersler.includes(Number(eslesme[1]))) {
+      link.classList.add("tamamlandi");
+    }
+  });
+}
+
+document.querySelectorAll(".dersiBitir").forEach(function(buton) {
+  buton.addEventListener("click", function() {
+    const id = Number(this.dataset.ders);
+    if (tamamlananDersler.includes(id)) {
+      tamamlananDersler = tamamlananDersler.filter(function(x) { return x !== id; });
+    } else {
+      tamamlananDersler.push(id);
+    }
+    try {
+      localStorage.setItem(ilerlemeAnahtari, JSON.stringify(tamamlananDersler));
+    } catch (e) {}
+    ilerlemeyiGuncelle();
+  });
+});
+ilerlemeyiGuncelle();
+
+/* Eğitim amaçlı, gerçek terminal olmayan simülasyon */
+const komutGirisi = document.getElementById("komutGirisi");
+const terminalSonuc = document.getElementById("terminalSonuc");
+
+function komutuCalistir() {
+  const komut = komutGirisi.value.trim();
+  const ciktilar = {
+    "pwd": "/home/zelora",
+    "ls": "Belgeler  İndirilenler  Masaüstü  Resimler  not.txt",
+    "ls -l": "drwxr-xr-x  Belgeler\ndrwxr-xr-x  İndirilenler\ndrwxr-xr-x  Masaüstü\n-rw-r--r--  not.txt",
+    "whoami": "zelora",
+    "date": new Date().toLocaleString("tr-TR"),
+    "uname -a": "Linux zelora 6.x.x #1 SMP x86_64 GNU/Linux (örnek çıktı)",
+    "free -h": "Mem: 7.6Gi toplam, 3.1Gi kullanılan, 4.5Gi kullanılabilir (örnek)",
+    "df -h": "Filesystem   Size   Used   Avail   Use%\n/dev/sda1    100G    35G     65G    35% (örnek)",
+    "help": "Komutlar: pwd, ls, ls -l, whoami, date, uname -a, free -h, df -h, clear, mkdir, touch, cat"
+  };
+
+  if (!komut) {
+    terminalSonuc.textContent = "Önce bir komut yaz.";
+    return;
+  }
+
+  if (komut === "clear") {
+    terminalSonuc.textContent = "Ekran temizlendi. Eğitim simülasyonu hazır.";
+  } else if (ciktilar[komut]) {
+    terminalSonuc.textContent = "$ " + komut + "\n" + ciktilar[komut];
+  } else if (/^mkdir\s+\S+$/.test(komut)) {
+    terminalSonuc.textContent = "$ " + komut +
+      "\nSimülasyon: '" + komut.split(/\s+/)[1] + "' adlı klasör oluşturulabilirdi.";
+  } else if (/^touch\s+\S+$/.test(komut)) {
+    terminalSonuc.textContent = "$ " + komut +
+      "\nSimülasyon: '" + komut.split(/\s+/)[1] + "' adlı dosya oluşturulabilirdi.";
+  } else if (/^cat\s+\S+$/.test(komut)) {
+    terminalSonuc.textContent = "$ " + komut +
+      "\nBu örnek simülasyonda dosya içeriği bulunmuyor.";
+  } else {
+    terminalSonuc.textContent = "$ " + komut +
+      "\nBu komut simülasyonda tanınmıyor. 'help' yazarak örnek komutları görebilirsin.\nNot: Gerçek bir Linux komutu çalıştırılmadı.";
+  }
+}
+document.getElementById("komutCalistir").addEventListener("click", komutuCalistir);
+komutGirisi.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") komutuCalistir();
+});
+document.getElementById("temizle").addEventListener("click", function() {
+  komutGirisi.value = "";
+  terminalSonuc.textContent = "Eğitim simülasyonu temizlendi.";
+  komutGirisi.focus();
+});
+
+/* 20 soruluk test */
+const sorular = [
+  {
+    s: "Linux terimi günlük kullanımda en çok neyi ifade eder?",
+    o: ["Yalnızca bir web tarayıcısını", "Linux çekirdeği ve onu temel alan işletim sistemi ortamlarını", "Bir kelime işlemciyi", "Bir ekran kartı markasını"],
+    c: 1
+  },
+  {
+    s: "Linux çekirdeğinin temel görevlerinden biri hangisidir?",
+    o: ["Sadece sunum hazırlamak", "İnternet sitelerinin tasarımını çizmek", "Donanım ve sistem kaynaklarını yönetmek", "E-posta yazmak"],
+    c: 2
+  },
+  {
+    s: "Aşağıdakilerden hangisi bir Linux dağıtımıdır?",
+    o: ["Ubuntu", "Microsoft Word", "Photoshop", "PowerPoint"],
+    c: 0
+  },
+  {
+    s: "Geçerli çalışma dizinini hangi komut gösterir?",
+    o: ["pwd", "date", "whoami", "clear"],
+    c: 0
+  },
+  {
+    s: "Bir klasörün içeriğini listelemek için hangi komut kullanılır?",
+    o: ["mkdir", "ls", "touch", "date"],
+    c: 1
+  },
+  {
+    s: "Oturum açmış kullanıcı adını hangi komut gösterir?",
+    o: ["whoami", "pwd", "df", "cp"],
+    c: 0
+  },
+  {
+    s: "Linux'ta kök dizin hangi işaretle gösterilir?",
+    o: ["C:", "~", "/", "\\"],
+    c: 2
+  },
+  {
+    s: "Kullanıcının ev dizinine gitmek için hangi komut kullanılabilir?",
+    o: ["cd ~", "rm ~", "touch ~", "date ~"],
+    c: 0
+  },
+  {
+    s: "Yeni bir klasör oluşturmak için hangi komut kullanılır?",
+    o: ["cat", "mkdir", "whoami", "df"],
+    c: 1
+  },
+  {
+    s: "Dosya kopyalamak için hangi komut kullanılır?",
+    o: ["cp", "mv", "pwd", "clear"],
+    c: 0
+  },
+  {
+    s: "Bir dosyayı taşımak veya yeniden adlandırmak için hangisi kullanılır?",
+    o: ["ls", "mv", "date", "free"],
+    c: 1
+  },
+  {
+    s: "Aşağıdaki izinlerden hangisi okuma anlamına gelir?",
+    o: ["w", "x", "r", "z"],
+    c: 2
+  },
+  {
+    s: "sudo komutu genel olarak ne sağlar?",
+    o: ["Ekranı büyütür", "Yetki verilmiş kullanıcıya ayrıcalıklı komut çalıştırma imkânı verir", "Dosyaları otomatik yedekler", "İnterneti hızlandırır"],
+    c: 1
+  },
+  {
+    s: "Ubuntu ve Debian ailesinde yaygın paket yöneticisi hangisidir?",
+    o: ["apt", "paint", "excel", "notepad"],
+    c: 0
+  },
+  {
+    s: "apt update komutu temel olarak ne yapar?",
+    o: ["Bilgisayarı kapatır", "Paket listelerini yeniler", "Bütün dosyaları siler", "Yeni kullanıcı oluşturur"],
+    c: 1
+  },
+  {
+    s: "Bellek kullanımını görüntülemek için hangi komut kullanılabilir?",
+    o: ["free -h", "mkdir", "touch", "pwd"],
+    c: 0
+  },
+  {
+    s: "İşlemleri canlı olarak izlemek için hangi komut kullanılabilir?",
+    o: ["top", "cat", "mv", "cd"],
+    c: 0
+  },
+  {
+    s: "DNS'in temel görevi nedir?",
+    o: ["Ekran çözünürlüğünü değiştirmek", "Alan adlarını IP adreslerine çevirmek", "Dosyaları sıkıştırmak", "Kullanıcı parolasını değiştirmek"],
+    c: 1
+  },
+  {
+    s: "Linux güvenliği için hangisi iyi bir uygulamadır?",
+    o: ["Bilinmeyen komutları yönetici olarak çalıştırmak", "Her dosyaya herkese yazma izni vermek", "Güncellemeleri yapmak ve izinleri dikkatli ayarlamak", "Bütün yedekleri silmek"],
+    c: 2
+  },
+  {
+    s: "Bu sayfadaki komut laboratuvarı gerçek bilgisayarda komut çalıştırıyor mu?",
+    o: ["Evet, bütün komutları çalıştırıyor", "Yalnızca dosya siliyor", "Hayır, eğitim amaçlı örnek çıktılar gösteriyor", "Bilgisayarı Linux'a dönüştürüyor"],
+    c: 2
+  }
+];
+
+const sorularAlani = document.getElementById("sorularAlani");
+
+function testiOlustur() {
+  sorularAlani.innerHTML = "";
+  sorular.forEach(function(soru, index) {
+    const kutu = document.createElement("div");
+    kutu.className = "soru";
+
+    const baslik = document.createElement("p");
+    baslik.textContent = (index + 1) + ". " + soru.s;
+    kutu.appendChild(baslik);
+
+    soru.o.forEach(function(secenek, secenekIndex) {
+      const etiket = document.createElement("label");
+      etiket.className = "secenek";
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "soru" + index;
+      radio.value = String(secenekIndex);
+
+      etiket.appendChild(radio);
+      etiket.appendChild(document.createTextNode(secenek));
+      kutu.appendChild(etiket);
+    });
+
+    sorularAlani.appendChild(kutu);
+  });
+}
+
+document.getElementById("testForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  let dogru = 0;
+  let cevaplanan = 0;
+
+  sorular.forEach(function(soru, index) {
+    const secilen = document.querySelector('input[name="soru' + index + '"]:checked');
+    if (secilen) {
+      cevaplanan++;
+      if (Number(secilen.value) === soru.c) dogru++;
+    }
+  });
+
+  const puan = dogru * 5;
+  const sonuc = document.getElementById("testSonuc");
+  sonuc.hidden = false;
+  sonuc.textContent = "Sonuç: " + puan + " / 100 puan. " +
+    dogru + " doğru, " + (sorular.length - dogru) + " yanlış veya boş cevap. " +
+    cevaplanan + " soru cevapladın.";
+
+  sonuc.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+document.getElementById("testSifirla").addEventListener("click", function() {
+  testiOlustur();
+  const sonuc = document.getElementById("testSonuc");
+  sonuc.hidden = true;
+  sonuc.textContent = "";
+});
+
+testiOlustur();
+</script>
+
+</body>
+</html>

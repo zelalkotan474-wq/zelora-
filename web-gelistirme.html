@@ -1,0 +1,1245 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Geliştirme Eğitimi | ZELORA</title>
+<style>
+:root {
+  --primary: #7155d9;
+  --primary-dark: #5037b1;
+  --light: #f7f5ff;
+  --text: #25243a;
+  --muted: #69677c;
+  --border: #e9e5f5;
+  --white: #ffffff;
+  --green: #16845b;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fbfaff;
+  color: var(--text);
+  line-height: 1.75;
+}
+a { color: var(--primary); }
+button { font: inherit; cursor: pointer; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+.topbar-inner {
+  max-width: 1250px;
+  margin: auto;
+  padding: 14px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #24213a;
+  text-decoration: none;
+}
+.logo span { color: var(--primary); }
+.back-link {
+  display: inline-block;
+  padding: 9px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: var(--light);
+  font-weight: 700;
+}
+.layout {
+  max-width: 1250px;
+  margin: 28px auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 265px minmax(0, 1fr);
+  gap: 25px;
+  align-items: start;
+}
+.sidebar {
+  position: sticky;
+  top: 88px;
+  padding: 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+.sidebar h3 { margin: 0 0 14px; font-size: 17px; }
+.sidebar a {
+  display: block;
+  padding: 9px 10px;
+  margin: 3px 0;
+  color: #49465f;
+  text-decoration: none;
+  border-radius: 9px;
+  font-size: 14px;
+}
+.sidebar a:hover { background: var(--light); color: var(--primary); }
+.progress-track {
+  height: 8px;
+  background: #eeeaf8;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0 5px;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  transition: width .25s;
+}
+.small { color: var(--muted); font-size: 13px; }
+.content { min-width: 0; }
+.hero {
+  padding: 38px;
+  border-radius: 23px;
+  background: linear-gradient(135deg, #282145, #5d43a7 65%, #8065db);
+  color: white;
+  margin-bottom: 22px;
+}
+.eyebrow {
+  display: inline-block;
+  padding: 5px 11px;
+  background: rgba(255,255,255,.15);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.hero h1 { font-size: clamp(29px, 4vw, 43px); line-height: 1.2; margin: 17px 0; }
+.hero p { max-width: 690px; color: #eeeaff; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.hero-stats span {
+  padding: 7px 12px;
+  background: rgba(255,255,255,.13);
+  border-radius: 9px;
+  font-size: 13px;
+}
+.section {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 22px;
+  scroll-margin-top: 90px;
+}
+.section h2 { margin-top: 0; font-size: 25px; line-height: 1.35; }
+.section h3 { margin-top: 25px; font-size: 19px; }
+.section p { color: #45435a; }
+.lead { font-size: 17px; }
+.callout {
+  border-left: 4px solid var(--primary);
+  background: var(--light);
+  padding: 14px 17px;
+  border-radius: 0 10px 10px 0;
+  margin: 18px 0;
+}
+.success {
+  border-left-color: var(--green);
+  background: #effaf5;
+}
+.grid-2, .grid-3 {
+  display: grid;
+  gap: 15px;
+  margin: 18px 0;
+}
+.grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.info-card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: #fff;
+}
+.info-card h3 { margin: 0 0 7px; font-size: 17px; }
+.info-card p { margin-bottom: 0; font-size: 14px; }
+pre {
+  overflow-x: auto;
+  background: #211e32;
+  color: #f2edff;
+  padding: 19px;
+  border-radius: 13px;
+  line-height: 1.7;
+  font-size: 13px;
+  white-space: pre;
+}
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+.code-head h3 { margin: 0; }
+.copy-btn, .primary-btn, .secondary-btn {
+  border: 0;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+.copy-btn, .secondary-btn { background: #eee9ff; color: #5037b1; }
+.primary-btn { background: var(--primary); color: white; }
+.primary-btn:hover { background: var(--primary-dark); }
+.video-card {
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 22px 0;
+}
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #171522;
+}
+.video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video-info { padding: 18px; }
+.video-info h3 { margin: 0 0 6px; }
+.video-info p { margin: 6px 0 13px; }
+.video-link {
+  display: inline-block;
+  background: var(--light);
+  padding: 8px 12px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.task {
+  background: #fbfaff;
+  border: 1px dashed #c9bdf4;
+  padding: 18px;
+  border-radius: 13px;
+  margin: 18px 0;
+}
+.task h3 { margin-top: 0; }
+.quiz-question {
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 13px;
+  margin: 15px 0;
+}
+.quiz-question p { font-weight: 700; margin-top: 0; }
+.option {
+  display: block;
+  padding: 8px 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  background: #faf9fe;
+  cursor: pointer;
+}
+.option:hover { background: #f0ebff; }
+.option input { margin-right: 8px; }
+#quizResult {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 13px;
+  background: var(--light);
+}
+.glossary dt { font-weight: 800; margin-top: 14px; }
+.glossary dd { color: var(--muted); margin-left: 0; }
+.footer {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  font-size: 13px;
+}
+@media(max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .sidebar nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 2px;
+  }
+}
+@media(max-width: 600px) {
+  .layout { padding: 0 12px; margin-top: 15px; }
+  .topbar-inner { padding: 12px; }
+  .logo { font-size: 21px; }
+  .back-link { font-size: 12px; padding: 8px 10px; }
+  .hero { padding: 25px 20px; }
+  .section { padding: 20px 16px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .sidebar { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="logo" href="index.html">ZEL<span>ORA</span></a>
+    <a class="back-link" href="index.html">← Eğitimlere Dön</a>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h3>📚 Ders İçeriği</h3>
+    <nav>
+      <a href="#baslangic">1. Web geliştirmeye giriş</a>
+      <a href="#internet">2. İnternet ve web</a>
+      <a href="#html">3. HTML öğreniyorum</a>
+      <a href="#html-etiketleri">4. HTML etiketleri</a>
+      <a href="#css">5. CSS öğreniyorum</a>
+      <a href="#tasarim">6. Tasarım ve responsive</a>
+      <a href="#javascript">7. JavaScript</a>
+      <a href="#proje">8. Uygulama projesi</a>
+      <a href="#video">9. Video dersler</a>
+      <a href="#yayina">10. Siteyi yayımlamak</a>
+      <a href="#sozluk">11. Terimler sözlüğü</a>
+      <a href="#sinav">12. Bilgi testi</a>
+    </nav>
+    <div style="margin-top:20px">
+      <strong style="font-size:14px">Ders ilerlemen</strong>
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="small" id="progressText">%0 tamamlandı</div>
+      <button class="secondary-btn" style="width:100%;margin-top:12px" onclick="resetProgress()">İlerlemeyi sıfırla</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section class="hero" id="baslangic">
+      <span class="eyebrow">ÜCRETSİZ DİJİTAL AKADEMİ</span>
+      <h1>Web Geliştirme: Sıfırdan Kendi Siteni Yap</h1>
+      <p class="lead">İnternet sitelerinin nasıl oluşturulduğunu öğren. HTML ile sayfanın iskeletini kur, CSS ile tasarla, JavaScript ile etkileşim kazandır. Bol örnekle kendi ilk web projenin temelini oluştur.</p>
+      <div class="hero-stats">
+        <span>📘 Başlangıç seviyesi</span>
+        <span>💻 Uygulamalı eğitim</span>
+        <span>🎬 Video dersler</span>
+        <span>📝 20 soruluk sınav</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Bu eğitimin sonunda neler öğreneceksin?</h2>
+      <div class="grid-3">
+        <div class="info-card">
+          <h3>🧱 HTML</h3>
+          <p>Başlık, paragraf, görsel, bağlantı, liste ve form oluşturmayı öğreneceksin.</p>
+        </div>
+        <div class="info-card">
+          <h3>🎨 CSS</h3>
+          <p>Renkleri, yazı tiplerini, boşlukları, kartları ve sayfa düzenini tasarlayacaksın.</p>
+        </div>
+        <div class="info-card">
+          <h3>⚙️ JavaScript</h3>
+          <p>Butonları çalıştıracak, kullanıcıdan bilgi alacak ve sayfayı etkileşimli yapacaksın.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Başlamadan önce:</strong> Bilgisayarında Visual Studio Code kurulu olması yeterli. Kodları yazıp tarayıcıda açarak deneyebilirsin. İlk aşamada ücretli bir programa ihtiyacın yok.
+      </div>
+    </section>
+
+    <section class="section" id="internet">
+      <h2>1. İnternet, web sitesi ve tarayıcı nedir?</h2>
+      <p>Web geliştirmeyi öğrenmeden önce internette kullandığımız temel kavramları anlamak önemlidir. İnternet, bilgisayarların ve diğer cihazların birbirleriyle iletişim kurmasını sağlayan geniş bir ağ sistemidir. World Wide Web (WWW) ise internet üzerinden erişebildiğimiz web sayfaları ve kaynaklardan oluşur.</p>
+
+      <h3>Web sitesi nasıl çalışır?</h3>
+      <p>Tarayıcıya bir web adresi yazdığında tarayıcı ilgili sunucuya istek gönderir. Sunucu, istenen sayfanın dosyalarını veya oluşturulmuş içeriğini geri gönderir. Tarayıcı da HTML, CSS ve JavaScript dosyalarını işleyerek sayfayı ekranda gösterir.</p>
+
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>İstemci (Client)</h3>
+          <p>Web sitesini isteyen ve görüntüleyen cihaz veya programdır. Örneğin bilgisayarındaki Chrome tarayıcısı.</p>
+        </div>
+        <div class="info-card">
+          <h3>Sunucu (Server)</h3>
+          <p>Web sitesinin dosyalarını veya verilerini sağlayan bilgisayar ya da hizmettir.</p>
+        </div>
+        <div class="info-card">
+          <h3>Tarayıcı (Browser)</h3>
+          <p>Web sayfalarını açar ve görüntüler. Chrome, Firefox, Edge ve Safari örnek verilebilir.</p>
+        </div>
+        <div class="info-card">
+          <h3>URL</h3>
+          <p>Bir web kaynağının adresidir. Örneğin https://example.com bir URL'dir.</p>
+        </div>
+      </div>
+
+      <h3>Frontend ve backend arasındaki fark</h3>
+      <p><strong>Frontend</strong>, kullanıcının ekranda gördüğü ve etkileşim kurduğu kısımdır. HTML, CSS ve JavaScript frontend geliştirmede temel teknolojilerdir.</p>
+      <p><strong>Backend</strong>, sunucu tarafında çalışan; kullanıcı hesapları, veri işleme, yetkilendirme ve veritabanı işlemleri gibi işleri yöneten bölümdür. Backend için JavaScript (Node.js), Python, PHP ve başka teknolojiler kullanılabilir.</p>
+      <div class="callout">
+        <strong>Örnek:</strong> Bir eğitim sitesinde ders kartlarını görmek frontend ile ilgilidir. Kullanıcının hesabını doğrulamak ve ilerlemesini sunucuda saklamak ise backend ve veritabanı gerektirebilir.
+      </div>
+    </section>
+
+    <section class="section" id="html">
+      <h2>2. HTML nedir?</h2>
+      <p>HTML, “HyperText Markup Language” ifadesinin kısaltmasıdır. Web sayfasının içeriğini ve yapısını tanımlamak için kullanılır. HTML, bir programlama dili değil, işaretleme dilidir. Başlıkların, metinlerin, görsellerin ve bağlantıların sayfada ne olduğunu tarayıcıya anlatır.</p>
+
+      <h3>İlk HTML sayfamız</h3>
+      <p>Visual Studio Code'da yeni bir dosya aç. Dosyayı <strong>ilk-sayfam.html</strong> adıyla kaydet. Aşağıdaki kodu içine yaz:</p>
+
+      <div class="code-head">
+        <h3>Örnek 1 — HTML iskeleti</h3>
+        <button class="copy-btn" onclick="copyCode('code1')">Kodu kopyala</button>
+      </div>
+      <pre id="code1"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="tr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;İlk Web Sayfam&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Merhaba Dünya!&lt;/h1&gt;
+  &lt;p&gt;Bu benim ilk web sayfam.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h3>Bu kodların anlamı</h3>
+      <ul>
+        <li><code>&lt;!DOCTYPE html&gt;</code>: Tarayıcıya belgenin HTML5 standardını kullandığını bildirir.</li>
+        <li><code>&lt;html lang="tr"&gt;</code>: HTML belgesinin başladığını ve sayfanın dilinin Türkçe olduğunu belirtir.</li>
+        <li><code>&lt;head&gt;</code>: Sayfa başlığı ve karakter kodlaması gibi bilgileri içerir.</li>
+        <li><code>&lt;meta charset="UTF-8"&gt;</code>: Türkçe karakterlerin doğru gösterilmesine yardımcı olur.</li>
+        <li><code>&lt;meta name="viewport"...&gt;</code>: Sayfanın mobil ekranlarda uygun ölçeklenmesini sağlar.</li>
+        <li><code>&lt;title&gt;</code>: Tarayıcı sekmesinde görünen başlığı belirler.</li>
+        <li><code>&lt;body&gt;</code>: Sayfada görünen asıl içeriği barındırır.</li>
+        <li><code>&lt;h1&gt;</code>: Ana başlığı belirtir.</li>
+        <li><code>&lt;p&gt;</code>: Paragraf oluşturur.</li>
+      </ul>
+
+      <div class="callout success">
+        <strong>Uygulama:</strong> Dosyayı kaydet. Dosyanın bulunduğu klasörü açıp HTML dosyasına çift tıkla. Tarayıcıda “Merhaba Dünya!” başlığını görmelisin.
+      </div>
+    </section>
+
+    <section class="section" id="html-etiketleri">
+      <h2>3. HTML etiketleri ve içerik oluşturma</h2>
+      <p>HTML'de birçok öğe bir açılış etiketi, içerik ve kapanış etiketiyle yazılır. Örneğin <code>&lt;p&gt;Merhaba&lt;/p&gt;</code> bir paragraftır. Bazı etiketlerin kapanış etiketi yoktur; örneğin <code>&lt;img&gt;</code> ve <code>&lt;br&gt;</code>.</p>
+
+      <h3>Başlıklar ve paragraflar</h3>
+      <p><code>&lt;h1&gt;</code> en üst düzey başlığı, <code>&lt;h2&gt;</code> alt başlığı, <code>&lt;h3&gt;</code> ise daha alt düzey başlığı ifade eder. Başlıkları sadece yazıyı büyütmek için değil, içeriği mantıklı biçimde düzenlemek için kullanmalısın.</p>
+
+      <div class="code-head">
+        <h3>Örnek 2 — Başlık ve metin</h3>
+        <button class="copy-btn" onclick="copyCode('code2')">Kodu kopyala</button>
+      </div>
+      <pre id="code2"><code>&lt;h1&gt;Bilgisayar Eğitimi&lt;/h1&gt;
+&lt;h2&gt;HTML Öğreniyorum&lt;/h2&gt;
+&lt;p&gt;HTML web sayfalarının yapısını oluşturur.&lt;/p&gt;
+&lt;p&gt;Bu ikinci bir paragraftır.&lt;/p&gt;
+&lt;strong&gt;Önemli metin&lt;/strong&gt;
+&lt;em&gt;Vurgulanan metin&lt;/em&gt;</code></pre>
+
+      <h3>Bağlantı oluşturmak</h3>
+      <p><code>&lt;a&gt;</code> etiketi bağlantı oluşturur. Bağlantının hedefi <code>href</code> niteliğiyle belirtilir.</p>
+      <pre><code>&lt;a href="https://www.example.com"&gt;
+  Örnek siteyi ziyaret et
+&lt;/a&gt;</code></pre>
+
+      <h3>Görsel eklemek</h3>
+      <p><code>&lt;img&gt;</code> etiketi sayfaya görsel ekler. <code>src</code> görselin adresini, <code>alt</code> ise görseli açıklayan alternatif metni belirtir.</p>
+      <pre><code>&lt;img src="resim.jpg" alt="Bir bilgisayar masası"&gt;</code></pre>
+      <p>Görsel dosyası HTML dosyanla aynı klasördeyse <code>resim.jpg</code> gibi bir yol kullanabilirsin. Başka bir klasördeyse uygun dosya yolunu belirtmelisin.</p>
+
+      <h3>Listeler oluşturmak</h3>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Sırasız liste</h3>
+          <p>Maddelerin belirli bir sıralaması olmadığında kullanılır.</p>
+          <pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div class="info-card">
+          <h3>Sıralı liste</h3>
+          <p>Maddelerin sıra numarasıyla gösterilmesi gerektiğinde kullanılır.</p>
+          <pre><code>&lt;ol&gt;
+  &lt;li&gt;Dosyayı oluştur&lt;/li&gt;
+  &lt;li&gt;Kodu yaz&lt;/li&gt;
+  &lt;li&gt;Tarayıcıda aç&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3>Tablo oluşturmak</h3>
+      <p>Tablolar, satır ve sütunlardan oluşan verileri göstermek için kullanılır. Sayfa düzenini oluşturmak için tablo kullanmak yerine CSS düzen araçlarını tercih etmelisin.</p>
+      <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Ders&lt;/th&gt;
+    &lt;th&gt;Seviye&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;HTML&lt;/td&gt;
+    &lt;td&gt;Başlangıç&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <h3>Formlar ve kullanıcıdan bilgi alma</h3>
+      <p>Formlar kullanıcıdan bilgi almak için kullanılır. Örneğin iletişim formu, kayıt formu veya arama kutusu oluşturabilirsin. Ancak HTML ile formu çizmek, girilen bilgileri bir sunucuya kaydetmekle aynı şey değildir. Gerçek veri kaydı için ayrıca uygun bir işlem gerekir.</p>
+      <pre><code>&lt;form&gt;
+  &lt;label for="ad"&gt;Adın:&lt;/label&gt;
+  &lt;input id="ad" name="ad" type="text"
+         placeholder="Adını yaz"&gt;
+  &lt;button type="submit"&gt;Gönder&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+      <div class="task">
+        <h3>✍️ Alıştırma</h3>
+        <p>Bir “Kendimi Tanıtıyorum” sayfası oluştur. İçinde bir ana başlık, kendini anlatan iki paragraf, üç maddelik bir hobi listesi ve sevdiğin bir web sitesine bağlantı olsun.</p>
+      </div>
+    </section>
+
+    <section class="section" id="css">
+      <h2>4. CSS nedir?</h2>
+      <p>CSS, “Cascading Style Sheets” ifadesinin kısaltmasıdır. HTML ile oluşturduğun içeriğin görünümünü düzenler. Renkler, yazı tipleri, boyutlar, kenarlıklar, boşluklar, hizalama ve sayfa düzeni CSS ile belirlenebilir.</p>
+
+      <h3>CSS nasıl eklenir?</h3>
+      <p>CSS üç temel şekilde kullanılabilir:</p>
+      <ul>
+        <li><strong>Satır içi CSS:</strong> Bir HTML öğesinin <code>style</code> niteliğinde yazılır. Küçük denemelerde kullanılabilir.</li>
+        <li><strong>Dahili CSS:</strong> HTML dosyasındaki <code>&lt;style&gt;</code> etiketi içinde yazılır.</li>
+        <li><strong>Harici CSS:</strong> Ayrı bir <code>.css</code> dosyasında tutulur. Büyük projelerde düzeni korumayı kolaylaştırır.</li>
+      </ul>
+
+      <h3>CSS dosyasını bağlamak</h3>
+      <p>HTML dosyanın <code>&lt;head&gt;</code> bölümüne aşağıdaki satırı ekleyebilirsin:</p>
+      <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+      <p>Bu örnekte <code>style.css</code> dosyası HTML dosyasıyla aynı klasörde bulunmalıdır.</p>
+
+      <div class="code-head">
+        <h3>Örnek 3 — Basit CSS tasarımı</h3>
+        <button class="copy-btn" onclick="copyCode('code3')">Kodu kopyala</button>
+      </div>
+      <pre id="code3"><code>body {
+  font-family: Arial, sans-serif;
+  background: #f7f5ff;
+  color: #25243a;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  color: #7155d9;
+  text-align: center;
+}
+
+.card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #25243a12;
+}</code></pre>
+
+      <h3>CSS kuralları nasıl okunur?</h3>
+      <p>Bir CSS kuralında önce hangi öğenin seçileceği yazılır. Buna seçici (selector) denir. Süslü parantezlerin içinde o öğeye uygulanacak özellikler ve değerleri bulunur.</p>
+      <pre><code>p {
+  color: purple;
+  font-size: 18px;
+}</code></pre>
+      <p>Burada <code>p</code> seçicisi bütün paragraf öğelerini hedefler. <code>color</code> yazı rengini, <code>font-size</code> ise yazı boyutunu belirler.</p>
+
+      <h3>Sınıf (class) ve kimlik (id)</h3>
+      <p><code>class</code>, birden fazla HTML öğesinde kullanılabilir. CSS'de nokta ile seçilir. <code>id</code> ise sayfadaki belirli bir öğeyi tanımlamak için kullanılır ve CSS'de diyez işaretiyle seçilir.</p>
+      <pre><code>/* HTML: &lt;div class="kart"&gt;... */
+.kart {
+  padding: 20px;
+}
+
+/* HTML: &lt;section id="hakkimda"&gt;... */
+#hakkimda {
+  background: white;
+}</code></pre>
+
+      <h3>Boşluklar, kenarlıklar ve kutu modeli</h3>
+      <p>CSS'de her öğeyi bir kutu gibi düşünebilirsin. İçerik (content), iç boşluk (padding), kenarlık (border) ve dış boşluk (margin) birlikte kutu modelini oluşturur.</p>
+      <ul>
+        <li><code>padding</code>: İçerikle kenarlık arasındaki boşluk.</li>
+        <li><code>margin</code>: Öğenin dışındaki boşluk.</li>
+        <li><code>border</code>: Öğenin kenarlığı.</li>
+        <li><code>border-radius</code>: Köşeleri yuvarlatır.</li>
+        <li><code>box-shadow</code>: Gölge ekler.</li>
+      </ul>
+
+      <div class="task">
+        <h3>✍️ Alıştırma</h3>
+        <p>HTML sayfana bir kart ekle. Kartın arka planını beyaz yap, köşelerini yuvarlat, içine 20 piksel boşluk ekle ve başlığını mor renge boya.</p>
+      </div>
+    </section>
+
+    <section class="section" id="tasarim">
+      <h2>5. Sayfa düzeni ve mobil uyumlu tasarım</h2>
+      <p>Bir web sitesi yalnızca bilgisayarda değil, telefon ve tablet ekranlarında da rahat kullanılabilmelidir. Buna responsive (duyarlı) tasarım denir. Responsive tasarımda içerik ekranın genişliğine göre uyum sağlar.</p>
+
+      <h3>Flexbox ile öğeleri hizalamak</h3>
+      <p>Flexbox, öğeleri bir satır veya sütun boyunca düzenlemeye yardımcı olur. Menüleri, kartları ve buton gruplarını hizalamak için kullanışlıdır.</p>
+      <pre><code>.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}</code></pre>
+      <p><code>justify-content</code> ana eksendeki dağılımı, <code>align-items</code> ise diğer eksendeki hizalamayı düzenler. Yön, <code>flex-direction</code> ile değiştirilebilir.</p>
+
+      <h3>Grid ile sütunlar oluşturmak</h3>
+      <p>CSS Grid, iki boyutlu sayfa düzenleri için uygundur. Örneğin ekran genişken üç kartı yan yana, dar ekranlarda ise tek sütun gösterebilirsin.</p>
+      <pre><code>.kartlar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .kartlar {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      <p><code>@media</code> kuralı, belirli ekran koşullarında farklı CSS kuralları uygulamayı sağlar.</p>
+
+      <h3>Mobil uyumluluk için kontrol listesi</h3>
+      <ul>
+        <li>HTML dosyasında viewport meta etiketi bulunsun.</li>
+        <li>İçerik sabit ve aşırı geniş ölçülere bağlı kalmasın.</li>
+        <li>Metinler telefonda rahat okunabilsin.</li>
+        <li>Butonlar parmakla dokunulabilecek büyüklükte olsun.</li>
+        <li>Görseller ekran dışına taşmasın.</li>
+        <li>Menüler ve formlar küçük ekranlarda da kullanılabilsin.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>İpucu:</strong> Chrome'da sayfana sağ tıklayıp “İncele” seçeneğini açabilir, cihaz simgesinden farklı ekran boyutlarını deneyebilirsin. Böylece mobil tasarımını test edebilirsin.
+      </div>
+    </section>
+
+    <section class="section" id="javascript">
+      <h2>6. JavaScript ile sayfaya etkileşim kazandırmak</h2>
+      <p>JavaScript, web sayfalarına davranış kazandıran bir programlama dilidir. Bir butona tıklandığında mesaj göstermek, form girişlerini kontrol etmek, bir hesaplama yapmak veya sayfadaki içeriği değiştirmek için kullanılabilir.</p>
+
+      <h3>Değişkenler</h3>
+      <p>Değişkenler, program çalışırken kullanacağın verileri isimlerle tutmanı sağlar. Günümüzde değiştirilebilir değerler için genellikle <code>let</code>, yeniden atanmayacak değişkenler için <code>const</code> tercih edilir.</p>
+      <pre><code>const siteAdi = "ZELORA";
+let ziyaretSayisi = 0;
+
+ziyaretSayisi = ziyaretSayisi + 1;
+
+console.log(siteAdi);
+console.log(ziyaretSayisi);</code></pre>
+
+      <h3>Koşullar</h3>
+      <p><code>if</code> ve <code>else</code>, bir koşulun doğru veya yanlış olmasına göre farklı kodların çalışmasını sağlar.</p>
+      <pre><code>const puan = 85;
+
+if (puan >= 50) {
+  console.log("Başarılı");
+} else {
+  console.log("Tekrar çalışmalısın");
+}</code></pre>
+
+      <h3>Fonksiyonlar</h3>
+      <p>Fonksiyon, belirli bir işi yapmak üzere yazılmış ve ihtiyaç duyulduğunda çalıştırılabilen kod bloğudur.</p>
+      <pre><code>function selamVer(isim) {
+  return "Merhaba " + isim + "!";
+}
+
+console.log(selamVer("Zelal"));</code></pre>
+
+      <h3>Butona tıklama olayı</h3>
+      <p>Bir olay (event), kullanıcının tıklaması veya klavyeden yazı yazması gibi bir etkileşimdir. JavaScript bu olaylara tepki verebilir.</p>
+      <div class="code-head">
+        <h3>Örnek 4 — Çalışan buton</h3>
+        <button class="copy-btn" onclick="copyCode('code4')">Kodu kopyala</button>
+      </div>
+      <pre id="code4"><code>&lt;button id="mesajButonu"&gt;Bana tıkla&lt;/button&gt;
+&lt;p id="mesaj"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  const buton = document.getElementById("mesajButonu");
+  const mesaj = document.getElementById("mesaj");
+
+  buton.addEventListener("click", function() {
+    mesaj.textContent = "ZELORA'ya hoş geldin!";
+  });
+&lt;/script&gt;</code></pre>
+
+      <h3>DOM nedir?</h3>
+      <p>DOM, tarayıcının HTML belgesini JavaScript ile erişilebilen bir nesne yapısı olarak sunmasıdır. <code>document.getElementById()</code> belirli bir kimliğe sahip öğeyi bulur. <code>textContent</code> öğenin metnini değiştirebilir.</p>
+
+      <h3>Diziler ve döngüler</h3>
+      <p>Diziler birden fazla değeri tek bir değişkende saklamaya yarar. Döngüler de bir işlem grubunu tekrar tekrar çalıştırır.</p>
+      <pre><code>const dersler = ["HTML", "CSS", "JavaScript"];
+
+for (const ders of dersler) {
+  console.log(ders);
+}</code></pre>
+
+      <h3>Hataları bulmak</h3>
+      <p>Kod beklediğin gibi çalışmıyorsa tarayıcı geliştirici araçlarındaki Console bölümünü kontrol et. Kırmızı hata mesajları sorunun hangi dosyada veya satırda olduğunu anlamana yardımcı olabilir. Etiketleri kapatmayı, dosya adlarını ve parantezleri kontrol etmeyi unutma.</p>
+
+      <div class="task">
+        <h3>✍️ Alıştırma</h3>
+        <p>Bir butona tıklandığında sayfada “Bugün web geliştirme öğreniyorum!” mesajı göster. Sonra mesajı kendi cümlenle değiştir.</p>
+      </div>
+    </section>
+
+    <section class="section" id="proje">
+      <h2>7. Uygulama projesi: Kişisel tanıtım sayfası</h2>
+      <p>Şimdi öğrendiğin HTML ve CSS bilgilerini küçük bir projede birleştirelim. Bu örnekte başlık, tanıtım yazısı, beceri listesi ve bir bağlantı bulunan sade bir profil kartı oluşturacağız.</p>
+
+      <div class="code-head">
+        <h3>Proje kodu</h3>
+        <button class="copy-btn" onclick="copyCode('code5')">Kodu kopyala</button>
+      </div>
+      <pre id="code5"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="tr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Kişisel Sayfam&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+      background: #f7f5ff;
+      color: #25243a;
+    }
+
+    .profil {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 28px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px #25243a12;
+    }
+
+    h1 { color: #7155d9; }
+
+    .beceri {
+      display: inline-block;
+      padding: 7px 12px;
+      margin: 4px;
+      background: #eee9ff;
+      border-radius: 20px;
+    }
+
+    a { color: #7155d9; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class="profil"&gt;
+    &lt;h1&gt;Merhaba, ben Zelal!&lt;/h1&gt;
+    &lt;p&gt;Web geliştirmeyi öğreniyorum ve kendi projelerimi yapıyorum.&lt;/p&gt;
+
+    &lt;h2&gt;Öğrendiğim konular&lt;/h2&gt;
+    &lt;span class="beceri"&gt;HTML&lt;/span&gt;
+    &lt;span class="beceri"&gt;CSS&lt;/span&gt;
+    &lt;span class="beceri"&gt;JavaScript&lt;/span&gt;
+
+    &lt;h2&gt;Hedefim&lt;/h2&gt;
+    &lt;p&gt;Kullanışlı ve mobil uyumlu web siteleri geliştirmek.&lt;/p&gt;
+
+    &lt;a href="https://developer.mozilla.org/"&gt;
+      Web geliştirme kaynaklarını incele
+    &lt;/a&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h3>Projeyi geliştir</h3>
+      <ol>
+        <li>Tanıtım metnini kendine göre değiştir.</li>
+        <li>Yeni bir beceri etiketi ekle.</li>
+        <li>Arka plan rengini değiştir.</li>
+        <li>Kartın genişliğini değiştirerek sonucu gözlemle.</li>
+        <li>Bir buton ekleyip JavaScript ile çalıştırmayı dene.</li>
+      </ol>
+      <div class="callout success">
+        <strong>Önemli:</strong> Kodu yeni bir HTML dosyasına kaydet. Örneğin <code>profil-projem.html</code>. Böylece mevcut ZELORA ana sayfanın dosyalarına dokunmadan pratik yapabilirsin.
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <h2>8. Video dersler</h2>
+      <p>Konuları video üzerinden de takip edebilirsin. Videoları sayfanın içinde oynatmayı deneyebilirsin. Bazı videolarda içerik sahibinin ayarları nedeniyle gömülü oynatma kapalı olabilir; böyle bir durumda videonun altındaki doğrudan YouTube bağlantısını kullan.</p>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/sUWEuDSD7bE"
+            title="Bir videoda HTML öğren"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>🎬 HTML öğrenmeye başla</h3>
+          <p>HTML'nin temel mantığını ve web sayfasının yapısını öğrenmek için başlangıç videosu.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=sUWEuDSD7bE" target="_blank" rel="noopener noreferrer">Videoyu doğrudan YouTube'da aç ↗</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/y745R3Lv9WI"
+            title="HTML CSS ve responsive tasarım eğitimi"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-info">
+          <h3>🎬 HTML, CSS ve responsive tasarım</h3>
+          <p>HTML ve CSS konularını örneklerle pekiştirmek ve farklı ekranlara uygun tasarım mantığını görmek için ek bir eğitim.</p>
+          <a class="video-link" href="https://www.youtube.com/watch?v=y745R3Lv9WI" target="_blank" rel="noopener noreferrer">Videoyu doğrudan YouTube'da aç ↗</a>
+        </div>
+      </div>
+
+      <div class="callout">
+        Videoların çalışması YouTube'un erişim ve yerleştirme ayarlarına bağlıdır. Bir video kutusu hata gösterirse alttaki bağlantıya tıklayarak aynı videoyu YouTube üzerinde açabilirsin.
+      </div>
+    </section>
+
+    <section class="section" id="yayina">
+      <h2>9. Web sitesi nasıl yayımlanır?</h2>
+      <p>Bilgisayarında oluşturduğun HTML dosyası önce yerel olarak çalışır. Başka kişilerin de internet üzerinden erişebilmesi için sitenin dosyalarını bir web barındırma (hosting) hizmetine yüklemen ve uygun bir adresle yayımlaman gerekir.</p>
+
+      <h3>Yerel çalışma ve canlı site</h3>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Yerel dosya</h3>
+          <p>Bilgisayarındaki HTML dosyasını tarayıcıda açarak tasarımını test edebilirsin. Bu aşamada site herkese açık değildir.</p>
+        </div>
+        <div class="info-card">
+          <h3>Yayımlanmış site</h3>
+          <p>Dosyalar bir hosting hizmetine yüklendiğinde ve yayımlama işlemi tamamlandığında diğer kişiler sitene internet üzerinden ulaşabilir.</p>
+        </div>
+      </div>
+
+      <h3>Temel yayımlama adımları</h3>
+      <ol>
+        <li>HTML, CSS, JavaScript ve görsel dosyalarını düzenle.</li>
+        <li>Dosya yollarını ve bağlantıları kontrol et.</li>
+        <li>Mobil görünümü ve farklı tarayıcıları test et.</li>
+        <li>Statik siteleri destekleyen bir hosting hizmeti seç.</li>
+        <li>Dosyalarını hizmetin yönergelerine göre yükle.</li>
+        <li>Oluşan web adresini açarak siteyi kontrol et.</li>
+      </ol>
+      <p>Ücretsiz hosting seçenekleri bulunabilir; ancak kullanım sınırları ve koşulları değişebilir. Alan adı almak ise ayrı bir ücret gerektirebilir. Yayınlamadan önce seçtiğin hizmetin güncel şartlarını kontrol et.</p>
+
+      <h3>Güvenlik ve erişilebilirlik</h3>
+      <ul>
+        <li>Formlardan gelen verileri güvenli şekilde işle.</li>
+        <li>Gereksiz kişisel bilgileri toplama.</li>
+        <li>Görseller için anlamlı alternatif metinler kullan.</li>
+        <li>Başlık sırasını mantıklı tut ve bağlantılara anlaşılır metinler ver.</li>
+        <li>Dosya adlarını ve klasör yapısını düzenli tut.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="sozluk">
+      <h2>10. Web geliştirme terimleri sözlüğü</h2>
+      <dl class="glossary">
+        <dt>HTML</dt>
+        <dd>Web sayfasının yapısını ve içeriğini tanımlayan işaretleme dili.</dd>
+        <dt>CSS</dt>
+        <dd>Web sayfasının görünümünü ve düzenini belirleyen stil dili.</dd>
+        <dt>JavaScript</dt>
+        <dd>Web sayfalarına davranış ve etkileşim kazandırmak için kullanılan programlama dili.</dd>
+        <dt>Frontend</dt>
+        <dd>Kullanıcının tarayıcıda gördüğü ve etkileşim kurduğu bölüm.</dd>
+        <dt>Backend</dt>
+        <dd>Sunucu tarafındaki işlemleri ve uygulama mantığını yöneten bölüm.</dd>
+        <dt>Tarayıcı</dt>
+        <dd>Web sayfalarını açıp görüntüleyen program.</dd>
+        <dt>Sunucu</dt>
+        <dd>İsteklere karşılık web içeriği veya veri sağlayan sistem.</dd>
+        <dt>Hosting</dt>
+        <dd>Web sitesinin dosyalarını internet üzerinden erişilebilir şekilde barındıran hizmet.</dd>
+        <dt>Alan adı (Domain)</dt>
+        <dd>Bir web sitesine ulaşmak için kullanılan okunabilir adres.</dd>
+        <dt>Responsive tasarım</dt>
+        <dd>Sayfanın farklı ekran boyutlarına uyum sağlaması.</dd>
+        <dt>DOM</dt>
+        <dd>Tarayıcının HTML belgesini programlarla erişilebilir bir nesne yapısı olarak sunması.</dd>
+        <dt>URL</dt>
+        <dd>Bir web kaynağının adresi.</dd>
+        <dt>Seçici (Selector)</dt>
+        <dd>CSS kurallarının hangi HTML öğelerine uygulanacağını belirleyen ifade.</dd>
+        <dt>Fonksiyon</dt>
+        <dd>Belirli bir işi yapmak üzere tanımlanmış ve çağrıldığında çalıştırılan kod bloğu.</dd>
+      </dl>
+    </section>
+
+    <section class="section" id="sinav">
+      <h2>11. Web Geliştirme Bilgi Testi</h2>
+      <p>Öğrendiklerini kontrol etmek için 20 soruyu cevapla. Her soru 5 puandır. Tüm soruları işaretledikten sonra “Sınavı değerlendir” düğmesine bas. Her soruda tek doğru cevap bulunur.</p>
+
+      <form id="quizForm">
+        <div id="questions"></div>
+        <button class="primary-btn" type="submit">Sınavı değerlendir</button>
+        <button class="secondary-btn" type="button" onclick="resetQuiz()">Tekrar çöz</button>
+      </form>
+      <div id="quizResult" aria-live="polite"></div>
+    </section>
+
+    <section class="section">
+      <h2>🎉 Eğitimi tamamladın!</h2>
+      <p>Artık HTML, CSS ve JavaScript'in temel görevlerini, web sayfası oluşturmanın mantığını ve basit bir projeyi nasıl hazırlayacağını biliyorsun. En iyi ilerleme yolu, örnek kodları sadece kopyalamak yerine değiştirip sonuçlarını gözlemlemektir.</p>
+      <div class="callout success">
+        <strong>Sıradaki adım:</strong> Kendi küçük web projeni oluştur. Önce tek bir sayfa hazırla, sonra tasarımını geliştir ve JavaScript ile etkileşim ekle.
+      </div>
+      <a class="back-link" href="index.html">← ZELORA ana sayfasına dön</a>
+    </section>
+
+    <footer class="footer">
+      ZELORA · Ücretsiz Dijital Akademi
+    </footer>
+  </main>
+</div>
+
+<script>
+const quizData = [
+  {
+    q: "HTML'nin temel görevi nedir?",
+    options: [
+      "Web sayfasının yapısını ve içeriğini tanımlamak",
+      "Bilgisayarın fiziksel parçalarını yönetmek",
+      "İnternet bağlantısı sağlamak",
+      "Yalnızca renkleri değiştirmek"
+    ],
+    answer: 0
+  },
+  {
+    q: "CSS ne için kullanılır?",
+    options: [
+      "Veritabanı oluşturmak",
+      "Web sayfasının görünümünü ve düzenini belirlemek",
+      "İşletim sistemi kurmak",
+      "E-posta göndermek"
+    ],
+    answer: 1
+  },
+  {
+    q: "JavaScript'in web sayfalarındaki yaygın görevlerinden biri nedir?",
+    options: [
+      "Monitör üretmek",
+      "Klavye sürücüsü yazmak zorunda olmak",
+      "Sayfaya etkileşim kazandırmak",
+      "İnternet kablosunu bağlamak"
+    ],
+    answer: 2
+  },
+  {
+    q: "Tarayıcıya sekme başlığı vermek için hangi HTML etiketi kullanılır?",
+    options: ["<body>", "<title>", "<footer>", "<button>"],
+    answer: 1
+  },
+  {
+    q: "Bir paragraf oluşturmak için hangi etiket kullanılır?",
+    options: ["<p>", "<img>", "<br>", "<table>"],
+    answer: 0
+  },
+  {
+    q: "Bir bağlantının hedef adresi hangi HTML niteliğiyle belirtilir?",
+    options: ["src", "class", "href", "alt"],
+    answer: 2
+  },
+  {
+    q: "Görselin adresini belirtmek için genellikle hangi nitelik kullanılır?",
+    options: ["href", "src", "id", "target"],
+    answer: 1
+  },
+  {
+    q: "CSS'de bir sınıf seçicisi hangi işaretle başlar?",
+    options: ["#", ".", "@", "&"],
+    answer: 1
+  },
+  {
+    q: "CSS'de bir id seçicisi hangi işaretle başlar?",
+    options: [".", "!", "#", "%"],
+    answer: 2
+  },
+  {
+    q: "CSS'de iç boşluğu belirleyen özellik hangisidir?",
+    options: ["margin", "padding", "font-style", "opacity"],
+    answer: 1
+  },
+  {
+    q: "HTML belgesinde görünen asıl içerik genellikle hangi etikettedir?",
+    options: ["<head>", "<meta>", "<body>", "<title>"],
+    answer: 2
+  },
+  {
+    q: "Responsive tasarım ne anlama gelir?",
+    options: [
+      "Yalnızca masaüstünde çalışmak",
+      "Sayfanın farklı ekran boyutlarına uyum sağlaması",
+      "Her sayfada aynı resmi kullanmak",
+      "JavaScript'i kaldırmak"
+    ],
+    answer: 1
+  },
+  {
+    q: "CSS Flexbox ne tür bir iş için kullanışlıdır?",
+    options: [
+      "Öğeleri satır veya sütun boyunca hizalamak",
+      "Görsel dosyalarını silmek",
+      "HTML dosyasını açmak",
+      "Alan adı satın almak"
+    ],
+    answer: 0
+  },
+  {
+    q: "JavaScript'te sabit olarak yeniden atama yapılmayacak bir değişken tanımlamak için hangisi tercih edilir?",
+    options: ["const", "change", "style", "html"],
+    answer: 0
+  },
+  {
+    q: "JavaScript'te koşul yazmak için hangi yapı kullanılır?",
+    options: ["paint", "if", "color", "href"],
+    answer: 1
+  },
+  {
+    q: "Bir düğmeye tıklama olayını dinlemek için hangi yöntem kullanılabilir?",
+    options: ["addEventListener()", "makeWebsite()", "openHTML()", "paintText()"],
+    answer: 0
+  },
+  {
+    q: "DOM neyi ifade eder?",
+    options: [
+      "Bir resim biçimini",
+      "Bir internet sağlayıcısını",
+      "HTML belgesinin programlarla erişilebilen nesne yapısını",
+      "Bir bilgisayar markasını"
+    ],
+    answer: 2
+  },
+  {
+    q: "HTML dosyasını kaydederken yaygın olarak hangi uzantı kullanılır?",
+    options: [".mp3", ".html", ".jpg", ".zip"],
+    answer: 1
+  },
+  {
+    q: "Bir web sitesinin dosyalarını internetten erişilebilir şekilde barındıran hizmete ne denir?",
+    options: ["Hosting", "Başlık", "Döngü", "Seçici"],
+    answer: 0
+  },
+  {
+    q: "Bir web sayfasında sorun çıktığında JavaScript hatalarını kontrol etmek için hangi araç yardımcı olabilir?",
+    options: [
+      "Tarayıcının geliştirici araçlarındaki Console bölümü",
+      "Bilgisayarın duvar kâğıdı ayarı",
+      "Ekran parlaklığı ayarı",
+      "Dosya sıkıştırma programı"
+    ],
+    answer: 0
+  }
+];
+
+const questionsContainer = document.getElementById("questions");
+
+function renderQuiz() {
+  questionsContainer.innerHTML = quizData.map((item, index) => `
+    <div class="quiz-question" id="question-${index}">
+      <p>${index + 1}. ${escapeHTML(item.q)}</p>
+      ${item.options.map((option, optionIndex) => `
+        <label class="option">
+          <input type="radio" name="q${index}" value="${optionIndex}">
+          ${escapeHTML(option)}
+        </label>
+      `).join("")}
+      <div class="small answer-feedback" id="feedback-${index}"></div>
+    </div>
+  `).join("");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+document.getElementById("quizForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  let score = 0;
+  let answered = 0;
+
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    const feedback = document.getElementById(`feedback-${index}`);
+    const question = document.getElementById(`question-${index}`);
+
+    question.style.borderColor = "#e9e5f5";
+
+    if (!selected) {
+      feedback.textContent = "Bu soruyu cevaplamadın.";
+      feedback.style.color = "#a05b13";
+      return;
+    }
+
+    answered++;
+
+    if (Number(selected.value) === item.answer) {
+      score += 5;
+      feedback.textContent = "Doğru cevap! +5 puan";
+      feedback.style.color = "#16845b";
+      question.style.borderColor = "#16845b";
+    } else {
+      feedback.textContent = "Yanlış cevap. Doğru cevap: " + item.options[item.answer];
+      feedback.style.color = "#b42318";
+      question.style.borderColor = "#b42318";
+    }
+  });
+
+  const result = document.getElementById("quizResult");
+  const percentage = score;
+  let message = "";
+
+  if (score >= 90) {
+    message = "Harika! Konuları çok iyi anlamışsın.";
+  } else if (score >= 70) {
+    message = "Güzel sonuç! Biraz daha pratikle daha da ilerleyebilirsin.";
+  } else if (score >= 50) {
+    message = "İyi bir başlangıç. Yanlış cevaplarını gözden geçirmeni öneririz.";
+  } else {
+    message = "Üzülme. Konu anlatımlarını tekrar inceleyip testi yeniden çözebilirsin.";
+  }
+
+  result.style.display = "block";
+  result.innerHTML = `
+    <h3>Sonucun: ${score} / 100</h3>
+    <p><strong>${answered} / ${quizData.length}</strong> soruyu cevapladın.</p>
+    <p>${message}</p>
+  `;
+
+  result.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+function resetQuiz() {
+  document.getElementById("quizForm").reset();
+  document.getElementById("quizResult").style.display = "none";
+
+  quizData.forEach((item, index) => {
+    document.getElementById(`feedback-${index}`).textContent = "";
+    document.getElementById(`question-${index}`).style.borderColor = "#e9e5f5";
+  });
+
+  document.getElementById("sinav").scrollIntoView({ behavior: "smooth" });
+}
+
+function copyCode(id) {
+  const element = document.getElementById(id);
+  const text = element.innerText;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text)
+      .then(() => alert("Kod kopyalandı!"))
+      .catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    document.execCommand("copy");
+    alert("Kod kopyalandı!");
+  } catch (error) {
+    alert("Kopyalama başarısız oldu. Kodu seçip Ctrl+C ile kopyalayabilirsin.");
+  }
+
+  textarea.remove();
+}
+
+const progressSections = [
+  "baslangic", "internet", "html", "html-etiketleri", "css",
+  "tasarim", "javascript", "proje", "video", "yayina", "sozluk", "sinav"
+];
+
+function getCompletedSections() {
+  try {
+    return JSON.parse(localStorage.getItem("zeloraWebGelistirmeProgress") || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function updateProgress() {
+  const completed = getCompletedSections();
+  const percent = Math.round((completed.length / progressSections.length) * 100);
+
+  document.getElementById("progressBar").style.width = percent + "%";
+  document.getElementById("progressText").textContent =
+    "%" + percent + " tamamlandı (" + completed.length + "/" + progressSections.length + ")";
+}
+
+function markSectionAsRead(id) {
+  if (!progressSections.includes(id)) return;
+
+  const completed = getCompletedSections();
+
+  if (!completed.includes(id)) {
+    completed.push(id);
+    localStorage.setItem("zeloraWebGelistirmeProgress", JSON.stringify(completed));
+    updateProgress();
+  }
+}
+
+function resetProgress() {
+  const confirmReset = confirm("Ders ilerlemeni sıfırlamak istiyor musun?");
+  if (!confirmReset) return;
+
+  localStorage.removeItem("zeloraWebGelistirmeProgress");
+  updateProgress();
+}
+
+renderQuiz();
+updateProgress();
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        markSectionAsRead(entry.target.id);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  progressSections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+}
+</script>
+
+</body>
+</html>

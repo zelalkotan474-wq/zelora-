@@ -1,0 +1,35 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--mor:#5a3d8a;--acik:#f9f6ff;--kart:#ffffff;--yazi:#2d204d;--cizgi:#eee8ff}
+body{font-family:system-ui,sans-serif;background:var(--acik);color:var(--yazi);line-height:1.6}
+.ust-menu{display:flex;justify-content:space-between;align-items:center;padding:18px 5%;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--cizgi)}
+.logo{font-family:serif;font-size:28px;letter-spacing:4px;color:var(--mor);text-decoration:none;font-weight:600}
+.logo span{color:#b89cff}
+nav{display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;color:var(--yazi);opacity:.8;font-weight:500;font-size:15px}
+.menu-buton{background:var(--mor);color:white!important;padding:10px 18px;border-radius:24px;opacity:1!important}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;padding:70px 5%;align-items:center;background:radial-gradient(900px 500px at 20% 0%,#d9c8ff 0%,#f9f6ff 65%)}
+.etiket{font-size:11px;letter-spacing:3px;background:#efe8ff;color:var(--mor);padding:6px 12px;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:14px}
+.hero h1{font-family:serif;font-size:52px;line-height:1.1;color:#3a2a5e}
+.hero h1 span{color:var(--mor)}
+.hero p{margin:18px 0 26px;opacity:.7;font-size:18px;max-width:520px}
+.ana-buton{display:inline-block;background:var(--mor);color:white;padding:14px 26px;border-radius:30px;text-decoration:none;font-weight:600}
+.hero-kart{background:white;border-radius:28px;padding:32px;box-shadow:0 20px 50px rgba(90,61,138,.1);border:1px solid var(--cizgi)}
+.bilgisayar-ikon{font-size:42px;margin-bottom:12px}
+.egitimler{padding:60px 5%}
+.bolum-baslik{text-align:center;max-width:600px;margin:0 auto 30px}
+.bolum-baslik h2{font-family:serif;font-size:36px;color:#3a2a5e}
+.arama{max-width:500px;margin:0 auto 30px}
+.arama input{width:100%;padding:14px 18px;border-radius:14px;border:1px solid var(--cizgi);font-size:15px;outline:none}
+.egitim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1200px;margin:0 auto}
+.egitim-kart{background:white;border-radius:20px;padding:24px;border:1px solid var(--cizgi);transition:.25s}
+.egitim-kart:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(90,61,138,.08)}
+.egitim-kart .ikon{font-size:26px;margin-bottom:12px}
+.egitim-kart a{color:var(--mor);text-decoration:none;font-weight:600;font-size:14px}
+.hakkimizda{padding:60px 5%;background:white;border-top:1px solid var(--cizgi);border-bottom:1px solid var(--cizgi)}
+.ozellikler{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:900px;margin:30px auto 0;text-align:center}
+.ozellikler span{font-size:28px}
+.baslangic{text-align:center;padding:80px 5%;background:radial-gradient(800px 400px at 50% 100%,#d9c8ff 0%,#f9f6ff 70%)}
+.baslangic h2{font-family:serif;font-size:38px;color:#3a2a5e;margin-bottom:12px}
+footer{text-align:center;padding:30px;opacity:.6}
+.sonuc-yok{text-align:center;margin-top:20px;opacity:.6}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hero h1{font-size:38px}}

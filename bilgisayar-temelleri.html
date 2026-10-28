@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilgisayarın Temelleri | ZELORA</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+  --mor:#6d3bd1;
+  --koyu:#452184;
+  --acik:#f7f4ff;
+  --metin:#302942;
+  --soluk:#6d657b;
+  --kenar:#e9e1fa;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--acik);
+  color:var(--metin);
+  line-height:1.8;
+}
+header{
+  background:white;
+  padding:15px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  box-shadow:0 3px 15px #27114b0d;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+.logo{
+  font-size:23px;
+  font-weight:800;
+  color:var(--mor);
+  text-decoration:none;
+}
+.geri{
+  background:var(--mor);
+  color:white;
+  padding:8px 14px;
+  border-radius:9px;
+  text-decoration:none;
+  font-size:14px;
+}
+.hero{
+  padding:48px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#e9ddff,#fbfaff);
+}
+.etiket{
+  display:inline-block;
+  background:white;
+  color:var(--mor);
+  border-radius:20px;
+  padding:5px 14px;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+.hero h1{
+  font-size:clamp(29px,5vw,43px);
+  line-height:1.25;
+  color:var(--koyu);
+  margin:15px 0 8px;
+}
+.hero p{color:var(--soluk);margin:0}
+.layout{
+  max-width:1150px;
+  padding:25px 18px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:245px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.menu{
+  background:white;
+  border:1px solid var(--kenar);
+  border-radius:15px;
+  padding:18px;
+  position:sticky;
+  top:90px;
+}
+.menu h3{margin-top:0;color:var(--koyu)}
+.menu a{
+  display:block;
+  text-decoration:none;
+  color:var(--metin);
+  padding:7px 9px;
+  border-radius:7px;
+  font-size:14px;
+}
+.menu a:hover{background:#f1eaff;color:var(--mor)}
+.icerik{min-width:0}
+.kart{
+  background:white;
+  padding:25px;
+  border-radius:17px;
+  margin-bottom:22px;
+  border:1px solid var(--kenar);
+  box-shadow:0 5px 20px #35205b07;
+  scroll-margin-top:90px;
+}
+.kart h2{
+  margin-top:0;
+  color:var(--koyu);
+  line-height:1.35;
+}
+.kart h3{color:var(--mor);margin-top:25px}
+.kart h4{margin-bottom:5px;color:#51416f}
+.konu-no{
+  color:var(--mor);
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing:1.2px;
+}
+.kutu{
+  background:#f5f0ff;
+  border-left:4px solid var(--mor);
+  padding:13px 17px;
+  border-radius:8px;
+  margin:17px 0;
+}
+.uyari{
+  background:#fff7e7;
+  border-left:4px solid #d69a22;
+  padding:13px 17px;
+  border-radius:8px;
+  margin:17px 0;
+}
+.tablo-kaydir{overflow-x:auto}
+table{
+  border-collapse:collapse;
+  width:100%;
+  margin:15px 0;
+  font-size:14px;
+}
+th,td{
+  border:1px solid var(--kenar);
+  padding:10px;
+  text-align:left;
+  vertical-align:top;
+}
+th{background:#f2ecff;color:var(--koyu)}
+.video-kutu{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#eee8ff;
+  border-radius:12px;
+  overflow:hidden;
+  margin:15px 0;
+}
+.video-kutu iframe{width:100%;height:100%;border:0}
+.video-link{color:var(--mor);font-weight:bold}
+.soru{
+  border:0;
+  border-bottom:1px solid var(--kenar);
+  padding:15px 0;
+  margin:0;
+}
+.soru legend{font-weight:bold;margin-bottom:9px}
+.soru label{
+  display:block;
+  padding:6px 9px;
+  border-radius:7px;
+  cursor:pointer;
+}
+.soru label:hover{background:#f7f3ff}
+.soru input{accent-color:var(--mor);margin-right:7px}
+.buton{
+  background:var(--mor);
+  color:white;
+  border:0;
+  border-radius:9px;
+  padding:12px 17px;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:10px 5px 0 0;
+}
+.buton:hover{background:var(--koyu)}
+.buton.ikincil{background:#eee8ff;color:var(--koyu)}
+#sonuc{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:12px;
+  background:#f3edff;
+}
+#sonuc h3{margin-top:0;color:var(--koyu)}
+.kaynak-notu{font-size:13px;color:var(--soluk)}
+footer{text-align:center;padding:25px;color:var(--soluk)}
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr}
+  .menu{position:static}
+  .menu-listesi{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:3px;
+  }
+}
+@media(max-width:500px){
+  .kart{padding:18px}
+  .menu-listesi{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="index.html">ZELORA</a>
+  <a class="geri" href="index.html">← Ana Sayfa</a>
+</header>
+
+<section class="hero">
+  <span class="etiket">BİLGİSAYAR EĞİTİMİ</span>
+  <h1>Bilgisayarın Temelleri 💻</h1>
+  <p>Bilgisayarı sıfırdan tanı, temel becerilerini geliştir ve öğrendiklerini uygula.</p>
+</section>
+
+<main class="layout">
+
+<nav class="menu" aria-label="Ders içindekiler">
+  <h3>📚 Ders İçeriği</h3>
+  <div class="menu-listesi">
+    <a href="#ders1">1. Bilgisayar nedir?</a>
+    <a href="#ders2">2. Donanım</a>
+    <a href="#ders3">3. Yazılım</a>
+    <a href="#ders4">4. İşletim sistemi</a>
+    <a href="#ders5">5. Klavye ve fare</a>
+    <a href="#ders6">6. Dosya ve klasörler</a>
+    <a href="#videolar">🎬 Eğitim videoları</a>
+    <a href="#test">📝 Bilgi testi</a>
+  </div>
+  <div class="kutu">
+    <strong>Çalışma önerisi</strong>
+    <p style="margin-bottom:0;font-size:13px">Her konuyu oku, uygulamayı dene ve sonunda bilgini test et.</p>
+  </div>
+</nav>
+
+<div class="icerik">
+
+<section class="kart" id="ders1">
+<span class="konu-no">DERS 01 · TEMEL BİLGİ</span>
+<h2>1. Bilgisayar Nedir ve Nasıl Çalışır?</h2>
+
+<p>Bilgisayar; verileri alan, bu verileri belirli kurallara göre işleyen, sonuçları kullanıcıya sunan ve gerektiğinde bilgileri saklayan elektronik bir cihazdır. Bilgisayarlar yalnızca masa üzerinde duran büyük makineler değildir. Dizüstü bilgisayarlar, tabletler, akıllı telefonlar ve bazı akıllı cihazlar da bilgisayarların çalışma mantığından yararlanır.</p>
+
+<p>Bilgisayarlar günümüzde eğitim, sağlık, bankacılık, mühendislik, iletişim, tasarım ve eğlence gibi birçok alanda kullanılır. Bir öğrenci ödev hazırlarken, bir çalışan hesaplama yaparken veya bir tasarımcı çizim oluştururken bilgisayardan yararlanabilir.</p>
+
+<h3>Veri ile bilgi arasındaki fark</h3>
+<p><strong>Veri</strong>, henüz yorumlanmamış sayı, sözcük, görüntü veya ölçüm gibi ham içeriklerdir. <strong>Bilgi</strong> ise verilerin işlenmesi ve anlamlandırılmasıyla elde edilen sonuçtur.</p>
+<p>Örneğin bir haftanın günlük sıcaklık değerleri veridir. Bu değerlerin ortalamasını hesaplayıp haftanın genel olarak sıcak mı soğuk mu geçtiğini anlamak, verilerden bilgi elde etmektir.</p>
+
+<h3>Bilgisayarın çalışma aşamaları</h3>
+<ol>
+<li><strong>Girdi:</strong> Bilgisayara veri veya komut verilir. Klavyeyle yazı yazmak buna örnektir.</li>
+<li><strong>İşlem:</strong> Bilgisayar, verilen komutları programların yardımıyla işler.</li>
+<li><strong>Çıktı:</strong> İşlemin sonucu ekranda gösterilir veya yazıcıdan çıkarılır.</li>
+<li><strong>Depolama:</strong> Gerekli bilgiler daha sonra kullanılmak üzere saklanabilir.</li>
+</ol>
+
+<div class="kutu">
+<strong>Günlük hayattan örnek:</strong>
+Hesap makinesine 25 + 15 yazarsın. Girdi işlemi başlatır, bilgisayar hesabı yapar ve ekranda 40 sonucunu gösterir. Sonucu bir dosyaya kaydedersen depolama da yapmış olursun.
+</div>
+
+<h3>Bilgisayar türleri</h3>
+<ul>
+<li><strong>Masaüstü bilgisayar:</strong> Genellikle ayrı monitör, kasa, klavye ve fareyle kullanılır.</li>
+<li><strong>Dizüstü bilgisayar:</strong> Ekran, klavye, pil ve temel bileşenler tek gövdededir.</li>
+<li><strong>Tablet ve akıllı telefon:</strong> Dokunmatik ekranla kullanılan taşınabilir cihazlardır.</li>
+<li><strong>Sunucu:</strong> Diğer bilgisayarlara dosya, uygulama ve çeşitli hizmetler sağlayabilir.</li>
+</ul>
+
+<h3>Bilgisayarı güvenli kullanmak</h3>
+<p>Bilgisayarını sağlam ve düz bir yüzeyde kullan. Havalandırma deliklerini kapatma ve sıvıları cihazdan uzak tut. Önemli dosyalarını düzenli olarak yedekle. Bilgisayarı kapatırken işletim sisteminin kapatma seçeneğini kullanarak açık çalışmalarının kaybolma riskini azalt.</p>
+
+<h3>Uygulama: Hesaplama yap</h3>
+<ol>
+<li>Bilgisayarında Hesap Makinesi uygulamasını aç.</li>
+<li>125 × 4 işlemini yap.</li>
+<li>Sonucun 500 olduğunu kontrol et.</li>
+<li>Not Defteri'ni açıp işlemi ve sonucu yaz.</li>
+<li>Dosyanı <strong>hesaplama-alistirmasi.txt</strong> adıyla kaydet.</li>
+</ol>
+</section>
+
+<section class="kart" id="ders2">
+<span class="konu-no">DERS 02 · DONANIM</span>
+<h2>2. Bilgisayar Donanımı ve Parçaları</h2>
+
+<p>Donanım, bilgisayarın fiziksel olarak var olan ve dokunulabilen parçalarına verilen addır. Bilgisayarın çalışabilmesi için farklı donanım bileşenleri birlikte görev yapar. Her parçanın işlevi farklıdır; bir parçanın daha güçlü olması her işte bilgisayarın aynı oranda hızlanacağı anlamına gelmez.</p>
+
+<h3>İşlemci (CPU)</h3>
+<p>İşlemci, bilgisayarın komutları yürütmesinde ve hesaplamalarda merkezi rol oynar. Programların yaptığı işlemlerin büyük bir bölümü işlemcinin kapasitesinden yararlanır. İşlemci performansı; mimariye, çekirdek sayısına, çalışma hızına ve yapılan işin türüne bağlıdır.</p>
+
+<h3>Bellek (RAM)</h3>
+<p>RAM, bilgisayar çalışırken programların ve verilerin geçici olarak tutulduğu hızlı bellektir. Aynı anda birçok uygulama açıldığında yeterli RAM bulunması bilgisayarın daha rahat çalışmasına yardımcı olur. RAM genellikle elektrik kesildiğinde veya bilgisayar kapatıldığında içindeki verileri kalıcı olarak saklamaz.</p>
+
+<h3>Depolama: SSD ve HDD</h3>
+<p>Depolama birimleri işletim sistemini, programları, belgeleri ve fotoğrafları uzun süre saklar. SSD'ler elektronik bellek yongaları kullanır ve genellikle mekanik sabit disklerden daha hızlıdır. HDD adı verilen sabit disklerde dönen mekanik parçalar bulunur.</p>
+
+<h3>Anakart</h3>
+<p>Anakart, işlemci, RAM, depolama ve diğer bileşenlerin birbirleriyle bağlantı kurmasını sağlayan ana devre kartıdır. Bilgisayar parçalarının birbiriyle uyumlu olması gerekir; her işlemci her anakartla çalışmaz.</p>
+
+<h3>Ekran kartı (GPU)</h3>
+<p>Ekran kartı, görüntülerin oluşturulması ve ekrana gönderilmesi işlemlerini yürütür. Bazı bilgisayarlarda grafik birimi işlemciyle bütünleşiktir; bazılarında ayrı ekran kartı bulunur. Üç boyutlu oyunlar, video işleme ve bazı yapay zekâ görevleri güçlü bir grafik biriminden yararlanabilir.</p>
+
+<h3>Giriş ve çıkış aygıtları</h3>
+<ul>
+<li><strong>Klavye:</strong> Yazı yazmak ve komut vermek için kullanılır.</li>
+<li><strong>Fare:</strong> İşaretçiyi hareket ettirmek ve öğeleri seçmek için kullanılır.</li>
+<li><strong>Monitör:</strong> Görsel çıktıları gösterir.</li>
+<li><strong>Mikrofon:</strong> Ses girdisi alır.</li>
+<li><strong>Hoparlör veya kulaklık:</strong> Ses çıktısı verir.</li>
+<li><strong>Yazıcı:</strong> Dijital içerikleri kâğıda aktarabilir.</li>
+<li><strong>Tarayıcı:</strong> Kâğıt üzerindeki belgeleri dijital ortama aktarabilir.</li>
+</ul>
+
+<div class="tablo-kaydir">
+<table>
+<thead><tr><th>Parça</th><th>Temel görevi</th><th>Örnek</th></tr></thead>
+<tbody>
+<tr><td>CPU</td><td>Komutları yürütme ve işlem yapma</td><td>Programların çalışması</td></tr>
+<tr><td>RAM</td><td>Geçici çalışma belleği</td><td>Açık uygulamalar</td></tr>
+<tr><td>SSD/HDD</td><td>Uzun süreli depolama</td><td>Belge ve fotoğraflar</td></tr>
+<tr><td>GPU</td><td>Grafik işlemleri</td><td>Oyun ve video</td></tr>
+<tr><td>Anakart</td><td>Bileşenleri birbirine bağlama</td><td>Donanımlar arası iletişim</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Donanım seçerken nelere bakılır?</h3>
+<p>Öncelikle bilgisayarın hangi amaçla kullanılacağı belirlenmelidir. İnternette gezinme ve belge hazırlama için gereken özellikler, profesyonel video düzenleme veya yüksek performanslı oyunlar için gerekenlerden farklıdır. RAM miktarı, depolama kapasitesi, işlemci ve grafik birimi birlikte değerlendirilmelidir. Pil ömrü, ekran kalitesi, bağlantı noktaları ve garanti koşulları da önemlidir.</p>
+
+<div class="kutu">
+<strong>Uygulama: Bilgisayarının özelliklerini incele</strong>
+<p>Windows'ta Görev Yöneticisi'ni açıp Performans bölümüne gir. İşlemci, bellek ve disk kullanımını gözlemle. Bu değerler bilgisayarının o anda hangi kaynakları kullandığı hakkında fikir verir.</p>
+</div>
+</section>
+
+<section class="kart" id="ders3">
+<span class="konu-no">DERS 03 · YAZILIM</span>
+<h2>3. Yazılım Nedir? Programlar Nasıl Çalışır?</h2>
+
+<p>Yazılım, bilgisayara ne yapacağını söyleyen programlar, talimatlar ve ilgili bileşenlerden oluşur. Donanım fiziksel parçaları ifade ederken yazılım bu parçaların belirli görevleri yerine getirmesini sağlar. Bilgisayarın çalışması için donanım ve yazılımın birbiriyle uyumlu olması gerekir.</p>
+
+<h3>Sistem yazılımları</h3>
+<p>Sistem yazılımları bilgisayarın çalışmasını ve donanım kaynaklarının yönetilmesini sağlar. İşletim sistemleri bunun en bilinen örneğidir. Aygıt sürücüleri de işletim sisteminin yazıcı, ses kartı veya grafik donanımı gibi parçalarla iletişim kurmasına yardımcı olur.</p>
+
+<h3>Uygulama yazılımları</h3>
+<p>Uygulama yazılımları kullanıcıların belirli işlerini yapmasını sağlar. Metin düzenleme programları belge hazırlamak, elektronik tablolar hesaplama yapmak, internet tarayıcıları web sitelerini görüntülemek ve görsel düzenleme programları resimleri işlemek için kullanılabilir.</p>
+
+<h3>Programlar nasıl çalışır?</h3>
+<p>Bir program açıldığında işletim sistemi programın çalışması için gereken kaynakları ayırır. Program, işlemcinin yürüttüğü komutlar aracılığıyla işini yapar ve gerektiğinde RAM, depolama, ekran veya ağ bağlantısı gibi kaynakları kullanır. Örneğin bir fotoğraf düzenleme programı görüntüyü depolamadan okuyabilir, bellekte işleyebilir ve düzenlenmiş hâlini yeniden dosyaya kaydedebilir.</p>
+
+<h3>Kurulum ve güncelleme</h3>
+<p>Programlar işletim sistemine uygun ve güvenilir bir kaynaktan kurulmalıdır. Bilinmeyen sitelerden indirilen kurulum dosyaları zararlı yazılım içerebilir. Programları ve işletim sistemini güncel tutmak, güvenlik açıklarının kapatılmasına ve hataların düzeltilmesine yardımcı olur.</p>
+
+<h3>Dosya türleri ve uzantıları</h3>
+<p>Dosya uzantısı, dosya adının sonundaki ve çoğunlukla dosya türünü belirten bölümdür. Uzantı tek başına dosyanın güvenli olduğunu kanıtlamaz; dosyanın içeriği ve nereden geldiği de önemlidir.</p>
+<ul>
+<li><strong>.txt:</strong> Düz metin dosyası.</li>
+<li><strong>.pdf:</strong> Belge paylaşımında yaygın kullanılan biçim.</li>
+<li><strong>.jpg / .png:</strong> Görsel dosyaları.</li>
+<li><strong>.mp3:</strong> Ses dosyalarında kullanılan biçim.</li>
+<li><strong>.mp4:</strong> Video dosyalarında yaygın kullanılan biçim.</li>
+<li><strong>.html:</strong> Web sayfalarının yapısını tanımlamak için kullanılır.</li>
+<li><strong>.css:</strong> Web sayfalarının görünümünü düzenler.</li>
+<li><strong>.js:</strong> Web sayfalarına etkileşim eklemek için kullanılabilir.</li>
+</ul>
+
+<div class="uyari">
+<strong>Güvenlik notu:</strong> Beklemediğin e-posta eklerini ve şüpheli kurulum dosyalarını açmadan önce kaynağını kontrol et. Bir dosyanın simgesi veya adı güvenli olduğunu göstermez.
+</div>
+
+<h3>Uygulama: Metin dosyası oluştur</h3>
+<ol>
+<li>Not Defteri uygulamasını aç.</li>
+<li>“Bilgisayar kullanmayı öğreniyorum.” cümlesini yaz.</li>
+<li>Dosya menüsünden Farklı Kaydet seçeneğini kullan.</li>
+<li>Dosyanın adını <strong>bilgisayar-notlarim.txt</strong> yap.</li>
+<li>Dosyayı Belgeler klasörüne kaydet ve tekrar aç.</li>
+</ol>
+</section>
+
+<section class="kart" id="ders4">
+<span class="konu-no">DERS 04 · İŞLETİM SİSTEMİ</span>
+<h2>4. Windows ve Masaüstünü Kullanmak</h2>
+
+<p>İşletim sistemi, bilgisayarın donanım kaynaklarını yöneten ve uygulamalar için ortak bir çalışma ortamı sağlayan temel yazılımdır. Windows, kişisel bilgisayarlarda yaygın kullanılan işletim sistemlerinden biridir. Bilgisayar açılırken işletim sistemi yüklenir; kullanıcı oturum açtıktan sonra masaüstü ve diğer arayüz bileşenleri kullanılabilir.</p>
+
+<h3>Masaüstü</h3>
+<p>Masaüstü, oturum açtıktan sonra gördüğün ana çalışma alanıdır. Burada dosya ve klasör kısayolları, uygulama simgeleri ve arka plan bulunabilir. Masaüstüne çok fazla dosya koymak yerine belgelerini uygun klasörlerde düzenlemek işlerini kolaylaştırır.</p>
+
+<h3>Başlat menüsü ve görev çubuğu</h3>
+<p>Başlat menüsü uygulamaları aramak, açmak ve bazı sistem seçeneklerine ulaşmak için kullanılır. Görev çubuğu açık uygulamalar arasında geçiş yapmayı ve sabitlenmiş programlara erişmeyi kolaylaştırır. Windows sürümüne ve kişisel ayarlara göre görünüm değişebilir.</p>
+
+<h3>Pencerelerle çalışmak</h3>
+<p>Bir uygulama açıldığında genellikle bir pencere içinde görüntülenir. Pencereyi küçültebilir, büyütebilir, taşıyabilir veya kapatabilirsin. Birden fazla pencere açıkken görev çubuğunu ya da Alt + Tab kısayolunu kullanarak aralarında geçiş yapabilirsin.</p>
+
+<h3>Ayarlar ve uygulamalar</h3>
+<p>Ayarlar bölümü ekran, ses, ağ, Bluetooth, hesaplar ve güncellemeler gibi birçok seçeneği yönetmek için kullanılır. Bir program yüklerken kaynağının güvenilir olmasına dikkat et. Kullanmadığın programları kaldırmak depolama alanını boşaltabilir; ancak ne işe yaradığını bilmediğin sistem bileşenlerini silmemelisin.</p>
+
+<h3>Bilgisayarı doğru kapatmak</h3>
+<p>Önce açık belgelerini kaydet ve çalışmalarını tamamla. Ardından Başlat menüsündeki güç seçeneklerinden Kapat seçeneğini kullan. Güncelleme sırasında bilgisayarın kapanması daha uzun sürebilir; işlem tamamlanmadan güç bağlantısını kesmek sorunlara yol açabilir.</p>
+
+<div class="kutu">
+<strong>Uygulama: Windows'u tanı</strong>
+<ol>
+<li>Başlat menüsünü aç.</li>
+<li>Arama alanına Not Defteri yaz.</li>
+<li>Uygulamayı çalıştırıp bir cümle yaz.</li>
+<li>Pencereyi küçült ve görev çubuğundan tekrar aç.</li>
+<li>Dosyanı kaydet.</li>
+</ol>
+</div>
+</section>
+
+<section class="kart" id="ders5">
+<span class="konu-no">DERS 05 · KLAVYE VE FARE</span>
+<h2>5. Klavye, Fare ve İşe Yarayan Kısayollar</h2>
+
+<p>Klavye ve fare, bilgisayara komut vermenin en yaygın yollarındandır. Klavye metin yazmak ve kısayolları kullanmak için, fare ise ekrandaki öğeleri işaretlemek ve seçmek için kullanılır. Dizüstü bilgisayarlarda fare yerine dokunmatik yüzey de bulunabilir.</p>
+
+<h3>Klavye tuşlarını tanımak</h3>
+<ul>
+<li><strong>Enter:</strong> Yeni satıra geçmek veya bir komutu onaylamak için kullanılır.</li>
+<li><strong>Backspace:</strong> İmlecin solundaki karakteri siler.</li>
+<li><strong>Delete:</strong> İmlecin sağındaki karakteri veya seçili öğeyi silebilir.</li>
+<li><strong>Shift:</strong> Büyük harf veya tuş üzerindeki ikinci karakteri yazmak için kullanılır.</li>
+<li><strong>Caps Lock:</strong> Büyük harf yazma durumunu açıp kapatır.</li>
+<li><strong>Tab:</strong> Form alanları arasında ilerlemek veya girinti oluşturmak için kullanılabilir.</li>
+<li><strong>Esc:</strong> Bazı menüleri veya işlemleri iptal etmek için kullanılır.</li>
+</ul>
+
+<h3>Fare kullanımı</h3>
+<p>Sol tıklama bir öğeyi seçebilir veya açabilir. Çift tıklama birçok masaüstü ortamında dosya ya da uygulama açar. Sağ tıklama, seçili öğeye göre değişen bir menü getirir. Fare tekerleği sayfaları yukarı ve aşağı kaydırır. Dosyaları sürükleyip bırakırken hangi konuma taşıdığını kontrol et.</p>
+
+<h3>En sık kullanılan klavye kısayolları</h3>
+<div class="tablo-kaydir">
+<table>
+<thead><tr><th>Kısayol</th><th>İşlev</th></tr></thead>
+<tbody>
+<tr><td>Ctrl + C</td><td>Seçili içeriği kopyalar.</td></tr>
+<tr><td>Ctrl + V</td><td>Kopyalanan içeriği yapıştırır.</td></tr>
+<tr><td>Ctrl + X</td><td>Seçili içeriği keser.</td></tr>
+<tr><td>Ctrl + Z</td><td>Son işlemi geri alır.</td></tr>
+<tr><td>Ctrl + Y</td><td>Desteklenen uygulamalarda geri alınan işlemi yineler.</td></tr>
+<tr><td>Ctrl + S</td><td>Dosyayı kaydeder.</td></tr>
+<tr><td>Ctrl + A</td><td>Bulunduğun alandaki tümünü seçer.</td></tr>
+<tr><td>Ctrl + F</td><td>Desteklenen uygulamalarda arama yapar.</td></tr>
+<tr><td>Alt + Tab</td><td>Açık pencereler arasında geçiş yapar.</td></tr>
+<tr><td>Win + E</td><td>Dosya Gezgini'ni açar.</td></tr>
+<tr><td>Win + D</td><td>Masaüstünü gösterir veya pencereleri geri getirir.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Metin seçme ve düzenleme</h3>
+<p>Metin düzenlerken önce değiştirmek istediğin bölümü seç. Kopyalama işlemi orijinal içeriği bırakır; kesme işlemi ise içeriği başka bir yere taşımak için kullanılır. Yanlış bir işlem yaptığında Ctrl + Z çoğu uygulamada yardımcı olabilir. Önemli dosyalarda değişiklik yaparken düzenli kaydetmek iyi bir alışkanlıktır.</p>
+
+<h3>Uygulama: Kısayolları öğren</h3>
+<ol>
+<li>Not Defteri'ne iki cümle yaz.</li>
+<li>Bir cümleyi seç ve Ctrl + C ile kopyala.</li>
+<li>Alt satıra geçip Ctrl + V ile yapıştır.</li>
+<li>Ctrl + S ile dosyanı kaydet.</li>
+<li>Bir kelimeyi değiştirip Ctrl + Z ile geri almayı dene.</li>
+</ol>
+</section>
+
+<section class="kart" id="ders6">
+<span class="konu-no">DERS 06 · DOSYALAR VE KLASÖRLER</span>
+<h2>6. Dosya, Klasör ve Depolama Yönetimi</h2>
+
+<p>Dosyalar, bilgisayarda saklanan belgeler, fotoğraflar, videolar, programlar ve diğer içeriklerdir. Klasörler dosyaları konuya, tarihe veya kullanım amacına göre gruplamaya yardımcı olur. Düzenli bir dosya yapısı, aradığın içeriği daha hızlı bulmanı sağlar.</p>
+
+<h3>Dosya Gezgini</h3>
+<p>Windows'taki Dosya Gezgini, bilgisayardaki dosya ve klasörleri görüntülemek ve yönetmek için kullanılır. Sol bölümde sık kullanılan konumlar ve depolama birimleri görülebilir. Adres çubuğu bulunduğun konumu gösterir; arama alanı ise dosya ve klasörleri bulmaya yardımcı olur.</p>
+
+<h3>Klasör oluşturma ve adlandırma</h3>
+<p>Boş bir alanda sağ tıklayıp Yeni ve Klasör seçeneklerini kullanarak yeni klasör oluşturabilirsin. Klasöre içeriğini anlatan bir ad ver. Örneğin belgelerini “Eğitim”, “İş Başvuruları” ve “Fotoğraflar” gibi klasörlerde düzenleyebilirsin. Dosya ve klasör adlarında açık ve anlaşılır ifadeler kullanmak faydalıdır.</p>
+
+<h3>Kopyalama, taşıma ve silme</h3>
+<p>Kopyalama, dosyanın bir kopyasını başka bir konuma yerleştirir. Taşıma ise dosyayı başka bir konuma götürür. Sürükle-bırak işleminin sonucu bulunduğun konuma ve kullanılan tuşlara göre değişebileceği için dosyanın doğru yere gittiğini kontrol et. Silinen dosyalar bazı durumlarda Geri Dönüşüm Kutusu'ndan geri yüklenebilir; ancak her silme işlemi geri alınamayabilir.</p>
+
+<h3>Depolama birimleri</h3>
+<ul>
+<li><strong>SSD ve HDD:</strong> Bilgisayarın içinde dosyaları uzun süre saklamak için kullanılır.</li>
+<li><strong>USB bellek:</strong> Dosyaları taşımak ve başka cihazlara aktarmak için kullanılabilir.</li>
+<li><strong>Harici disk:</strong> Ek depolama alanı veya yedekleme amacıyla kullanılabilir.</li>
+<li><strong>Bulut depolama:</strong> İnternet üzerinden dosya saklama ve cihazlar arasında eşitleme olanağı sunar.</li>
+</ul>
+
+<h3>Yedekleme neden önemlidir?</h3>
+<p>Bilgisayar arızası, yanlışlıkla silme, zararlı yazılımlar veya cihazın kaybolması dosyaların kaybedilmesine neden olabilir. Önemli dosyaları ayrı bir depolama ortamında veya güvenilir bir bulut hizmetinde yedeklemek riski azaltır. Yedeklerin gerçekten kullanılabilir olduğunu ara sıra kontrol etmek de önemlidir.</p>
+
+<h3>Örnek klasör düzeni</h3>
+<div class="kutu">
+<p><strong>Belgeler</strong></p>
+<p>├── Eğitim</p>
+<p>│　├── Bilgisayar Notları</p>
+<p>│　└── Ödevler</p>
+<p>├── İş Başvuruları</p>
+<p>└── Kişisel Belgeler</p>
+</div>
+
+<h3>Uygulama: Klasör oluşturma ve dosya kaydetme</h3>
+<ol>
+<li>Bilgisayarında <strong>Belgeler</strong> klasörünü aç.</li>
+<li>Boş bir alana sağ tıkla ve <strong>Yeni → Klasör</strong> seçeneğine tıkla.</li>
+<li>Klasörün adını <strong>Bilgisayar Dersleri</strong> yap.</li>
+<li>Oluşturduğun klasörün içine <strong>Ders Notları</strong> adında yeni bir klasör ekle.</li>
+<li>Not Defteri'ni aç ve birkaç cümle yaz.</li>
+<li><strong>Ctrl + S</strong> tuşlarına basarak dosyanı kaydet.</li>
+<li>Dosyayı oluşturduğun <strong>Ders Notları</strong> klasörüne kaydettiğinden emin ol.</li>
+<li>Dosya Gezgini'ni açıp dosyanın doğru konumda olduğunu kontrol et.</li>
+</ol>
+
+<div class="uyari">
+<strong>Güvenlik:</strong> USB belleğini çıkarmadan önce dosya aktarımının tamamlandığından emin ol. Önemli dosyalarının yedeğini farklı bir konumda da sakla.
+</div>
+</section>
+
+<section class="kart" id="videolar">
+<span class="konu-no">VİDEOLU ÖĞRENME</span>
+<h2>🎬 Bilgisayar Eğitim Videoları</h2>
+<p>Bu videolar temel bilgisayar kullanımını öğrenmene yardımcı olması için eklenmiştir. Oynatma çalışmazsa YouTube bağlantısını kullanabilirsin.</p>
+
+<h3>1. Temel Bilgisayar Kullanımı</h3>
+<div class="video-kutu">
+<iframe src="https://www.youtube-nocookie.com/embed/2awdJviwZ5w"
+title="Temel Bilgisayar Kullanımı Eğitimi"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+referrerpolicy="strict-origin-when-cross-origin"
+allowfullscreen></iframe>
+</div>
+<p><a class="video-link" href="https://www.youtube.com/watch?v=2awdJviwZ5w" target="_blank" rel="noopener noreferrer">Videoyu YouTube'da aç ↗</a></p>
+
+<h3>2. Bilgisayar Kullanımı Eğitimi</h3>
+<div class="video-kutu">
+<iframe src="https://www.youtube-nocookie.com/embed/Sw4lvMmTNKE"
+title="Bilgisayar Kullanımı Eğitimi"
+loading="lazy"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+referrerpolicy="strict-origin-when-cross-origin"
+allowfullscreen></iframe>
+</div>
+<p><a class="video-link" href="https://www.youtube.com/watch?v=Sw4lvMmTNKE" target="_blank" rel="noopener noreferrer">Videoyu YouTube'da aç ↗</a></p>
+
+<p class="kaynak-notu">Not: YouTube videolarının gömülü oynatılması içerik sahibi tarafından kısıtlanabilir. Böyle bir durumda bağlantıdan YouTube sayfasını aç.</p>
+</section>
+
+<section class="kart" id="test">
+<span class="konu-no">ÖĞRENDİKLERİNİ KONTROL ET</span>
+<h2>📝 20 Soruluk Bilgisayar Temelleri Testi</h2>
+<p>Her soru 5 puandır. Tüm soruları cevapladıktan sonra testini bitir. Sonuçta puanın, doğru ve yanlış sayın gösterilir.</p>
+
+<form id="zeloraTest">
+
+<fieldset class="soru">
+<legend>1. Bilgisayarın temel görevlerinden biri nedir?</legend>
+<label><input type="radio" name="s1" value="a"> Yalnızca oyun çalıştırmak</label>
+<label><input type="radio" name="s1" value="b"> Verileri işleyerek bilgiye dönüştürmek</label>
+<label><input type="radio" name="s1" value="c"> Yalnızca internete bağlanmak</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>2. Aşağıdakilerden hangisi donanımdır?</legend>
+<label><input type="radio" name="s2" value="a"> Microsoft Word</label>
+<label><input type="radio" name="s2" value="b"> Windows</label>
+<label><input type="radio" name="s2" value="c"> Klavye</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>3. Aşağıdakilerden hangisi işletim sistemidir?</legend>
+<label><input type="radio" name="s3" value="a"> Microsoft Windows</label>
+<label><input type="radio" name="s3" value="b"> Monitör</label>
+<label><input type="radio" name="s3" value="c"> Fare</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>4. Ctrl + C kısayolu ne işe yarar?</legend>
+<label><input type="radio" name="s4" value="a"> Kaydeder</label>
+<label><input type="radio" name="s4" value="b"> Kopyalar</label>
+<label><input type="radio" name="s4" value="c"> Yazdırır</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>5. Ctrl + V kısayolu ne işe yarar?</legend>
+<label><input type="radio" name="s5" value="a"> Yapıştırır</label>
+<label><input type="radio" name="s5" value="b"> Geri alır</label>
+<label><input type="radio" name="s5" value="c"> Tümünü seçer</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>6. Ctrl + S hangi işlem için kullanılır?</legend>
+<label><input type="radio" name="s6" value="a"> Kopyalama</label>
+<label><input type="radio" name="s6" value="b"> Silme</label>
+<label><input type="radio" name="s6" value="c"> Kaydetme</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>7. Bilgisayarın fiziksel parçalarına ne denir?</legend>
+<label><input type="radio" name="s7" value="a"> Yazılım</label>
+<label><input type="radio" name="s7" value="b"> Donanım</label>
+<label><input type="radio" name="s7" value="c"> İnternet</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>8. Aşağıdakilerden hangisi yazılıma örnektir?</legend>
+<label><input type="radio" name="s8" value="a"> Fare</label>
+<label><input type="radio" name="s8" value="b"> Monitör</label>
+<label><input type="radio" name="s8" value="c"> İnternet tarayıcısı</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>9. Komutları yürütmede merkezi rol oynayan bileşen hangisidir?</legend>
+<label><input type="radio" name="s9" value="a"> İşlemci (CPU)</label>
+<label><input type="radio" name="s9" value="b"> Hoparlör</label>
+<label><input type="radio" name="s9" value="c"> Yazıcı kâğıdı</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>10. RAM'in temel işlevi nedir?</legend>
+<label><input type="radio" name="s10" value="a"> Belgeleri kâğıda basmak</label>
+<label><input type="radio" name="s10" value="b"> Çalışan programlar için geçici bellek sağlamak</label>
+<label><input type="radio" name="s10" value="c"> Bilgisayarın sesini yükseltmek</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>11. Dosyaları gruplamak için hangisi kullanılır?</legend>
+<label><input type="radio" name="s11" value="a"> Klasör</label>
+<label><input type="radio" name="s11" value="b"> Klavye</label>
+<label><input type="radio" name="s11" value="c"> İşlemci</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>12. Ctrl + Z ne yapar?</legend>
+<label><input type="radio" name="s12" value="a"> Yeni klasör açar</label>
+<label><input type="radio" name="s12" value="b"> Bilgisayarı kapatır</label>
+<label><input type="radio" name="s12" value="c"> Son işlemi geri alır</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>13. Başlat menüsü hangi amaçla kullanılır?</legend>
+<label><input type="radio" name="s13" value="a"> Ekranı temizlemek</label>
+<label><input type="radio" name="s13" value="b"> Uygulamaları ve sistem seçeneklerini bulmak</label>
+<label><input type="radio" name="s13" value="c"> Klavyeyi değiştirmek</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>14. Hangi uzantı PDF belgesini belirtir?</legend>
+<label><input type="radio" name="s14" value="a"> .pdf</label>
+<label><input type="radio" name="s14" value="b"> .mp3</label>
+<label><input type="radio" name="s14" value="c"> .jpg</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>15. Bir metnin tamamını seçmek için hangi kısayol kullanılır?</legend>
+<label><input type="radio" name="s15" value="a"> Ctrl + P</label>
+<label><input type="radio" name="s15" value="b"> Ctrl + X</label>
+<label><input type="radio" name="s15" value="c"> Ctrl + A</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>16. Dosyaları uzun süre saklamak için hangisi kullanılır?</legend>
+<label><input type="radio" name="s16" value="a"> Yalnızca RAM</label>
+<label><input type="radio" name="s16" value="b"> SSD veya sabit disk</label>
+<label><input type="radio" name="s16" value="c"> İşlemci çekirdeği</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>17. Bir programın ekranda görünen çalışma alanına genellikle ne denir?</legend>
+<label><input type="radio" name="s17" value="a"> Pencere</label>
+<label><input type="radio" name="s17" value="b"> Anakart kablosu</label>
+<label><input type="radio" name="s17" value="c"> Dosya uzantısı</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>18. Bilgisayarın internete bağlanabilmesi için ne gerekir?</legend>
+<label><input type="radio" name="s18" value="a"> Yalnızca yazıcı</label>
+<label><input type="radio" name="s18" value="b"> Yalnızca hesap makinesi</label>
+<label><input type="radio" name="s18" value="c"> Ağ bağlantısı ve uygun bağlantı donanımı</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>19. Yanlışlıkla silinen bir dosyayı ilk olarak nerede arayabilirsin?</legend>
+<label><input type="radio" name="s19" value="a"> Görev Yöneticisi'nde</label>
+<label><input type="radio" name="s19" value="b"> Geri Dönüşüm Kutusu'nda</label>
+<label><input type="radio" name="s19" value="c"> Ekran ayarlarında</label>
+</fieldset>
+
+<fieldset class="soru">
+<legend>20. Çalıştığın dosyayı kaydetmek neden önemlidir?</legend>
+<label><input type="radio" name="s20" value="a"> Yaptığın değişiklikleri saklamak için</label>
+<label><input type="radio" name="s20" value="b"> Ekranın rengini değiştirmek için</label>
+<label><input type="radio" name="s20" value="c"> İnternet hızını artırmak için</label>
+</fieldset>
+
+<button class="buton" type="submit">Testi Bitir ve Puanımı Gör</button>
+<button class="buton ikincil" type="button" id="tekrarButon">Tekrar Çöz</button>
+
+<div id="sonuc" role="status" aria-live="polite"></div>
+</form>
+</section>
+
+</div>
+</main>
+
+<footer>ZELORA | Bilgisayar Eğitimleri</footer>
+
+<script>
+const dogruCevaplar={
+  s1:"b",s2:"c",s3:"a",s4:"b",s5:"a",
+  s6:"c",s7:"b",s8:"c",s9:"a",s10:"b",
+  s11:"a",s12:"c",s13:"b",s14:"a",s15:"c",
+  s16:"b",s17:"a",s18:"c",s19:"b",s20:"a"
+};
+
+const test=document.getElementById("zeloraTest");
+const sonuc=document.getElementById("sonuc");
+
+test.addEventListener("submit",function(event){
+  event.preventDefault();
+
+  let dogru=0;
+  let bos=0;
+  const toplam=Object.keys(dogruCevaplar).length;
+
+  for(const [soru,cevap] of Object.entries(dogruCevaplar)){
+    const secim=test.querySelector('input[name="'+soru+'"]:checked');
+
+    if(!secim){
+      bos++;
+    }else if(secim.value===cevap){
+      dogru++;
+    }
+  }
+
+  sonuc.style.display="block";
+
+  if(bos>0){
+    sonuc.innerHTML=
+      "<h3>Test henüz tamamlanmadı</h3>"+
+      "<p>"+bos+" soruyu daha cevaplamalısın.</p>";
+
+    sonuc.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  const yanlis=toplam-dogru;
+  const puan=dogru*5;
+  let mesaj="Konuları tekrar okuyup yeniden deneyebilirsin. 💪";
+
+  if(puan>=90){
+    mesaj="Mükemmel! Konuları çok iyi öğrenmişsin! 🎉";
+  }else if(puan>=70){
+    mesaj="Çok güzel! Birkaç konuyu daha gözden geçir. 💜";
+  }else if(puan>=50){
+    mesaj="İyi bir başlangıç! Öğrendiklerini tekrar et.";
+  }
+
+  sonuc.innerHTML=
+    "<h3>🎓 Test Sonucun</h3>"+
+    "<p><strong>Puanın:</strong> "+puan+" / 100</p>"+
+    "<p><strong>Doğru cevap:</strong> "+dogru+"</p>"+
+    "<p><strong>Yanlış cevap:</strong> "+yanlis+"</p>"+
+    "<p>"+mesaj+"</p>";
+
+  sonuc.scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+document.getElementById("tekrarButon").addEventListener("click",function(){
+  test.reset();
+  sonuc.style.display="none";
+  sonuc.innerHTML="";
+  document.getElementById("test").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1781 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZELORA ücretsiz Python eğitimi. Python temellerini öğren, kod örneklerini dene ve testini çöz.">
+  <title>Python'a Giriş | ZELORA</title>
+
+  <style>
+    :root {
+      --bg: #f7f6fc;
+      --surface: #ffffff;
+      --primary: #6546c7;
+      --primary-dark: #4b319e;
+      --text: #242238;
+      --muted: #6f6b83;
+      --border: #e7e3f1;
+      --code-bg: #191827;
+      --success: #16835b;
+      --danger: #c43f53;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav a.back {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #241c46, #6546c7);
+      color: white;
+      padding: 62px 22px 54px;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 30px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      letter-spacing: .5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: #eee9ff;
+      font-size: 17px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .hero-meta span {
+      background: rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 13px;
+    }
+
+    .layout {
+      max-width: 1180px;
+      margin: 30px auto;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
+      gap: 25px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 83px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .sidebar h3 {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 7px 9px;
+      border-radius: 7px;
+      margin: 2px 0;
+    }
+
+    .sidebar a:hover {
+      background: #f0ecff;
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+
+    .sidebar .side-note {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 22px;
+      box-shadow: 0 5px 20px rgba(44, 31, 89, .035);
+      scroll-margin-top: 90px;
+    }
+
+    .card h2 {
+      font-size: 25px;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin: 23px 0 10px;
+    }
+
+    .card p {
+      margin: 10px 0;
+    }
+
+    .card ul,
+    .card ol {
+      padding-left: 23px;
+      margin: 10px 0 17px;
+    }
+
+    .card li {
+      margin: 5px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .callout {
+      padding: 15px 17px;
+      margin: 18px 0;
+      border-left: 4px solid var(--primary);
+      background: #f3efff;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .success-note {
+      border-left-color: var(--success);
+      background: #eaf8f1;
+    }
+
+    .warning-note {
+      border-left-color: #d99a25;
+      background: #fff7e7;
+    }
+
+    .code {
+      background: var(--code-bg);
+      color: #f3edff;
+      border-radius: 11px;
+      padding: 17px;
+      margin: 13px 0;
+      overflow-x: auto;
+      white-space: pre;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .code .comment {
+      color: #a9a1bd;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .mini-card {
+      background: #faf9fe;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px;
+      min-width: 0;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 14px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 400px;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 11px;
+      border: 1px solid var(--border);
+    }
+
+    th {
+      background: #f1edfc;
+    }
+
+    .video {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #191827;
+      margin: 16px 0;
+    }
+
+    .video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      background: var(--primary);
+      color: white;
+      border: 0;
+      border-radius: 9px;
+      padding: 11px 17px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .button:hover {
+      background: var(--primary-dark);
+      color: white;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #ece7fb;
+      color: var(--primary-dark);
+    }
+
+    .button.secondary:hover {
+      background: #dfd6fa;
+    }
+
+    .button.danger {
+      background: #fbe9ec;
+      color: var(--danger);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 230px;
+      resize: vertical;
+      background: var(--code-bg);
+      color: #f3edff;
+      border: 1px solid #343047;
+      border-radius: 10px;
+      padding: 16px;
+      font: 14px/1.75 Consolas, "Courier New", monospace;
+      outline: none;
+      tab-size: 4;
+    }
+
+    textarea:focus {
+      border-color: #a48af7;
+    }
+
+    .output {
+      min-height: 65px;
+      background: #f2f0f8;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 12px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+    }
+
+    .quiz-question {
+      padding: 19px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quiz-question:last-child {
+      border-bottom: 0;
+    }
+
+    .quiz-question h3 {
+      font-size: 16px;
+      margin: 0 0 12px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      margin: 7px 0;
+      background: #faf9fd;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .option:hover {
+      border-color: #b9a8ef;
+    }
+
+    .option input {
+      margin-top: 6px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #f0ecff;
+    }
+
+    .result h3 {
+      margin-top: 0;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: #e9e5f2;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: width .3s;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        padding: 12px 16px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .hero {
+        padding: 43px 18px;
+      }
+
+      .layout {
+        padding: 0 12px;
+        margin-top: 17px;
+      }
+
+      .card {
+        padding: 19px 16px;
+      }
+
+      .card h2 {
+        font-size: 22px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar nav {
+        grid-template-columns: 1fr;
+      }
+
+      .code {
+        font-size: 12px;
+        padding: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="nav">
+    <a class="brand" href="index.html">ZEL<span>ORA</span></a>
+    <a class="back" href="index.html">← Eğitimlere dön</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">ÜCRETSİZ PROGRAMLAMA EĞİTİMİ</span>
+    <h1>Python'a Giriş</h1>
+    <p>
+      Programlamanın temellerini öğren. Değişkenlerden koşullara,
+      döngülerden fonksiyonlara kadar Python'ın temel yapılarını
+      örneklerle keşfet ve öğrendiklerini uygulamalarla pekiştir.
+    </p>
+    <div class="hero-meta">
+      <span>📘 Başlangıç seviyesi</span>
+      <span>💻 Kod örnekleri</span>
+      <span>🧪 Uygulama alanı</span>
+      <span>📝 20 soruluk test</span>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h3>📚 Ders içeriği</h3>
+    <nav>
+      <a href="#hedefler">1. Öğrenme hedefleri</a>
+      <a href="#python-nedir">2. Python nedir?</a>
+      <a href="#kurulum">3. Python kurulumu</a>
+      <a href="#ilk-kod">4. İlk Python kodu</a>
+      <a href="#degiskenler">5. Değişkenler</a>
+      <a href="#veri-tipleri">6. Veri tipleri</a>
+      <a href="#operatorler">7. Operatörler</a>
+      <a href="#girdi">8. Kullanıcıdan veri alma</a>
+      <a href="#kosullar">9. Koşullar</a>
+      <a href="#donguler">10. Döngüler</a>
+      <a href="#listeler">11. Listeler</a>
+      <a href="#fonksiyonlar">12. Fonksiyonlar</a>
+      <a href="#hatalar">13. Hatalar</a>
+      <a href="#uygulama">14. Kodlama alanı</a>
+      <a href="#video">15. Video eğitimi</a>
+      <a href="#test">16. Bilgi testi</a>
+    </nav>
+    <div class="side-note">
+      Tavsiye: Konuları sırayla oku, kodları incele ve testten önce uygulama alanında denemeler yap.
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <section class="card" id="hedefler">
+      <h2>1. Bu eğitimde neler öğreneceksin?</h2>
+      <p>
+        Bu ders, daha önce hiç programlama yapmamış kişiler için hazırlanmıştır.
+        Programlama bilgisi olmayan biri de konuları sırasıyla takip edebilir.
+      </p>
+
+      <div class="two-col">
+        <div class="mini-card">
+          <h3>📖 Temel bilgiler</h3>
+          <p>Python'ın ne olduğunu, nasıl çalıştığını ve kodların nasıl yazıldığını öğreneceksin.</p>
+        </div>
+        <div class="mini-card">
+          <h3>⌨️ Kod yazma</h3>
+          <p>Değişkenler, veri tipleri, operatörler ve kullanıcıdan veri alma işlemlerini göreceksin.</p>
+        </div>
+        <div class="mini-card">
+          <h3>🔁 Program akışı</h3>
+          <p>Koşullarla karar vermeyi, döngülerle tekrar eden işlemleri yapmayı öğreneceksin.</p>
+        </div>
+        <div class="mini-card">
+          <h3>🧩 Uygulama</h3>
+          <p>Fonksiyonları ve listeleri tanıyacak, küçük kod örneklerini inceleyeceksin.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Önemli:</strong> Programlama yalnızca kod ezberlemek değildir.
+        Kodun neden o şekilde yazıldığını anlamak, denemek ve hataları düzelterek öğrenmek gerekir.
+      </div>
+    </section>
+
+    <section class="card" id="python-nedir">
+      <h2>2. Python nedir?</h2>
+
+      <p>
+        Python; web geliştirme, veri analizi, otomasyon, yapay zekâ,
+        bilimsel hesaplamalar ve çeşitli yazılım projelerinde kullanılan
+        genel amaçlı bir programlama dilidir.
+      </p>
+
+      <p>
+        Python'ın başlangıç seviyesinde tercih edilmesinin nedenlerinden biri,
+        kodlarının çoğu zaman okunabilir ve anlaşılır olmasıdır. Örneğin,
+        ekrana bir mesaj yazdırmak için tek bir komut kullanabiliriz.
+      </p>
+
+      <pre class="code">print("Merhaba Dünya!")</pre>
+
+      <p>Bu komut çalıştırıldığında ekranda şu sonuç görülür:</p>
+
+      <pre class="code">Merhaba Dünya!</pre>
+
+      <h3>Python hangi alanlarda kullanılır?</h3>
+      <ul>
+        <li><strong>Web geliştirme:</strong> Web sitelerinin sunucu tarafında çalışan bölümlerini geliştirme.</li>
+        <li><strong>Veri analizi:</strong> Büyük miktardaki verileri inceleme ve anlamlı sonuçlar çıkarma.</li>
+        <li><strong>Yapay zekâ:</strong> Makine öğrenmesi ve yapay zekâ uygulamaları geliştirme.</li>
+        <li><strong>Otomasyon:</strong> Tekrarlanan bilgisayar işlemlerini otomatikleştirme.</li>
+        <li><strong>Eğitim:</strong> Algoritma ve programlama mantığını öğrenme.</li>
+        <li><strong>Bilimsel hesaplama:</strong> Matematiksel ve bilimsel problemleri çözme.</li>
+      </ul>
+
+      <h3>Programlama dili ne demektir?</h3>
+      <p>
+        Programlama dili, bilgisayara belirli işlemleri yaptırmak için
+        kullandığımız kurallar ve komutlardan oluşur. Bir program yazarken
+        bilgisayara hangi işlemi, hangi sırayla yapacağını tarif ederiz.
+      </p>
+
+      <div class="callout">
+        <strong>Örnek:</strong> Bir marketteki ürünlerin fiyatlarını toplamak
+        istiyorsan Python'a fiyatları verebilir ve toplamı hesaplatabilirsin.
+        Daha sonra bu fikri geliştirerek stok veya satış programı oluşturabilirsin.
+      </div>
+    </section>
+
+    <section class="card" id="kurulum">
+      <h2>3. Python nasıl kurulur?</h2>
+
+      <p>
+        Bilgisayarında Python kodlarını doğrudan çalıştırabilmek için
+        Python yorumlayıcısını kurabilirsin. Kodlarını yazmak için VS Code
+        gibi bir kod düzenleyicisi de kullanabilirsin.
+      </p>
+
+      <ol>
+        <li>
+          <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">
+            Python'ın resmî indirme sayfasını aç.
+          </a>
+        </li>
+        <li>İşletim sistemine uygun Python sürümünü indir.</li>
+        <li>Windows kurulumunda varsa <strong>Add Python to PATH</strong> seçeneğini işaretle.</li>
+        <li>Kurulumu tamamla.</li>
+        <li>VS Code kullanıyorsan Extensions bölümünden Python eklentisini kur.</li>
+        <li>Bir dosya oluşturup dosyayı <code>merhaba.py</code> adıyla kaydet.</li>
+      </ol>
+
+      <p>Dosyanın içine aşağıdaki kodu yazabilirsin:</p>
+
+      <pre class="code">print("Python çalışıyor!")</pre>
+
+      <p>
+        Terminalden çalıştırmak için çoğu Windows kurulumunda
+        <code>python merhaba.py</code> veya <code>py merhaba.py</code>
+        komutlarından biri kullanılabilir.
+      </p>
+
+      <div class="callout warning-note">
+        Kurulum adımları işletim sistemine ve bilgisayardaki ayarlara göre değişebilir.
+        Python kurulmadan da bu sayfadaki örnekleri okuyabilir ve uygulama alanındaki
+        desteklenen örnekleri deneyebilirsin.
+      </div>
+    </section>
+
+    <section class="card" id="ilk-kod">
+      <h2>4. İlk Python kodumuz</h2>
+
+      <p>
+        Programlamaya başlarken sık kullanılan komutlardan biri
+        <code>print()</code> komutudur. Bu komut bir değeri veya mesajı
+        ekranda göstermemizi sağlar.
+      </p>
+
+      <pre class="code">print("Merhaba!")
+print("ZELORA Python eğitimine hoş geldin.")
+print(25)</pre>
+
+      <p>Çıktı:</p>
+
+      <pre class="code">Merhaba!
+ZELORA Python eğitimine hoş geldin.
+25</pre>
+
+      <h3>Metin ve sayı arasındaki fark</h3>
+      <p>
+        Tırnak içinde yazılan <code>"25"</code> bir metindir.
+        Tırnaksız yazılan <code>25</code> ise bir tam sayıdır.
+        Bu fark, hesaplama yaparken önem kazanır.
+      </p>
+
+      <pre class="code">print(10 + 5)
+print("10" + "5")</pre>
+
+      <p>Sonuç:</p>
+
+      <pre class="code">15
+105</pre>
+
+      <p>
+        İlk satırda sayılar toplanır. İkinci satırda iki metin yan yana birleştirilir.
+      </p>
+
+      <h3>Yorum satırları</h3>
+      <p>
+        Yorum satırları, kodu okuyan kişiye açıklama yazmak için kullanılır.
+        Python, <code>#</code> işaretinden sonraki açıklamayı çalıştırmaz.
+      </p>
+
+      <pre class="code"># Bu satır bir açıklamadır.
+print("Bu satır çalışır.")</pre>
+    </section>
+
+    <section class="card" id="degiskenler">
+      <h2>5. Değişkenler</h2>
+
+      <p>
+        Değişkenler, program içerisinde kullanacağımız değerleri isimlerle
+        saklamamıza yardımcı olur. Bir değişkeni, bir bilgiyi saklayan
+        etiketli bir kutu gibi düşünebilirsin.
+      </p>
+
+      <pre class="code">isim = "Zelal"
+yas = 24
+sehir = "Ağrı"
+
+print(isim)
+print(yas)
+print(sehir)</pre>
+
+      <p>Burada üç değişken tanımlanmıştır. Python, eşittir işaretinin sağındaki değeri sol taraftaki isimle ilişkilendirir.</p>
+
+      <h3>Değişken isimlendirme kuralları</h3>
+      <ul>
+        <li>Değişken isimleri harf veya alt çizgi (<code>_</code>) ile başlayabilir.</li>
+        <li>İsimler rakamla başlayamaz.</li>
+        <li>Boşluk yerine genellikle alt çizgi kullanılır.</li>
+        <li>Python'da büyük ve küçük harfler farklı kabul edilir.</li>
+        <li><code>if</code>, <code>for</code> ve <code>class</code> gibi ayrılmış kelimeler değişken adı olarak kullanılmamalıdır.</li>
+      </ul>
+
+      <pre class="code">ogrenci_adi = "Ece"
+sinav_notu = 90
+urun_fiyati = 149.90
+
+print(ogrenci_adi)
+print(sinav_notu)
+print(urun_fiyati)</pre>
+
+      <h3>Değişkenin değerini değiştirmek</h3>
+      <pre class="code">puan = 10
+print(puan)
+
+puan = 20
+print(puan)</pre>
+
+      <p>İlk çıktıda 10, ikinci çıktıda 20 görülür. Değişkene yeni bir değer atanmıştır.</p>
+
+      <div class="callout">
+        <strong>Hatırla:</strong> <code>=</code> işareti Python'da çoğunlukla atama yapmak
+        için kullanılır. İki değerin eşit olup olmadığını kontrol etmek için
+        <code>==</code> kullanılır.
+      </div>
+    </section>
+
+    <section class="card" id="veri-tipleri">
+      <h2>6. Temel veri tipleri</h2>
+
+      <p>
+        Programlarda farklı türde bilgilerle çalışırız. Python, değerlerin
+        türlerini tanımamıza yardımcı olan çeşitli veri tiplerine sahiptir.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Veri tipi</th>
+              <th>Açıklama</th>
+              <th>Örnek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>str</code></td>
+              <td>Metin</td>
+              <td><code>"Merhaba"</code></td>
+            </tr>
+            <tr>
+              <td><code>int</code></td>
+              <td>Tam sayı</td>
+              <td><code>42</code></td>
+            </tr>
+            <tr>
+              <td><code>float</code></td>
+              <td>Ondalıklı sayı</td>
+              <td><code>3.14</code></td>
+            </tr>
+            <tr>
+              <td><code>bool</code></td>
+              <td>Doğru veya yanlış</td>
+              <td><code>True</code>, <code>False</code></td>
+            </tr>
+            <tr>
+              <td><code>list</code></td>
+              <td>Sıralı, değiştirilebilir koleksiyon</td>
+              <td><code>[1, 2, 3]</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre class="code">isim = "Ece"
+yas = 22
+ortalama = 87.5
+mezun_mu = True
+
+print(type(isim))
+print(type(yas))
+print(type(ortalama))
+print(type(mezun_mu))</pre>
+
+      <p>
+        <code>type()</code> fonksiyonu, verilen değerin türünü gösterir.
+        Bu özellik özellikle kullanıcıdan gelen verilerle çalışırken faydalıdır.
+      </p>
+
+      <h3>Tür dönüşümü</h3>
+      <p>
+        Bir metni sayıya veya bir sayıyı metne dönüştürmek gerektiğinde
+        <code>int()</code>, <code>float()</code> ve <code>str()</code>
+        gibi fonksiyonlar kullanılabilir.
+      </p>
+
+      <pre class="code">sayi_metni = "25"
+sayi = int(sayi_metni)
+
+print(sayi + 5)</pre>
+
+      <p>Çıktı: <code>30</code></p>
+
+      <div class="callout warning-note">
+        Sayıya dönüştürülemeyen bir metni <code>int()</code> ile dönüştürmeye çalışırsan
+        hata alabilirsin. Örneğin <code>int("merhaba")</code> geçerli değildir.
+      </div>
+    </section>
+
+    <section class="card" id="operatorler">
+      <h2>7. Matematiksel ve karşılaştırma operatörleri</h2>
+
+      <p>Operatörler, değerler üzerinde işlem yapmamızı sağlar.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Operatör</th>
+              <th>İşlem</th>
+              <th>Örnek sonuç</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>+</code></td><td>Toplama</td><td><code>8 + 2 = 10</code></td></tr>
+            <tr><td><code>-</code></td><td>Çıkarma</td><td><code>8 - 2 = 6</code></td></tr>
+            <tr><td><code>*</code></td><td>Çarpma</td><td><code>8 * 2 = 16</code></td></tr>
+            <tr><td><code>/</code></td><td>Bölme</td><td><code>8 / 2 = 4.0</code></td></tr>
+            <tr><td><code>//</code></td><td>Taban bölme</td><td><code>9 // 2 = 4</code></td></tr>
+            <tr><td><code>%</code></td><td>Kalanı bulma</td><td><code>9 % 2 = 1</code></td></tr>
+            <tr><td><code>**</code></td><td>Üs alma</td><td><code>2 ** 3 = 8</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Karşılaştırma operatörleri</h3>
+      <p>
+        Karşılaştırma işlemleri genellikle <code>True</code> veya
+        <code>False</code> sonucu üretir.
+      </p>
+
+      <pre class="code">print(10 > 5)
+print(10 < 5)
+print(10 == 10)
+print(10 != 7)
+print(5 >= 5)</pre>
+
+      <p>Çıktı:</p>
+
+      <pre class="code">True
+False
+True
+True
+True</pre>
+
+      <p>
+        <code>and</code>, <code>or</code> ve <code>not</code> ise mantıksal
+        işlemlerde kullanılır. Örneğin iki koşulun aynı anda doğru olmasını
+        istiyorsan <code>and</code> kullanabilirsin.
+      </p>
+
+      <pre class="code">yas = 24
+ehliyeti_var = True
+
+print(yas >= 18 and ehliyeti_var)</pre>
+    </section>
+
+    <section class="card" id="girdi">
+      <h2>8. Kullanıcıdan veri alma</h2>
+
+      <p>
+        <code>input()</code> fonksiyonu kullanıcıdan bilgi alır.
+        Kullanıcı bir cevap yazıp Enter tuşuna bastığında bu cevap programda kullanılabilir.
+      </p>
+
+      <pre class="code">isim = input("Adın nedir? ")
+print("Merhaba", isim)</pre>
+
+      <p>
+        Önemli bir ayrıntı: <code>input()</code> fonksiyonu varsayılan olarak
+        metin döndürür. Kullanıcıdan sayı almak istiyorsan uygun tür dönüşümünü yapmalısın.
+      </p>
+
+      <pre class="code">yas = int(input("Kaç yaşındasın? "))
+print("Gelecek yıl yaşın:", yas + 1)</pre>
+
+      <h3>İki sayıyı toplama</h3>
+      <pre class="code">sayi1 = float(input("Birinci sayıyı yaz: "))
+sayi2 = float(input("İkinci sayıyı yaz: "))
+
+toplam = sayi1 + sayi2
+
+print("Toplam:", toplam)</pre>
+
+      <div class="callout">
+        <strong>Güvenli kullanım:</strong> Kullanıcıdan gelen verilerin beklenen biçimde
+        olup olmadığını gerçek projelerde kontrol etmek gerekir. Örneğin kullanıcı sayı
+        beklenen yere harf yazarsa hata oluşabilir.
+      </div>
+    </section>
+
+    <section class="card" id="kosullar">
+      <h2>9. Koşullu ifadeler: if, elif, else</h2>
+
+      <p>
+        Koşullu ifadeler, programın bir duruma göre farklı işlemler yapmasını sağlar.
+        Örneğin bir sınav notu belirli bir değerin üzerindeyse farklı bir mesaj gösterebiliriz.
+      </p>
+
+      <pre class="code">notu = 75
+
+if notu >= 50:
+    print("Başarılı")
+else:
+    print("Başarısız")</pre>
+
+      <p>
+        Python'da koşuldan sonra iki nokta (<code>:</code>) kullanılır.
+        Koşulun içindeki komutlar girintili yazılır. Girintiler, hangi komutun
+        hangi bloğa ait olduğunu belirtir.
+      </p>
+
+      <h3>Birden fazla koşul</h3>
+      <pre class="code">notu = 82
+
+if notu >= 85:
+    print("Çok iyi")
+elif notu >= 70:
+    print("İyi")
+elif notu >= 50:
+    print("Geçti")
+else:
+    print("Tekrar çalışmalısın")</pre>
+
+      <p>
+        Python koşulları sırayla kontrol eder. İlk doğru koşulun bloğunu çalıştırır
+        ve ilgili koşul zincirini tamamlar.
+      </p>
+
+      <h3>Günlük hayattan örnek</h3>
+      <p>
+        Bir alışveriş sitesinde sepet tutarı 1000 TL'yi geçtiğinde indirim uygulandığını
+        düşün. Program sepet tutarını kontrol edip koşula göre farklı sonuçlar üretebilir.
+      </p>
+
+      <pre class="code">sepet = 1200
+
+if sepet >= 1000:
+    print("İndirim kazandınız.")
+else:
+    print("İndirim için sepet tutarını artırın.")</pre>
+    </section>
+
+    <section class="card" id="donguler">
+      <h2>10. Döngüler: for ve while</h2>
+
+      <p>
+        Döngüler, bir işlemi tekrar tekrar yazmak yerine belirli bir kurala göre
+        tekrarlamamızı sağlar.
+      </p>
+
+      <h3>For döngüsü</h3>
+      <pre class="code">for sayi in range(5):
+    print(sayi)</pre>
+
+      <p>Çıktı:</p>
+      <pre class="code">0
+1
+2
+3
+4</pre>
+
+      <p>
+        <code>range(5)</code>, bu örnekte 0'dan başlayıp 5'e ulaşmadan sona eren
+        sayıları üretir. Başlangıç ve bitiş değerlerini de belirtebilirsin:
+      </p>
+
+      <pre class="code">for sayi in range(1, 6):
+    print(sayi)</pre>
+
+      <p>Bu kez 1, 2, 3, 4 ve 5 yazdırılır.</p>
+
+      <h3>While döngüsü</h3>
+      <p>
+        <code>while</code>, koşul doğru olduğu sürece döngüyü çalıştırır.
+      </p>
+
+      <pre class="code">sayi = 1
+
+while sayi <= 5:
+    print(sayi)
+    sayi = sayi + 1</pre>
+
+      <div class="callout warning-note">
+        <strong>Dikkat:</strong> While döngüsünde koşulun bir noktada yanlış hâle
+        gelmesini sağlayacak bir işlem yoksa döngü sonsuza kadar devam edebilir.
+      </div>
+
+      <h3>Döngüler nerelerde kullanılır?</h3>
+      <ul>
+        <li>Bir listedeki bütün ürünleri incelemek.</li>
+        <li>Bir sınavdaki öğrenci puanlarını hesaplamak.</li>
+        <li>Belirli sayıda işlem yapmak.</li>
+        <li>Kullanıcıdan doğru bilgi girene kadar tekrar istemek.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="listeler">
+      <h2>11. Listeler</h2>
+
+      <p>
+        Listeler birden fazla değeri tek bir değişkende saklamamıza yarar.
+        Liste elemanlarına sıfırdan başlayan indeks numaralarıyla ulaşılır.
+      </p>
+
+      <pre class="code">meyveler = ["elma", "armut", "muz"]
+
+print(meyveler[0])
+print(meyveler[1])</pre>
+
+      <p>Çıktı:</p>
+      <pre class="code">elma
+armut</pre>
+
+      <h3>Listeye eleman ekleme</h3>
+      <pre class="code">renkler = ["mor", "mavi"]
+renkler.append("yeşil")
+
+print(renkler)</pre>
+
+      <h3>Listede eleman sayısı</h3>
+      <pre class="code">sayilar = [10, 20, 30, 40]
+
+print(len(sayilar))</pre>
+
+      <p>Çıktı: <code>4</code></p>
+
+      <h3>Liste üzerinde döngü kurmak</h3>
+      <pre class="code">ogrenciler = ["Ece", "Deniz", "Mert"]
+
+for ogrenci in ogrenciler:
+    print(ogrenci)</pre>
+
+      <p>
+        Listeler; öğrenci isimleri, ürünler, fiyatlar ve benzeri çok sayıda
+        veriyi birlikte tutmak için oldukça kullanışlıdır.
+      </p>
+    </section>
+
+    <section class="card" id="fonksiyonlar">
+      <h2>12. Fonksiyonlar</h2>
+
+      <p>
+        Fonksiyonlar, belirli bir işi gerçekleştiren ve ihtiyaç duyulduğunda
+        çağrılabilen kod bloklarıdır. Tekrar kullanılabilir kod yazmayı kolaylaştırırlar.
+      </p>
+
+      <pre class="code">def selamla():
+    print("ZELORA eğitimine hoş geldin!")
+
+selamla()</pre>
+
+      <p>
+        Burada <code>def</code> anahtar kelimesiyle bir fonksiyon tanımlanmıştır.
+        Fonksiyonun içindeki kod, fonksiyon çağrıldığında çalışır.
+      </p>
+
+      <h3>Parametre alan fonksiyon</h3>
+      <pre class="code">def selamla(isim):
+    print("Merhaba", isim)
+
+selamla("Ece")
+selamla("Mert")</pre>
+
+      <h3>Değer döndüren fonksiyon</h3>
+      <pre class="code">def topla(a, b):
+    return a + b
+
+sonuc = topla(10, 5)
+print(sonuc)</pre>
+
+      <p>
+        <code>return</code>, fonksiyonun sonucunu çağrıldığı yere geri döndürür.
+        Sonuç daha sonra başka bir hesaplamada da kullanılabilir.
+      </p>
+
+      <div class="callout success-note">
+        Fonksiyonlar büyüyen projelerde kodun daha düzenli, anlaşılır ve
+        tekrar kullanılabilir olmasına yardımcı olur.
+      </div>
+    </section>
+
+    <section class="card" id="hatalar">
+      <h2>13. Yaygın hatalar ve hata ayıklama</h2>
+
+      <p>
+        Program yazarken hata almak normaldir. Önemli olan hata mesajını
+        okuyup hangi satırda ve hangi işlem sırasında sorun çıktığını anlamaktır.
+      </p>
+
+      <h3>SyntaxError — yazım hatası</h3>
+      <pre class="code">print("Merhaba"</pre>
+
+      <p>Parantez kapatılmadığı için Python kodu doğru şekilde yorumlayamaz.</p>
+
+      <h3>NameError — tanımsız isim</h3>
+      <pre class="code">print(ogrenci)</pre>
+
+      <p>
+        <code>ogrenci</code> isimli bir değişken önceden tanımlanmamışsa
+        Python bu ismi bulamayabilir.
+      </p>
+
+      <h3>TypeError — uyumsuz veri türleri</h3>
+      <pre class="code">yas = 20
+print("Yaş: " + yas)</pre>
+
+      <p>
+        Bu örnekte metin ile tam sayı doğrudan birleştirilmeye çalışılmıştır.
+        Dönüştürme yapabilirsin:
+      </p>
+
+      <pre class="code">yas = 20
+print("Yaş: " + str(yas))</pre>
+
+      <h3>Hata ayıklamak için öneriler</h3>
+      <ol>
+        <li>Hata mesajını dikkatle oku.</li>
+        <li>Belirtilen satır numarasını kontrol et.</li>
+        <li>Parantezleri, tırnakları ve iki noktaları incele.</li>
+        <li>Değişken adlarının doğru yazıldığından emin ol.</li>
+        <li>Kodu küçük parçalar hâlinde çalıştırarak sorunun kaynağını bul.</li>
+      </ol>
+    </section>
+
+    <section class="card" id="uygulama">
+      <h2>14. Python uygulama alanı</h2>
+
+      <p>
+        Aşağıdaki alan, bazı temel Python komutlarını denemek için hazırlanmış
+        basit bir tarayıcı simülatörüdür. Kodu yazdıktan sonra
+        <strong>Çalıştır</strong> düğmesine bas.
+      </p>
+
+      <div class="callout warning-note">
+        Bu alan gerçek Python yorumlayıcısı değildir. Temel <code>print()</code>,
+        basit değişken atamaları ve aritmetik işlemleri destekler.
+        <code>input()</code>, gerçek döngüler, fonksiyon tanımları ve tüm Python
+        özellikleri burada çalışmaz. Tam Python deneyimi için bilgisayarına Python kurmalısın.
+      </div>
+
+      <h3>Kodunu yaz</h3>
+      <textarea id="pythonCode" spellcheck="false">isim = "Zelal"
+yas = 24
+
+print("Merhaba", isim)
+print("Yaşın:", yas)
+print(10 + 5)</textarea>
+
+      <div class="button-row">
+        <button class="button" type="button" id="runCode">▶ Çalıştır</button>
+        <button class="button secondary" type="button" id="exampleCode">Örneği yükle</button>
+        <button class="button secondary" type="button" id="clearOutput">Çıktıyı temizle</button>
+      </div>
+
+      <h3>Program çıktısı</h3>
+      <div class="output" id="codeOutput" aria-live="polite">Kodunun sonucu burada görünecek.</div>
+
+      <h3>Deneme görevleri</h3>
+      <ol>
+        <li>Adını saklayan bir değişken oluştur ve ekrana yazdır.</li>
+        <li>İki sayıyı toplayıp sonucu göster.</li>
+        <li>Bir ürünün fiyatını değişkende sakla ve ekrana yazdır.</li>
+      </ol>
+    </section>
+
+    <section class="card" id="video">
+      <h2>15. Video eğitimleri</h2>
+
+      <p>
+        Aşağıdaki video Python'ın temel konularını öğrenmene yardımcı olabilir.
+        Videoyu sayfadan ayrılmadan izlemeyi deneyebilirsin.
+      </p>
+
+      <h3>Python'a başlangıç: değişkenler, koşullar ve döngüler</h3>
+
+      <div class="video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/HVQP84ufwek"
+          title="Sıfırdan Python eğitimi"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p>
+        Video açılmazsa aşağıdaki bağlantıyla YouTube'da izlemeyi deneyebilirsin.
+      </p>
+
+      <div class="button-row">
+        <a
+          class="button"
+          href="https://www.youtube.com/watch?v=HVQP84ufwek"
+          target="_blank"
+          rel="noopener">
+          Videoyu YouTube'da aç ↗
+        </a>
+      </div>
+
+      <div class="callout warning-note">
+        Bazı videolar içerik sahibinin ayarları veya YouTube kısıtlamaları nedeniyle
+        başka sitelerin içinde oynatılamayabilir. Böyle bir durumda YouTube bağlantısını kullan.
+      </div>
+    </section>
+
+    <section class="card" id="test">
+      <h2>16. Python bilgi testi</h2>
+
+      <p>
+        Öğrendiklerini ölçmek için 20 soruyu yanıtla. Her doğru cevap 5 puandır.
+        Testin sonunda toplam puanını ve doğru cevaplarını görebilirsin.
+      </p>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="quizProgress"></div>
+      </div>
+      <p class="muted" id="answeredCount">0 / 20 soru yanıtlandı</p>
+
+      <form id="quizForm">
+        <div id="quizQuestions"></div>
+
+        <div class="button-row">
+          <button class="button" type="submit">Testi değerlendir</button>
+          <button class="button secondary" type="button" id="resetQuiz">Testi yeniden çöz</button>
+        </div>
+      </form>
+
+      <div class="result" id="quizResult" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>🎯 Ders sonu: Kendini geliştir</h2>
+      <p>
+        Python öğrenirken kısa kodlar yazmaya devam et. İlk aşamada bütün konuları
+        ezberlemek yerine her kavramı küçük bir örnekle uygulamaya çalış.
+      </p>
+
+      <h3>Kendine küçük bir proje seç</h3>
+      <ul>
+        <li>İki sayıyı toplayan hesaplama programı.</li>
+        <li>Bir ürünün indirimli fiyatını hesaplayan program.</li>
+        <li>Öğrencinin notuna göre sonuç gösteren program.</li>
+        <li>Bir listedeki sayıların toplamını hesaplayan program.</li>
+      </ul>
+
+      <div class="callout success-note">
+        <strong>Bir sonraki adım:</strong> Bu konuları anladıktan sonra Python ile
+        küçük projeler yapmaya ve daha sonra dosyalar, modüller, hata yönetimi ve
+        veri yapıları gibi konulara geçebilirsin.
+      </div>
+
+      <a class="button secondary" href="index.html">← Tüm eğitimlere dön</a>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <p>ZELORA — Ücretsiz Dijital Akademi</p>
+  <p>Öğrenmeye bugün başla, bilgini yarına taşı.</p>
+</footer>
+
+<script>
+  // -----------------------------------------------
+  // PYTHON UYGULAMA ALANI
+  // Bu bölüm gerçek Python değil, sınırlı bir simülatördür.
+  // -----------------------------------------------
+
+  const codeInput = document.getElementById("pythonCode");
+  const codeOutput = document.getElementById("codeOutput");
+
+  document.getElementById("exampleCode").addEventListener("click", function () {
+    codeInput.value =
+`isim = "Zelal"
+yas = 24
+
+print("Merhaba", isim)
+print("Yaşın:", yas)
+print(10 + 5)`;
+    codeOutput.textContent = "Örnek yüklendi. Çalıştır düğmesine bas.";
+  });
+
+  document.getElementById("clearOutput").addEventListener("click", function () {
+    codeOutput.textContent = "";
+  });
+
+  document.getElementById("runCode").addEventListener("click", function () {
+    try {
+      codeOutput.textContent = simulatePython(codeInput.value);
+    } catch (error) {
+      codeOutput.textContent = "Hata: " + error.message;
+    }
+  });
+
+  function simulatePython(source) {
+    const variables = {};
+    const output = [];
+
+    const lines = source.split("\n");
+
+    for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+      let line = lines[lineNumber].trim();
+
+      if (!line || line.startsWith("#")) {
+        continue;
+      }
+
+      if (line.startsWith("print(") && line.endsWith(")")) {
+        const inside = line.slice(6, -1);
+        const values = splitArguments(inside);
+        const printed = values.map(function (value) {
+          return evaluateValue(value, variables);
+        });
+        output.push(printed.map(formatValue).join(" "));
+        continue;
+      }
+
+      const assignment = line.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+
+      if (assignment) {
+        const variableName = assignment[1];
+        const expression = assignment[2].trim();
+
+        if (expression.includes("input(")) {
+          throw new Error(
+            "Bu basit uygulama alanı input() komutunu desteklemiyor. Sabit bir değer deneyebilirsin."
+          );
+        }
+
+        variables[variableName] = evaluateValue(expression, variables);
+        continue;
+      }
+
+      throw new Error(
+        (lineNumber + 1) +
+        ". satır desteklenmiyor. Şimdilik print(), basit değişkenler ve aritmetik işlemleri kullan."
+      );
+    }
+
+    return output.length ? output.join("\n") : "Program tamamlandı. Çıktı üretilmedi.";
+  }
+
+  function splitArguments(text) {
+    const result = [];
+    let current = "";
+    let quote = null;
+    let depth = 0;
+
+    for (let i = 0; i < text.length; i++) {
+      const character = text[i];
+
+      if ((character === '"' || character === "'") &&
+          (i === 0 || text[i - 1] !== "\\")) {
+        if (quote === character) {
+          quote = null;
+        } else if (!quote) {
+          quote = character;
+        }
+      }
+
+      if (!quote) {
+        if (character === "(") depth++;
+        if (character === ")") depth--;
+
+        if (character === "," && depth === 0) {
+          result.push(current.trim());
+          current = "";
+          continue;
+        }
+      }
+
+      current += character;
+    }
+
+    if (current.trim() !== "") {
+      result.push(current.trim());
+    }
+
+    return result;
+  }
+
+  function evaluateValue(expression, variables) {
+    const value = expression.trim();
+
+    if (/^(['"]).*\1$/.test(value)) {
+      return value.slice(1, -1);
+    }
+
+    if (value === "True") return true;
+    if (value === "False") return false;
+    if (value === "None") return null;
+
+    if (/^-?\d+(\.\d+)?$/.test(value)) {
+      return Number(value);
+    }
+
+    if (Object.prototype.hasOwnProperty.call(variables, value)) {
+      return variables[value];
+    }
+
+    // Yalnızca matematiksel karakterlerden oluşan ifadeleri hesaplar.
+    if (/^[\d\s+\-*/().%]+$/.test(value) &&
+        /[\d)]\s*[+\-*/%]/.test(value)) {
+      if (!/^[\d\s+\-*/().%]+$/.test(value)) {
+        throw new Error("Geçersiz matematiksel ifade.");
+      }
+
+      return Function('"use strict"; return (' + value + ')')();
+    }
+
+    throw new Error(
+      '"' + value + '" ifadesi tanınmadı. Metinleri tırnak içine al veya değişkeni tanımla.'
+    );
+  }
+
+  function formatValue(value) {
+    if (value === null) return "None";
+    if (value === true) return "True";
+    if (value === false) return "False";
+    return String(value);
+  }
+
+  // -----------------------------------------------
+  // 20 SORULUK TEST
+  // -----------------------------------------------
+
+  const questions = [
+    {
+      q: "Python'da ekrana bir mesaj yazdırmak için hangi komut kullanılır?",
+      options: ["input()", "print()", "write()", "show()"],
+      answer: 1,
+      explanation: "print() ekrana bir değeri veya mesajı yazdırır."
+    },
+    {
+      q: "Python dosyalarının yaygın dosya uzantısı hangisidir?",
+      options: [".html", ".css", ".py", ".jpg"],
+      answer: 2,
+      explanation: "Python kaynak kodu dosyaları genellikle .py uzantısını kullanır."
+    },
+    {
+      q: "Aşağıdakilerden hangisi bir metin değeridir?",
+      options: ["25", '"Merhaba"', "3.14", "True"],
+      answer: 1,
+      explanation: "Tırnak içine alınan Merhaba bir metindir."
+    },
+    {
+      q: "Python'da 8 + 4 işleminin sonucu nedir?",
+      options: ["84", "12", "32", "4"],
+      answer: 1,
+      explanation: "Toplama işleminin sonucu 12'dir."
+    },
+    {
+      q: "Bir tam sayı veri tipinin adı hangisidir?",
+      options: ["str", "bool", "int", "float"],
+      answer: 2,
+      explanation: "int, tam sayılar için kullanılan veri tipidir."
+    },
+    {
+      q: "Python'da eşitlik kontrolü için hangi operatör kullanılır?",
+      options: ["=", "==", "!=", "=>"],
+      answer: 1,
+      explanation: "== iki değerin eşit olup olmadığını karşılaştırır."
+    },
+    {
+      q: "Bir satırı yorum olarak işaretlemek için hangi karakter kullanılır?",
+      options: ["//", "<!--", "#", "**"],
+      answer: 2,
+      explanation: "Python'da # işaretinden sonraki kısım yorum olarak kabul edilir."
+    },
+    {
+      q: "Kullanıcıdan veri almak için hangi fonksiyon kullanılır?",
+      options: ["input()", "print()", "type()", "range()"],
+      answer: 0,
+      explanation: "input() kullanıcıdan metin olarak veri alır."
+    },
+    {
+      q: "Python'da koşul yazmak için hangi anahtar kelime kullanılır?",
+      options: ["when", "if", "check", "caseonly"],
+      answer: 1,
+      explanation: "if, bir koşulun doğru olup olmadığını kontrol eder."
+    },
+    {
+      q: "Bir koşul doğru değilse alternatif blok için hangisi kullanılabilir?",
+      options: ["repeat", "then", "else", "next"],
+      answer: 2,
+      explanation: "else, önceki koşul karşılanmadığında çalışacak bloğu tanımlar."
+    },
+    {
+      q: "range(5) hangi sayıları üretir?",
+      options: ["1, 2, 3, 4, 5", "0, 1, 2, 3, 4", "0, 1, 2, 3, 4, 5", "5"],
+      answer: 1,
+      explanation: "range(5), 0'dan başlar ve 5'e ulaşmadan durur."
+    },
+    {
+      q: "Bir koşul doğru olduğu sürece çalışan döngü hangisidir?",
+      options: ["while", "def", "print", "class"],
+      answer: 0,
+      explanation: "while döngüsü koşul doğru kaldığı sürece çalışır."
+    },
+    {
+      q: "Python'da liste hangi parantezlerle oluşturulur?",
+      options: ["{}", "()", "[]", "<>"],
+      answer: 2,
+      explanation: "Listeler köşeli parantezlerle oluşturulur."
+    },
+    {
+      q: "meyveler = ['elma', 'armut'] için meyveler[0] sonucu nedir?",
+      options: ["armut", "elma", "0", "Hata"],
+      answer: 1,
+      explanation: "Liste indeksleri 0'dan başlar; ilk eleman elmadır."
+    },
+    {
+      q: "Bir listenin eleman sayısını bulmak için hangisi kullanılır?",
+      options: ["countall()", "size()", "len()", "total()"],
+      answer: 2,
+      explanation: "len() listenin eleman sayısını verir."
+    },
+    {
+      q: "Python'da fonksiyon tanımlamak için hangi kelime kullanılır?",
+      options: ["function", "define", "def", "func"],
+      answer: 2,
+      explanation: "Python'da fonksiyonlar def anahtar kelimesiyle tanımlanır."
+    },
+    {
+      q: "Fonksiyondan bir değer döndürmek için hangi kelime kullanılır?",
+      options: ["send", "return", "back", "give"],
+      answer: 1,
+      explanation: "return, fonksiyonun sonucunu geri döndürür."
+    },
+    {
+      q: "type(3.14) hangi veri tipini gösterir?",
+      options: ["int", "str", "float", "bool"],
+      answer: 2,
+      explanation: "3.14 ondalıklı bir sayıdır ve float türündedir."
+    },
+    {
+      q: "Python'da 9 % 2 işleminin sonucu nedir?",
+      options: ["4", "1", "4.5", "18"],
+      answer: 1,
+      explanation: "% operatörü bölme işleminden kalanı verir."
+    },
+    {
+      q: "Python'da girintiler neden önemlidir?",
+      options: [
+        "Kodun rengini değiştirmek için",
+        "Dosyanın boyutunu küçültmek için",
+        "Kod bloklarının hangi bölüme ait olduğunu belirtmek için",
+        "İnternet bağlantısı kurmak için"
+      ],
+      answer: 2,
+      explanation: "Girintiler Python'da koşul ve döngü gibi kod bloklarını belirler."
+    }
+  ];
+
+  const quizContainer = document.getElementById("quizQuestions");
+  const quizForm = document.getElementById("quizForm");
+  const quizResult = document.getElementById("quizResult");
+  const quizProgress = document.getElementById("quizProgress");
+  const answeredCount = document.getElementById("answeredCount");
+
+  function renderQuiz() {
+    quizContainer.innerHTML = "";
+
+    questions.forEach(function (question, index) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "quiz-question";
+
+      const heading = document.createElement("h3");
+      heading.textContent = (index + 1) + ". " + question.q;
+      wrapper.appendChild(heading);
+
+      question.options.forEach(function (option, optionIndex) {
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "question" + index;
+        radio.value = optionIndex;
+
+        const text = document.createElement("span");
+        text.textContent = option;
+
+        label.appendChild(radio);
+        label.appendChild(text);
+        wrapper.appendChild(label);
+
+        radio.addEventListener("change", updateQuizProgress);
+      });
+
+      quizContainer.appendChild(wrapper);
+    });
+
+    updateQuizProgress();
+  }
+
+  function updateQuizProgress() {
+    let answered = 0;
+
+    questions.forEach(function (_, index) {
+      if (quizForm.querySelector('input[name="question' + index + '"]:checked')) {
+        answered++;
+      }
+    });
+
+    answeredCount.textContent = answered + " / " + questions.length + " soru yanıtlandı";
+    quizProgress.style.width = (answered / questions.length * 100) + "%";
+  }
+
+  quizForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let score = 0;
+    let answered = 0;
+    let review = "";
+
+    questions.forEach(function (question, index) {
+      const selected = quizForm.querySelector(
+        'input[name="question' + index + '"]:checked'
+      );
+
+      const selectedIndex = selected ? Number(selected.value) : -1;
+
+      if (selected) answered++;
+
+      if (selectedIndex === question.answer) {
+        score += 5;
+      }
+
+      review +=
+        "<div class='quiz-question'>" +
+        "<strong>" + (index + 1) + ". soru: " +
+        (selectedIndex === question.answer ? "Doğru" : "Yanlış") +
+        "</strong>" +
+        "<p><strong>Doğru cevap:</strong> " +
+        escapeHTML(question.options[question.answer]) + "</p>" +
+        "<p class='muted'>" + escapeHTML(question.explanation) + "</p>" +
+        "</div>";
+    });
+
+    let message;
+
+    if (score >= 90) {
+      message = "Harika! Konuları çok iyi anlamışsın.";
+    } else if (score >= 70) {
+      message = "Güzel sonuç! Birkaç konuyu tekrar ederek daha da ilerleyebilirsin.";
+    } else if (score >= 50) {
+      message = "İyi bir başlangıç. Yanlış cevaplarını inceleyip konuları yeniden oku.";
+    } else {
+      message = "Üzülme. Dersleri tekrar oku, kodları dene ve testi yeniden çöz.";
+    }
+
+    quizResult.style.display = "block";
+    quizResult.innerHTML =
+      "<h3>Test sonucunuz: " + score + " / 100</h3>" +
+      "<p><strong>" + answered + " / 20</strong> soruyu yanıtladın.</p>" +
+      "<p>" + message + "</p>" +
+      "<div class='progress-track'><div class='progress-fill' style='width:" +
+      score + "%'></div></div>" +
+      "<h3>Cevapların ve açıklamalar</h3>" +
+      review;
+
+    quizResult.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  document.getElementById("resetQuiz").addEventListener("click", function () {
+    quizForm.reset();
+    quizResult.style.display = "none";
+    quizResult.innerHTML = "";
+    updateQuizProgress();
+    document.getElementById("test").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+
+  function escapeHTML(text) {
+    return String(text).replace(/[&<>"']/g, function (character) {
+      const replacements = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      };
+
+      return replacements[character];
+    });
+  }
+
+  renderQuiz();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ZELORA ücretsiz veritabanı ve SQL eğitimi.">
+<title>Veritabanları ve SQL | ZELORA</title>
+
+<style>
+:root {
+  --mor: #7651c9;
+  --mor-koyu: #35215f;
+  --arka: #f7f5fc;
+  --kart: #ffffff;
+  --metin: #29243a;
+  --soluk: #777188;
+  --kenar: #e8e2f3;
+  --yesil: #21865b;
+  --kirmizi: #c64152;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--arka);
+  color: var(--metin);
+  line-height: 1.75;
+}
+
+a {
+  color: var(--mor);
+}
+
+button, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--kenar);
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--mor-koyu);
+}
+
+.logo span {
+  color: var(--mor);
+}
+
+.nav a:last-child {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.hero {
+  background: linear-gradient(135deg, #24163f, #6545a7);
+  color: white;
+  padding: 55px 22px;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.etiket {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 45px);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  max-width: 700px;
+  color: #eee8ff;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--mor);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.btn.light {
+  background: white;
+  color: var(--mor-koyu);
+}
+
+.btn.outline {
+  background: transparent;
+  color: var(--mor);
+  border: 1px solid var(--kenar);
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 265px minmax(0, 1fr);
+  gap: 25px;
+  align-items: start;
+}
+
+.sidebar {
+  background: var(--kart);
+  border: 1px solid var(--kenar);
+  border-radius: 16px;
+  padding: 20px;
+  position: sticky;
+  top: 85px;
+}
+
+.sidebar h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.progress-track {
+  height: 9px;
+  background: #eee9f7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: var(--mor);
+  transition: width .3s;
+}
+
+#progressText {
+  color: var(--soluk);
+  font-size: 13px;
+}
+
+.lesson-nav {
+  list-style: none;
+  margin-top: 18px;
+}
+
+.lesson-nav li {
+  margin: 5px 0;
+}
+
+.lesson-nav a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--metin);
+  font-size: 14px;
+}
+
+.lesson-nav a:hover {
+  background: #f0eafb;
+  color: var(--mor);
+}
+
+.content {
+  min-width: 0;
+}
+
+.card {
+  background: var(--kart);
+  border: 1px solid var(--kenar);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 22px;
+  scroll-margin-top: 95px;
+  box-shadow: 0 5px 18px rgba(44,25,80,.035);
+}
+
+.card h2 {
+  font-size: 25px;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  color: var(--mor-koyu);
+}
+
+.card h3 {
+  font-size: 18px;
+  margin: 18px 0 8px;
+}
+
+.card p {
+  margin-bottom: 12px;
+}
+
+.card ul, .card ol {
+  padding-left: 24px;
+  margin: 10px 0 16px;
+}
+
+.card li {
+  margin-bottom: 6px;
+}
+
+.callout {
+  padding: 14px 16px;
+  background: #f2edfc;
+  border-left: 4px solid var(--mor);
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid var(--kenar);
+  text-align: left;
+}
+
+th {
+  background: #f0eafb;
+}
+
+pre {
+  background: #211b32;
+  color: #f5f0ff;
+  padding: 17px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 12px 0 16px;
+  white-space: pre;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.inline-code {
+  background: #f0eafb;
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #5d3ba8;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #171326;
+  border-radius: 13px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.video-links a {
+  display: inline-block;
+  margin: 4px 0;
+  font-weight: 700;
+}
+
+.lab textarea {
+  width: 100%;
+  min-height: 135px;
+  padding: 14px;
+  border: 1px solid var(--kenar);
+  border-radius: 10px;
+  resize: vertical;
+  background: #211b32;
+  color: #f5f0ff;
+  font-family: Consolas, monospace;
+}
+
+.lab-result {
+  margin-top: 12px;
+  padding: 14px;
+  background: #f4f0fb;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.lab-result table {
+  background: white;
+}
+
+.quiz-question {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--kenar);
+}
+
+.quiz-question p {
+  font-weight: 700;
+}
+
+.quiz-question label {
+  display: block;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.quiz-question input {
+  margin-right: 8px;
+  accent-color: var(--mor);
+}
+
+#quizResult {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  display: none;
+}
+
+.correct {
+  color: var(--yesil);
+  font-weight: 700;
+}
+
+.incorrect {
+  color: var(--kirmizi);
+  font-weight: 700;
+}
+
+footer {
+  margin-top: 45px;
+  background: #24163f;
+  color: #eee8ff;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+}
+
+@media (max-width: 850px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .lesson-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding: 38px 18px;
+  }
+
+  .layout {
+    padding: 0 12px;
+    margin-top: 18px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h2 {
+    font-size: 22px;
+  }
+
+  .nav {
+    padding: 12px 15px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .lesson-nav {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 7px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="index.html">ZEL<span>ORA</span></a>
+    <a href="index.html">← Eğitimlere Dön</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="etiket">ÜCRETSİZ EĞİTİM • BAŞLANGIÇTAN İLERİ SEVİYEYE</span>
+    <h1>Veritabanları ve SQL</h1>
+    <p>
+      Verilerin nasıl saklandığını, tabloların nasıl ilişkilendirildiğini
+      ve SQL ile verilerin nasıl yönetildiğini adım adım öğren.
+      Konuları oku, örnekleri incele, uygulama alanında dene ve testini çöz.
+    </p>
+    <div class="hero-buttons">
+      <a class="btn light" href="#ders1">Derse Başla</a>
+      <a class="btn" href="#test">Bilgini Test Et</a>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h3>📚 Ders İçeriği</h3>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p id="progressText">0 / 10 konu tamamlandı</p>
+
+    <ul class="lesson-nav">
+      <li><a href="#ders1">1. Veritabanı Nedir?</a></li>
+      <li><a href="#ders2">2. Tablo, Kayıt ve Alan</a></li>
+      <li><a href="#ders3">3. Anahtarlar ve İlişkiler</a></li>
+      <li><a href="#ders4">4. SQL Nedir?</a></li>
+      <li><a href="#ders5">5. SELECT ile Veri Okuma</a></li>
+      <li><a href="#ders6">6. WHERE ve Sıralama</a></li>
+      <li><a href="#ders7">7. Veri Ekleme</a></li>
+      <li><a href="#ders8">8. Güncelleme ve Silme</a></li>
+      <li><a href="#ders9">9. JOIN ve İlişkiler</a></li>
+      <li><a href="#ders10">10. Güvenlik ve Yedekleme</a></li>
+      <li><a href="#video">🎬 Video Dersleri</a></li>
+      <li><a href="#uygulama">⌨️ SQL Uygulaması</a></li>
+      <li><a href="#test">📝 20 Soruluk Test</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <section class="card">
+      <h2>Bu eğitimde neler öğreneceksin?</h2>
+      <p>
+        Günümüzde bankalar, hastaneler, okullar, e-ticaret siteleri ve
+        şirketler çok büyük miktarda veri kullanır. Bu verileri düzenli
+        saklamak ve gerektiğinde hızlıca bulmak için veritabanlarından
+        yararlanılır.
+      </p>
+      <ul>
+        <li>Veritabanı ve veritabanı yönetim sistemlerinin mantığı</li>
+        <li>Tablolar, sütunlar, satırlar ve anahtarlar</li>
+        <li>İlişkisel veritabanları ile NoSQL arasındaki temel farklar</li>
+        <li>SQL ile veri okuma, ekleme, güncelleme ve silme</li>
+        <li>Tabloları ilişkilendirme ve verileri güvenli saklama</li>
+      </ul>
+      <div class="callout">
+        <strong>Öğrenme önerisi:</strong> Konuları sırayla oku.
+        Kod örneklerini incele ve her konudan sonra “Konuyu Tamamladım”
+        düğmesine bas. Sonunda 100 puan üzerinden değerlendirilen testi çöz.
+      </div>
+    </section>
+
+    <section class="card lesson" id="ders1">
+      <h2>1. Veritabanı Nedir?</h2>
+      <p>
+        Veritabanı, bilgilerin düzenli bir şekilde saklandığı ve ihtiyaç
+        duyulduğunda bulunabildiği veri koleksiyonudur. Örneğin bir okulun
+        öğrencileri, dersleri, sınav notları ve öğretmenleri hakkında
+        tuttuğu bilgiler bir veritabanında saklanabilir.
+      </p>
+      <p>
+        Bir deftere isim yazmak küçük bir bilgi topluluğu için yeterli
+        olabilir. Ancak binlerce öğrencinin bilgilerini saklamak, aramak,
+        değiştirmek ve korumak gerektiğinde özel yazılımlara ihtiyaç duyulur.
+      </p>
+
+      <h3>Veritabanı yönetim sistemi (VTYS)</h3>
+      <p>
+        Veritabanını oluşturmaya, düzenlemeye, sorgulamaya ve korumaya
+        yarayan yazılıma veritabanı yönetim sistemi denir. İngilizcede
+        DBMS (Database Management System) olarak adlandırılır.
+      </p>
+      <p>Yaygın örnekler:</p>
+      <ul>
+        <li><strong>MySQL:</strong> Web uygulamalarında yaygın kullanılan ilişkisel sistem.</li>
+        <li><strong>PostgreSQL:</strong> Güçlü ve gelişmiş ilişkisel veritabanı sistemi.</li>
+        <li><strong>Microsoft SQL Server:</strong> Kurumsal uygulamalarda kullanılan sistem.</li>
+        <li><strong>SQLite:</strong> Küçük uygulamalarda ve mobil yazılımlarda kullanılabilen hafif sistem.</li>
+        <li><strong>MongoDB:</strong> Belge tabanlı NoSQL veritabanı.</li>
+      </ul>
+
+      <h3>Veritabanları neden kullanılır?</h3>
+      <ul>
+        <li>Bilgileri düzenli biçimde saklamak</li>
+        <li>Aranan veriye hızlı ulaşmak</li>
+        <li>Veriler üzerinde kontrollü değişiklik yapmak</li>
+        <li>Kullanıcıların erişim izinlerini yönetmek</li>
+        <li>Yedekleme ve kurtarma işlemlerini desteklemek</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Örnek:</strong> Bir alışveriş sitesinde ürün adları,
+        fiyatlar, müşteri bilgileri ve siparişler farklı tablolarda
+        tutulabilir. Böylece bir müşterinin hangi ürünü sipariş ettiği
+        takip edilebilir.
+      </div>
+
+      <button class="btn complete-btn" data-lesson="1">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders2">
+      <h2>2. Tablo, Kayıt ve Alan Kavramları</h2>
+      <p>
+        İlişkisel veritabanlarında veriler çoğunlukla tablolar içerisinde
+        tutulur. Bir tabloyu satır ve sütunlardan oluşan bir elektronik
+        tablo gibi düşünebilirsin.
+      </p>
+
+      <ul>
+        <li><strong>Tablo:</strong> Aynı türden bilgilerin düzenli tutulduğu yapı.</li>
+        <li><strong>Sütun (alan):</strong> Bilginin türünü belirtir; örneğin ad veya yaş.</li>
+        <li><strong>Satır (kayıt):</strong> Bir kişiye veya nesneye ait bilgilerin tamamı.</li>
+        <li><strong>Veri türü:</strong> Alanda hangi türde bilgi tutulabileceğini belirler.</li>
+      </ul>
+
+      <h3>Örnek öğrenci tablosu</h3>
+      <table>
+        <thead>
+          <tr><th>ogrenci_id</th><th>ad</th><th>yas</th><th>bolum</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Ayşe</td><td>20</td><td>Bilgisayar</td></tr>
+          <tr><td>2</td><td>Mehmet</td><td>22</td><td>Elektrik</td></tr>
+          <tr><td>3</td><td>Elif</td><td>19</td><td>Bilgisayar</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Bu örnekte <span class="inline-code">ad</span> bir sütundur.
+        Ayşe'nin bulunduğu satır bir kayıttır. Tabloda üç öğrenci kaydı
+        bulunur.
+      </p>
+
+      <h3>Veri türlerine örnekler</h3>
+      <table>
+        <thead><tr><th>Tür</th><th>Kullanım</th><th>Örnek</th></tr></thead>
+        <tbody>
+          <tr><td>INT</td><td>Tam sayı</td><td>25</td></tr>
+          <tr><td>VARCHAR</td><td>Metin</td><td>'Zelora'</td></tr>
+          <tr><td>DATE</td><td>Tarih</td><td>'2026-10-28'</td></tr>
+          <tr><td>DECIMAL</td><td>Ondalıklı sayı</td><td>149.90</td></tr>
+          <tr><td>BOOLEAN</td><td>Doğru/yanlış</td><td>TRUE / FALSE</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Veri türlerinin ve yazım biçimlerinin ayrıntıları kullanılan
+        veritabanı sistemine göre değişebilir. Örneğin SQL Server,
+        MySQL ve PostgreSQL aynı türleri her zaman birebir aynı biçimde
+        kullanmaz.
+      </p>
+
+      <button class="btn complete-btn" data-lesson="2">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders3">
+      <h2>3. Birincil Anahtar, Yabancı Anahtar ve İlişkiler</h2>
+      <p>
+        Bir tabloda aynı ada sahip iki öğrenci bulunabilir. Bu nedenle
+        her öğrenciyi birbirinden ayırmak için benzersiz bir kimlik
+        numarası kullanılır. Bu alan birincil anahtar olarak seçilebilir.
+      </p>
+
+      <h3>Birincil anahtar (PRIMARY KEY)</h3>
+      <p>
+        Birincil anahtar, tablodaki her kaydı benzersiz biçimde tanımlar.
+        Tekrarlanan veya boş bırakılan değerler bu anahtar için kabul edilmez.
+      </p>
+      <pre><code>CREATE TABLE Ogrenciler (
+    ogrenci_id INT PRIMARY KEY,
+    ad VARCHAR(100),
+    yas INT
+);</code></pre>
+
+      <h3>Yabancı anahtar (FOREIGN KEY)</h3>
+      <p>
+        Yabancı anahtar, bir tablodaki alanı başka bir tablonun anahtarına
+        bağlar. Bu sayede ilişkili veriler arasında tutarlılık sağlanabilir.
+      </p>
+      <pre><code>CREATE TABLE Dersler (
+    ders_id INT PRIMARY KEY,
+    ders_adi VARCHAR(100)
+);
+
+CREATE TABLE Kayitlar (
+    ogrenci_id INT,
+    ders_id INT,
+    FOREIGN KEY (ders_id)
+        REFERENCES Dersler(ders_id)
+);</code></pre>
+
+      <h3>İlişki türleri</h3>
+      <ul>
+        <li><strong>Bire bir (1:1):</strong> Bir kaydın diğer tabloda en fazla bir karşılığı olur.</li>
+        <li><strong>Bire çok (1:N):</strong> Bir bölümde birçok öğrenci bulunabilir.</li>
+        <li><strong>Çoka çok (N:N):</strong> Bir öğrenci birçok ders alabilir, bir ders de birçok öğrenci tarafından alınabilir. Genellikle ara tablo kullanılır.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Önemli:</strong> Birincil anahtar ile yabancı anahtar aynı
+        şey değildir. Birincil anahtar kaydı tanımlar; yabancı anahtar
+        tablolar arasındaki ilişkiyi kurar.
+      </div>
+
+      <button class="btn complete-btn" data-lesson="3">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders4">
+      <h2>4. SQL Nedir?</h2>
+      <p>
+        SQL, ilişkisel veritabanlarıyla iletişim kurmak için kullanılan
+        bir sorgulama dilidir. SQL ile tablolar oluşturabilir, verileri
+        okuyabilir, yeni kayıt ekleyebilir, kayıtları değiştirebilir
+        ve silebilirsin.
+      </p>
+
+      <h3>SQL komutlarının temel grupları</h3>
+      <ul>
+        <li><strong>DDL:</strong> Veritabanı yapısını oluşturma veya değiştirme. CREATE, ALTER, DROP.</li>
+        <li><strong>DML:</strong> Veriler üzerinde değişiklik yapma. INSERT, UPDATE, DELETE.</li>
+        <li><strong>DQL:</strong> Veri sorgulama. SELECT genellikle bu grupta öğretilir.</li>
+        <li><strong>DCL:</strong> Yetkilendirme. GRANT, REVOKE.</li>
+        <li><strong>TCL:</strong> İşlemleri yönetme. COMMIT, ROLLBACK.</li>
+      </ul>
+
+      <h3>Tablo oluşturma örneği</h3>
+      <pre><code>CREATE TABLE Urunler (
+    urun_id INT PRIMARY KEY,
+    urun_adi VARCHAR(100),
+    fiyat DECIMAL(10,2)
+);</code></pre>
+
+      <p>
+        Bu örnek, ürün kimliği, ürün adı ve fiyat alanlarından oluşan
+        bir tablo oluşturur. Tabloyu oluşturabilmek için kullandığın
+        veritabanında gerekli izinlere sahip olmalısın.
+      </p>
+
+      <h3>SQL yazarken dikkat et</h3>
+      <ul>
+        <li>Komut ve tablo isimlerini anlaşılır seç.</li>
+        <li>Metin değerlerini genellikle tek tırnak içinde yaz.</li>
+        <li>Gerçek verilerde değişiklik yapmadan önce sorgunu kontrol et.</li>
+        <li>SQL lehçelerinin küçük farklılıkları olabileceğini unutma.</li>
+      </ul>
+
+      <button class="btn complete-btn" data-lesson="4">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders5">
+      <h2>5. SELECT ile Veri Okuma</h2>
+      <p>
+        SELECT, tablodaki verileri sorgulamak için kullanılan en temel
+        SQL komutlarından biridir. Hangi sütunları görmek istediğini
+        belirtebilirsin.
+      </p>
+
+      <h3>Bütün sütunları listeleme</h3>
+      <pre><code>SELECT * FROM Ogrenciler;</code></pre>
+      <p>
+        Yıldız işareti (<span class="inline-code">*</span>) tablodaki
+        bütün sütunları seçer. Büyük sistemlerde yalnızca ihtiyacın olan
+        sütunları belirtmek daha anlaşılır ve verimli olabilir.
+      </p>
+
+      <h3>Belirli sütunları seçme</h3>
+      <pre><code>SELECT ad, yas
+FROM Ogrenciler;</code></pre>
+
+      <h3>Sorguya takma ad verme</h3>
+      <pre><code>SELECT ad AS OgrenciAdi, yas AS Yas
+FROM Ogrenciler;</code></pre>
+
+      <p>
+        AS ifadesi, sonuçta görünen sütun başlığını daha anlaşılır
+        hâle getirebilir. Genellikle tablodaki asıl sütun adını değiştirmez.
+      </p>
+
+      <h3>Tekrarlanan değerleri azaltma</h3>
+      <pre><code>SELECT DISTINCT bolum
+FROM Ogrenciler;</code></pre>
+
+      <p>
+        DISTINCT, seçilen sütunlarda tekrarlanan sonuçları tekilleştirir.
+        Örneğin bölüm isimlerinin listesini tekrarlar olmadan görebilirsin.
+      </p>
+
+      <button class="btn complete-btn" data-lesson="5">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders6">
+      <h2>6. WHERE, ORDER BY ve LIMIT</h2>
+      <p>
+        Bir tablodaki bütün kayıtlar yerine belirli şartlara uyan
+        kayıtları görmek isteyebilirsin. WHERE, sonuçları koşula göre
+        filtreler.
+      </p>
+
+      <h3>Koşula göre filtreleme</h3>
+      <pre><code>SELECT *
+FROM Ogrenciler
+WHERE yas >= 20;</code></pre>
+
+      <p>
+        Bu sorgu yaşı 20 veya daha büyük olan öğrencileri getirir.
+        Metin alanlarında eşitlik karşılaştırması da yapılabilir:
+      </p>
+      <pre><code>SELECT *
+FROM Ogrenciler
+WHERE bolum = 'Bilgisayar';</code></pre>
+
+      <h3>Birden fazla koşul</h3>
+      <pre><code>SELECT *
+FROM Ogrenciler
+WHERE yas >= 20 AND bolum = 'Bilgisayar';</code></pre>
+
+      <ul>
+        <li><strong>AND:</strong> Bütün koşulların doğru olması gerekir.</li>
+        <li><strong>OR:</strong> Koşullardan en az birinin doğru olması yeterlidir.</li>
+        <li><strong>LIKE:</strong> Belirli metin kalıplarını aramak için kullanılır.</li>
+        <li><strong>IN:</strong> Bir değerin belirtilen değerler arasında olup olmadığını kontrol eder.</li>
+        <li><strong>BETWEEN:</strong> Bir aralıktaki değerleri seçer.</li>
+      </ul>
+
+      <h3>Sonuçları sıralama</h3>
+      <pre><code>SELECT *
+FROM Ogrenciler
+ORDER BY yas ASC;</code></pre>
+
+      <p>
+        ASC küçükten büyüğe, DESC büyükten küçüğe sıralama yapar.
+        Sıralama için kullanılacak sütun doğru seçilmelidir.
+      </p>
+
+      <h3>Sonuç sayısını sınırlama</h3>
+      <pre><code>-- MySQL ve PostgreSQL örneği
+SELECT *
+FROM Ogrenciler
+ORDER BY yas DESC
+LIMIT 5;</code></pre>
+
+      <p>
+        LIMIT kullanımı her SQL sisteminde aynı değildir. Örneğin
+        SQL Server'da benzer amaçla TOP veya uygun sorgularda OFFSET/FETCH
+        kullanılabilir.
+      </p>
+
+      <button class="btn complete-btn" data-lesson="6">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders7">
+      <h2>7. INSERT ile Veri Ekleme</h2>
+      <p>
+        INSERT INTO komutu, bir tabloya yeni kayıt eklemek için kullanılır.
+        Sütun isimlerini açıkça yazmak, hangi değerin hangi alana gittiğini
+        anlamayı kolaylaştırır.
+      </p>
+
+      <pre><code>INSERT INTO Ogrenciler
+    (ogrenci_id, ad, yas, bolum)
+VALUES
+    (4, 'Zeynep', 21, 'Bilgisayar');</code></pre>
+
+      <p>
+        Burada yeni bir öğrenci kaydı eklenir. Değerlerin türleri,
+        sütun sırası ve zorunlu alanlar tablo tanımıyla uyumlu olmalıdır.
+      </p>
+
+      <h3>Birden fazla kayıt eklemek</h3>
+      <pre><code>INSERT INTO Ogrenciler
+    (ogrenci_id, ad, yas, bolum)
+VALUES
+    (5, 'Mert', 23, 'Elektrik'),
+    (6, 'Ece', 20, 'Bilgisayar');</code></pre>
+
+      <p>
+        Çoklu kayıt ekleme sözdizimi veritabanına göre değişebilir.
+        Canlı bir veritabanında kayıt eklemeden önce hedef tabloyu ve
+        eklenen değerleri kontrol et.
+      </p>
+
+      <button class="btn complete-btn" data-lesson="7">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders8">
+      <h2>8. UPDATE ve DELETE</h2>
+
+      <h3>UPDATE: Var olan kaydı güncelleme</h3>
+      <pre><code>UPDATE Ogrenciler
+SET yas = 22
+WHERE ogrenci_id = 4;</code></pre>
+
+      <p>
+        Bu sorgu kimliği 4 olan öğrencinin yaşını günceller. WHERE koşulu
+        olmazsa birçok SQL sisteminde tablodaki bütün kayıtlar değişebilir.
+      </p>
+
+      <h3>DELETE: Kayıt silme</h3>
+      <pre><code>DELETE FROM Ogrenciler
+WHERE ogrenci_id = 4;</code></pre>
+
+      <p>
+        Bu sorgu belirtilen öğrenciyi siler. WHERE koşulu kullanılmazsa
+        tablodaki bütün kayıtlar silinebilir. Bu nedenle gerçek sistemlerde
+        silme sorguları son derece dikkatli kullanılmalıdır.
+      </p>
+
+      <div class="callout">
+        <strong>Güvenlik alışkanlığı:</strong> UPDATE veya DELETE
+        çalıştırmadan önce aynı koşulla SELECT sorgusu çalıştırarak
+        hangi kayıtların etkileneceğini kontrol et. Önemli verilerde
+        uygun yedekleme ve işlem yönetimi kullan.
+      </div>
+
+      <button class="btn complete-btn" data-lesson="8">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders9">
+      <h2>9. JOIN ile Tabloları Birleştirme</h2>
+      <p>
+        İlişkisel veritabanlarında bilgiler çoğu zaman ayrı tablolarda
+        saklanır. JOIN, tablolar arasında bağlantı kurarak ilgili bilgileri
+        aynı sorgu sonucunda görmeyi sağlar.
+      </p>
+
+      <h3>Örnek tablolar</h3>
+      <p>Ogrenciler tablosunda öğrenci adı ve kimliği, Bolumler tablosunda bölüm kimliği ve adı bulunduğunu düşünelim.</p>
+
+      <pre><code>SELECT Ogrenciler.ad, Bolumler.bolum_adi
+FROM Ogrenciler
+INNER JOIN Bolumler
+    ON Ogrenciler.bolum_id = Bolumler.bolum_id;</code></pre>
+
+      <p>
+        INNER JOIN, iki tablo arasında belirtilen koşula uyan kayıtları
+        getirir. Burada öğrencinin bölüm kimliği, bölümler tablosundaki
+        aynı kimlikle eşleştirilir.
+      </p>
+
+      <h3>Yaygın JOIN türleri</h3>
+      <ul>
+        <li><strong>INNER JOIN:</strong> Her iki tarafta eşleşen kayıtları getirir.</li>
+        <li><strong>LEFT JOIN:</strong> Sol tablodaki bütün kayıtları ve sağ tarafta eşleşen kayıtları getirir.</li>
+        <li><strong>RIGHT JOIN:</strong> Sağ tablodaki bütün kayıtları ve sol tarafta eşleşen kayıtları getirir. Destek ve kullanım biçimi sisteme göre değişebilir.</li>
+        <li><strong>CROSS JOIN:</strong> Tablolardaki satırların tüm kombinasyonlarını üretir.</li>
+      </ul>
+
+      <div class="callout">
+        JOIN kullanırken eşleştirme koşulunu doğru kurmak önemlidir.
+        Yanlış koşullar beklenenden fazla satır oluşturabilir.
+      </div>
+
+      <button class="btn complete-btn" data-lesson="9">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card lesson" id="ders10">
+      <h2>10. Veritabanı Güvenliği ve Yedekleme</h2>
+      <p>
+        Veritabanında yalnızca veriyi saklamak yeterli değildir.
+        Bilgilerin yetkisiz kişilerden korunması, gerektiğinde geri
+        yüklenebilmesi ve doğru biçimde yönetilmesi gerekir.
+      </p>
+
+      <h3>Temel güvenlik ilkeleri</h3>
+      <ul>
+        <li><strong>Yetkilendirme:</strong> Her kullanıcıya yalnızca işi için gereken izinleri ver.</li>
+        <li><strong>Güçlü kimlik doğrulama:</strong> Güçlü parolalar ve uygun durumlarda çok faktörlü doğrulama kullan.</li>
+        <li><strong>Parametreli sorgular:</strong> Kullanıcıdan alınan verileri SQL komutlarına doğrudan eklemek yerine parametreler kullan.</li>
+        <li><strong>Güncellemeler:</strong> Veritabanı yazılımını güvenli ve desteklenen sürümlerde tut.</li>
+        <li><strong>Kayıt tutma:</strong> Önemli işlemleri izlemeyi ve incelemeyi mümkün kıl.</li>
+      </ul>
+
+      <h3>SQL injection nedir?</h3>
+      <p>
+        SQL injection, uygulamanın kullanıcı girdisini güvensiz biçimde
+        sorguya eklemesiyle saldırganın sorgunun anlamını değiştirebilmesine
+        yol açabilen bir güvenlik açığıdır. Parametreli sorgular bu riski
+        azaltan temel yöntemlerden biridir.
+      </p>
+
+      <h3>Yedekleme neden önemlidir?</h3>
+      <p>
+        Donanım arızası, yanlışlıkla silme, yazılım hatası veya saldırı
+        nedeniyle veriler kaybolabilir. Yedekleme, verilerin kurtarılmasını
+        sağlar. Ancak yalnızca yedek almak yeterli değildir; yedeğin
+        gerektiğinde geri yüklenebildiği de düzenli olarak test edilmelidir.
+      </p>
+
+      <ul>
+        <li>Yedekleri güvenli ve erişim kontrollü bir yerde sakla.</li>
+        <li>İşletmenin ihtiyacına göre yedekleme sıklığı belirle.</li>
+        <li>Geri yükleme işlemlerini test et.</li>
+        <li>Hassas verileri koru ve erişim izinlerini düzenli gözden geçir.</li>
+      </ul>
+
+      <button class="btn complete-btn" data-lesson="10">✓ Konuyu Tamamladım</button>
+    </section>
+
+    <section class="card" id="video">
+      <h2>🎬 Video Dersleri</h2>
+      <p>
+        Veritabanı mantığını ve SQL sorgularını video üzerinden de
+        öğrenebilirsin. Aşağıdaki ilk ders, Türkiye Yazılım Akademisi'nin
+        yayımladığı Türkçe SQL eğitimidir.
+      </p>
+
+      <h3>1. 1 Saatte SQL Veritabanı Mantığını Öğren</h3>
+      <p>Veritabanı, tablo yapıları, ilişkiler ve temel SQL konularına giriş.</p>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/5jyEhiKmbDo"
+          title="1 Saatte SQL Veritabanı Mantığını Öğren - Türkiye Yazılım Akademisi"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="video-links">
+        <a href="https://www.youtube.com/watch?v=5jyEhiKmbDo"
+           target="_blank" rel="noopener noreferrer">
+          ▶ Videoyu YouTube'da aç
+        </a>
+        <a href="https://www.youtube.com/results?search_query=Türkçe+SQL+veritabanı+dersleri"
+           target="_blank" rel="noopener noreferrer">
+          🔎 Diğer Türkçe SQL derslerini bul
+        </a>
+      </div>
+
+      <h3>2. Uygulamalı ve kapsamlı SQL eğitimi</h3>
+      <p>
+        Daha uzun bir eğitim arıyorsan bu bağlantıdan Türkçe anlatımlı
+        kapsamlı SQL dersini inceleyebilirsin.
+      </p>
+      <a href="https://www.youtube.com/watch?v=nZgruaehPsk"
+         target="_blank" rel="noopener noreferrer">
+        ▶ Uygulamalı SQL eğitimi – YouTube
+      </a>
+
+      <div class="callout">
+        <strong>Video açılmıyorsa:</strong> İnternet bağlantısını kontrol et
+        ve “Videoyu YouTube'da aç” bağlantısını kullan. Bazı videolar
+        gömülü oynatmayı engelleyebilir; bu durumda videonun YouTube'daki
+        sayfasından izlenmesi gerekir.
+      </div>
+    </section>
+
+    <section class="card lab" id="uygulama">
+      <h2>⌨️ SQL Uygulama Alanı</h2>
+      <p>
+        Aşağıdaki alanda temel SQL sorgularını deneyebilirsin.
+        Bu, öğrenme amaçlı basit bir simülasyondur; gerçek bir SQL
+        sunucusuna bağlanmaz ve yazdığın her SQL komutunu çalıştırmaz.
+      </p>
+
+      <h3>Örnek tablo: Ogrenciler</h3>
+      <table>
+        <thead><tr><th>ogrenci_id</th><th>ad</th><th>yas</th><th>bolum</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Ayşe</td><td>20</td><td>Bilgisayar</td></tr>
+          <tr><td>2</td><td>Mehmet</td><td>22</td><td>Elektrik</td></tr>
+          <tr><td>3</td><td>Elif</td><td>19</td><td>Bilgisayar</td></tr>
+          <tr><td>4</td><td>Zeynep</td><td>21</td><td>Bilgisayar</td></tr>
+        </tbody>
+      </table>
+
+      <p>Bir örnek sorgu seç veya aşağıdaki alana desteklenen sorgulardan birini yaz:</p>
+
+      <div class="hero-buttons">
+        <button class="btn outline sample-query" data-query="SELECT * FROM Ogrenciler;">Tüm öğrenciler</button>
+        <button class="btn outline sample-query" data-query="SELECT ad, yas FROM Ogrenciler;">Ad ve yaş</button>
+        <button class="btn outline sample-query" data-query="SELECT * FROM Ogrenciler WHERE yas >= 20;">20 yaş ve üzeri</button>
+        <button class="btn outline sample-query" data-query="SELECT * FROM Ogrenciler WHERE bolum = 'Bilgisayar';">Bilgisayar bölümü</button>
+      </div>
+
+      <textarea id="sqlInput" spellcheck="false">SELECT * FROM Ogrenciler;</textarea>
+      <div style="margin-top:12px">
+        <button class="btn" id="runSql">▶ Örnek Sorguyu Çalıştır</button>
+      </div>
+      <div class="lab-result" id="sqlResult" aria-live="polite">
+        Sonuçlar burada görünecek.
+      </div>
+    </section>
+
+    <section class="card" id="test">
+      <h2>📝 Veritabanları Bilgi Testi</h2>
+      <p>
+        Toplam 20 soru bulunur. Her doğru cevap 5 puan değerindedir.
+        Test sonunda puanını ve doğru cevapların açıklamalarını görebilirsin.
+      </p>
+
+      <form id="quizForm">
+        <div id="quizQuestions"></div>
+        <button type="submit" class="btn">Testi Bitir ve Puanımı Gör</button>
+        <button type="button" class="btn outline" id="resetQuiz">Testi Yeniden Çöz</button>
+      </form>
+
+      <div id="quizResult" aria-live="polite"></div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><strong>ZELORA</strong> — Ücretsiz Dijital Akademi</p>
+  <p>Bilgini geliştir, uygulayarak öğren.</p>
+  <p style="margin-top:10px"><a href="index.html">Ana sayfaya dön</a></p>
+</footer>
+
+<script>
+/* Konu ilerlemesi */
+const lessonButtons = document.querySelectorAll(".complete-btn");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const totalLessons = 10;
+const storageKey = "zelora_veritabani_tamamlananlar";
+
+function getCompletedLessons() {
+  try {
+    const data = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    return Array.isArray(data) ? data.map(Number) : [];
+  } catch {
+    return [];
+  }
+}
+
+function updateProgress() {
+  const completed = getCompletedLessons();
+  const count = completed.length;
+  progressFill.style.width = (count / totalLessons * 100) + "%";
+  progressText.textContent = count + " / " + totalLessons + " konu tamamlandı";
+
+  lessonButtons.forEach(button => {
+    const id = Number(button.dataset.lesson);
+    const isDone = completed.includes(id);
+    button.textContent = isDone ? "✓ Tamamlandı" : "✓ Konuyu Tamamladım";
+    button.style.background = isDone ? "#21865b" : "";
+  });
+}
+
+lessonButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const id = Number(button.dataset.lesson);
+    let completed = getCompletedLessons();
+
+    if (completed.includes(id)) {
+      completed = completed.filter(item => item !== id);
+    } else {
+      completed.push(id);
+    }
+
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(completed));
+    } catch {
+      alert("İlerleme bu tarayıcıda kaydedilemedi.");
+    }
+
+    updateProgress();
+  });
+});
+
+updateProgress();
+
+/* Basit eğitim simülasyonu: yalnızca belirtilen SELECT örneklerini destekler. */
+const sampleStudents = [
+  { ogrenci_id: 1, ad: "Ayşe", yas: 20, bolum: "Bilgisayar" },
+  { ogrenci_id: 2, ad: "Mehmet", yas: 22, bolum: "Elektrik" },
+  { ogrenci_id: 3, ad: "Elif", yas: 19, bolum: "Bilgisayar" },
+  { ogrenci_id: 4, ad: "Zeynep", yas: 21, bolum: "Bilgisayar" }
+];
+
+const sqlInput = document.getElementById("sqlInput");
+const sqlResult = document.getElementById("sqlResult");
+
+document.querySelectorAll(".sample-query").forEach(button => {
+  button.addEventListener("click", () => {
+    sqlInput.value = button.dataset.query;
+  });
+});
+
+function renderTable(rows) {
+  if (!rows.length) {
+    sqlResult.textContent = "Bu sorgu için sonuç bulunamadı.";
+    return;
+  }
+
+  const columns = Object.keys(rows[0]);
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  columns.forEach(column => {
+    const th = document.createElement("th");
+    th.textContent = column;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  rows.forEach(row => {
+    const tr = document.createElement("tr");
+    columns.forEach(column => {
+      const td = document.createElement("td");
+      td.textContent = String(row[column]);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  sqlResult.replaceChildren(table);
+}
+
+function runSampleSql() {
+  const query = sqlInput.value.trim().replace(/;+$/, "").trim();
+
+  if (!/^SELECT\b/i.test(query)) {
+    sqlResult.textContent =
+      "Bu eğitim simülasyonu yalnızca desteklenen SELECT örneklerini çalıştırır.";
+    return;
+  }
+
+  const allPattern = /^SELECT\s+\*\s+FROM\s+Ogrenciler$/i;
+  const fieldsPattern =
+    /^SELECT\s+ad\s*,\s*yas\s+FROM\s+Ogrenciler$/i;
+  const agePattern =
+    /^SELECT\s+\*\s+FROM\s+Ogrenciler\s+WHERE\s+yas\s*>=\s*20$/i;
+  const departmentPattern =
+    /^SELECT\s+\*\s+FROM\s+Ogrenciler\s+WHERE\s+bolum\s*=\s*'Bilgisayar'$/i;
+
+  if (allPattern.test(query)) {
+    renderTable(sampleStudents);
+  } else if (fieldsPattern.test(query)) {
+    renderTable(sampleStudents.map(({ ad, yas }) => ({ ad, yas })));
+  } else if (agePattern.test(query)) {
+    renderTable(sampleStudents.filter(student => student.yas >= 20));
+  } else if (departmentPattern.test(query)) {
+    renderTable(sampleStudents.filter(student => student.bolum === "Bilgisayar"));
+  } else {
+    sqlResult.textContent =
+      "Bu sorgu örnek uygulamada desteklenmiyor. Hazır örnek düğmelerinden birini kullanarak deneyebilirsin.";
+  }
+}
+
+document.getElementById("runSql").addEventListener("click", runSampleSql);
+
+/* 20 soruluk test */
+const questions = [
+  {
+    q: "Veritabanı ne için kullanılır?",
+    options: ["Yalnızca resim çizmek", "Verileri düzenli saklamak ve yönetmek", "Sadece oyun oynamak", "Bilgisayarı soğutmak"],
+    answer: 1,
+    why: "Veritabanları verileri düzenli saklamak, sorgulamak ve yönetmek için kullanılır."
+  },
+  {
+    q: "Veritabanı yönetim sistemi ne yapar?",
+    options: ["Ekran parlaklığını ayarlar", "Yalnızca belge yazdırır", "Veritabanını yönetmeye yardımcı olur", "İnternet kablosu üretir"],
+    answer: 2,
+    why: "VTYS, verilerin saklanması, sorgulanması ve yönetilmesini sağlar."
+  },
+  {
+    q: "İlişkisel veritabanında veriler çoğunlukla hangi yapıda tutulur?",
+    options: ["Tablolarda", "Sadece resimlerde", "Ses dosyalarında", "Masaüstü simgelerinde"],
+    answer: 0,
+    why: "İlişkisel veritabanlarında veriler satır ve sütunlardan oluşan tablolarda tutulur."
+  },
+  {
+    q: "Tablodaki sütun neyi temsil eder?",
+    options: ["Her zaman bütün veritabanını", "Bir alanı veya özelliği", "Yalnızca bir dosyayı", "Bir internet sitesini"],
+    answer: 1,
+    why: "Sütun, ad, yaş veya fiyat gibi bir özelliği temsil eder."
+  },
+  {
+    q: "Birincil anahtarın temel amacı nedir?",
+    options: ["Ekranı açmak", "Her kaydı benzersiz tanımlamak", "İnterneti hızlandırmak", "Dosyaları sıkıştırmak"],
+    answer: 1,
+    why: "PRIMARY KEY her kaydın benzersiz biçimde tanımlanmasını sağlar."
+  },
+  {
+    q: "FOREIGN KEY ne işe yarar?",
+    options: ["Tablolar arasında ilişki kurmaya", "Monitörü kapatmaya", "Parola oluşturmaya tek başına", "Verileri otomatik yazdırmaya"],
+    answer: 0,
+    why: "Yabancı anahtar, tablolar arasındaki referans ilişkisini kurar."
+  },
+  {
+    q: "SQL hangi amaçla kullanılır?",
+    options: ["Yalnızca video izlemek", "Fotoğraf düzenlemek", "İlişkisel veritabanlarıyla sorgulama ve işlem yapmak", "Bilgisayarı fiziksel olarak temizlemek"],
+    answer: 2,
+    why: "SQL, ilişkisel veriler üzerinde sorgulama ve çeşitli işlemler yapmak için kullanılır."
+  },
+  {
+    q: "Tablodaki verileri okumak için en temel komut hangisidir?",
+    options: ["SELECT", "DELETE", "DROP", "GRANT"],
+    answer: 0,
+    why: "SELECT, verileri sorgulamak ve sonuçları görüntülemek için kullanılır."
+  },
+  {
+    q: "SELECT * ne anlama gelir?",
+    options: ["Bütün tabloları sil", "Bütün sütunları seç", "Parolayı değiştir", "Yeni kullanıcı oluştur"],
+    answer: 1,
+    why: "Yıldız, sorguda tablonun bütün sütunlarını seçmek için kullanılır."
+  },
+  {
+    q: "WHERE ne işe yarar?",
+    options: ["Sonuçları koşula göre filtreler", "Tabloyu mutlaka siler", "Yeni bilgisayar oluşturur", "Sadece başlık değiştirir"],
+    answer: 0,
+    why: "WHERE, belirli koşulları sağlayan kayıtların seçilmesini sağlar."
+  },
+  {
+    q: "ORDER BY ne yapar?",
+    options: ["Kayıtları sıralar", "Tabloyu mutlaka siler", "Kullanıcı ekler", "Yedeği geri yükler"],
+    answer: 0,
+    why: "ORDER BY, sorgu sonuçlarını belirtilen sütuna göre sıralar."
+  },
+  {
+    q: "INSERT INTO komutu hangi amaçla kullanılır?",
+    options: ["Yeni kayıt eklemek", "Sonuçları sıralamak", "Tabloyu görüntülemek zorunda kalmadan silmek", "Parolaları çözmek"],
+    answer: 0,
+    why: "INSERT INTO, tabloya yeni kayıt eklemek için kullanılır."
+  },
+  {
+    q: "UPDATE komutu ne yapar?",
+    options: ["Yeni ekran açar", "Mevcut kayıtları günceller", "Her zaman yeni tablo oluşturur", "İnternete bağlanır"],
+    answer: 1,
+    why: "UPDATE, seçilen kayıtların alanlarını değiştirir."
+  },
+  {
+    q: "DELETE komutunun görevi nedir?",
+    options: ["Kayıtları silmek", "Sütunları sıralamak", "Kayıtları yazdırmak", "İnternet hızını ölçmek"],
+    answer: 0,
+    why: "DELETE, koşula uyan kayıtları tablodan siler."
+  },
+  {
+    q: "UPDATE veya DELETE sorgularında WHERE neden önemlidir?",
+    options: ["Yazı rengini değiştirmek için", "İşlemin hangi kayıtları etkileyeceğini sınırlandırmak için", "Monitör çözünürlüğünü artırmak için", "Veritabanını internete açmak için"],
+    answer: 1,
+    why: "WHERE kullanılmazsa işlem, sisteme bağlı olarak tablodaki tüm kayıtları etkileyebilir."
+  },
+  {
+    q: "INNER JOIN ne getirir?",
+    options: ["Yalnızca rastgele kayıtları", "Eşleşme koşulunu sağlayan kayıtları", "Her zaman bütün tabloları siler", "Sadece boş alanları"],
+    answer: 1,
+    why: "INNER JOIN, belirtilen koşula göre eşleşen kayıtları döndürür."
+  },
+  {
+    q: "MongoDB yaygın olarak hangi tür veritabanı olarak bilinir?",
+    options: ["Yalnızca elektronik tablo", "Belge tabanlı NoSQL", "İşletim sistemi", "Metin editörü"],
+    answer: 1,
+    why: "MongoDB, belge tabanlı NoSQL veritabanı sistemidir."
+  },
+  {
+    q: "SQL injection riskini azaltmaya yardımcı olan yöntem hangisidir?",
+    options: ["Her girdiye güvenmek", "Parolayı herkese vermek", "Parametreli sorgular kullanmak", "Yedekleri silmek"],
+    answer: 2,
+    why: "Parametreli sorgular, kullanıcı girdisinin sorgu kodu olarak yorumlanması riskini azaltır."
+  },
+  {
+    q: "Veritabanı yedeği neden alınır?",
+    options: ["Bilgileri kurtarmaya yardımcı olmak için", "Ekranı büyütmek için", "Klavye hızını artırmak için", "Tablo renklerini değiştirmek için"],
+    answer: 0,
+    why: "Yedekler, veri kaybı yaşandığında verilerin geri yüklenmesine yardımcı olur."
+  },
+  {
+    q: "Yedeğin gerçekten işe yaradığını anlamanın iyi yolu nedir?",
+    options: ["Dosyanın adına bakmak", "Geri yüklemeyi test etmek", "Dosyayı yeniden adlandırmak", "Bilgisayarı kapatmak"],
+    answer: 1,
+    why: "Yedeğin geri yüklenebildiği düzenli olarak test edilmelidir."
+  }
+];
+
+const quizQuestions = document.getElementById("quizQuestions");
+const quizResult = document.getElementById("quizResult");
+
+function renderQuiz() {
+  quizQuestions.replaceChildren();
+  quizResult.style.display = "none";
+  quizResult.replaceChildren();
+
+  questions.forEach((question, index) => {
+    const section = document.createElement("section");
+    section.className = "quiz-question";
+
+    const title = document.createElement("p");
+    title.textContent = (index + 1) + ". " + question.q;
+    section.appendChild(title);
+
+    question.options.forEach((option, optionIndex) => {
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+
+      input.type = "radio";
+      input.name = "q" + index;
+      input.value = String(optionIndex);
+
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(option));
+      section.appendChild(label);
+    });
+
+    quizQuestions.appendChild(section);
+  });
+}
+
+document.getElementById("quizForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  let score = 0;
+  let unanswered = 0;
+  const details = [];
+
+  questions.forEach((question, index) => {
+    const selected = document.querySelector('input[name="q' + index + '"]:checked');
+    const selectedIndex = selected ? Number(selected.value) : -1;
+    const isCorrect = selectedIndex === question.answer;
+
+    if (!selected) unanswered++;
+    if (isCorrect) score += 5;
+
+    const detail = document.createElement("p");
+    detail.style.marginTop = "12px";
+
+    const resultLabel = document.createElement("strong");
+    resultLabel.className = isCorrect ? "correct" : "incorrect";
+    resultLabel.textContent =
+      (index + 1) + ". soru: " +
+      (isCorrect ? "Doğru" : "Yanlış") + " — ";
+
+    detail.appendChild(resultLabel);
+
+    const explanation = document.createElement("span");
+    explanation.textContent =
+      "Doğru cevap: " + question.options[question.answer] +
+      ". " + question.why;
+
+    detail.appendChild(explanation);
+    details.push(detail);
+  });
+
+  quizResult.replaceChildren();
+  quizResult.style.display = "block";
+  quizResult.style.background = score >= 70 ? "#e9f7ef" : "#f8efff";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Puanın: " + score + " / 100";
+  quizResult.appendChild(heading);
+
+  const summary = document.createElement("p");
+  summary.textContent =
+    score >= 90 ? "Harika! Konuları çok iyi kavramışsın." :
+    score >= 70 ? "Güzel iş! Biraz tekrar yaparak daha da ilerleyebilirsin." :
+    "Konu anlatımlarını tekrar oku ve testi yeniden dene.";
+
+  quizResult.appendChild(summary);
+
+  if (unanswered > 0) {
+    const note = document.createElement("p");
+    note.textContent = "Boş bırakılan soru sayısı: " + unanswered;
+    quizResult.appendChild(note);
+  }
+
+  const detailHeading = document.createElement("h3");
+  detailHeading.textContent = "Cevaplar ve açıklamalar";
+  detailHeading.style.marginTop = "18px";
+  quizResult.appendChild(detailHeading);
+
+  details.forEach(detail => quizResult.appendChild(detail));
+
+  quizResult.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.getElementById("resetQuiz").addEventListener("click", () => {
+  renderQuiz();
+  document.getElementById("quizForm").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+renderQuiz();
+</script>
+
+</body>
+</html>
