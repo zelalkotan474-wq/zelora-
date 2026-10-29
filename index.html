@@ -5,19 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZELORA - Ücretsiz Dijital Akademi</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#faf8ff;margin:0;color:#2d1b4e}
+*{box-sizing:border-box} body{font-family:Arial,sans-serif;background:#faf8ff;margin:0;color:#2d1b4e}
 header{background:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10}
 .logo{font-weight:800;font-size:22px} .logo span{color:#7c3aed}
 .banner{background:linear-gradient(90deg,#1f1140,#4a2a9a);color:white;padding:38px 30px;border-radius:18px;max-width:1100px;margin:24px auto;text-align:center}
 .grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:0 20px 40px 20px}
-.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px;transition:.2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(124,58,237,.15)}
+.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
 .card h3{margin:0 0 8px 0;font-size:15px;color:#4c1d95} .card p{margin:0 0 16px 0;font-size:13px;color:#6b7280}
 .btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content;display:inline-block;cursor:pointer;border:0}
 .btn.sari{background:#FFC93C;color:#4c1d95}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-.modal.active{display:flex}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:20px} .modal.active{display:flex}
 .modal-box{background:white;border-radius:18px;padding:28px;max-width:420px;width:100%;text-align:center;border:2px solid #7c3aed}
 .yorum-alani{max-width:800px;margin:0 auto 40px auto;padding:0 20px}
 .yorum-kutu{background:white;border-radius:16px;padding:20px;border:1px solid #eee}
@@ -31,7 +28,7 @@ header{background:white;padding:16px 28px;display:flex;justify-content:space-bet
   <div style="font-weight:800;font-size:46px;line-height:1;letter-spacing:-1px">ZEL<span style="color:#FFC93C">ORA</span></div>
   <div style="font-size:13px;letter-spacing:8px;opacity:.9;margin-top:8px;font-weight:600">DİJİTAL AKADEMİ</div>
   <p style="margin-top:16px;font-size:14px;opacity:.85">9 dersin tamamı yayında - Ücretsiz Dijital Akademi</p>
-  <button class="btn sari" onclick="sertifikaAc()" style="margin-top:16px">🎓 Sertifikamı Al</button>
+  <button class="btn sari" onclick="document.getElementById('certModal').classList.add('active')" style="margin-top:16px">🎓 Sertifikamı Al</button>
 </div>
 
 <div class="grid">
@@ -53,6 +50,7 @@ header{background:white;padding:16px 28px;display:flex;justify-content:space-bet
 <input id="yAd" placeholder="Adın" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;margin-bottom:8px">
 <textarea id="yYorum" placeholder="ZELORA hakkında yorumunu yaz..." style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;height:70px"></textarea>
 <button class="btn" style="width:100%;margin-top:8px" onclick="yorumEkle()">Yorumu Gönder</button>
+<p id="durum" style="font-size:12px;color:#888;text-align:center;margin-top:8px"></p>
 </div>
 <div id="yorumList" style="margin-top:16px"></div>
 </div>
@@ -60,7 +58,6 @@ header{background:white;padding:16px 28px;display:flex;justify-content:space-bet
 <div id="certModal" class="modal" onclick="if(event.target==this)this.classList.remove('active')">
 <div class="modal-box">
 <h3>🎓 ZELORA Sertifikası</h3>
-<p style="font-size:13px;color:#666">Adını yaz, sertifikanı indir!</p>
 <input id="ad" placeholder="Ad Soyad" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:15px 0">
 <button class="btn" style="width:100%" onclick="sertifikaYap()">Sertifikayı İndir</button>
 <button onclick="document.getElementById('certModal').classList.remove('active')" style="margin-top:10px;background:none;border:0;color:#999;cursor:pointer">Kapat</button>
@@ -68,13 +65,12 @@ header{background:white;padding:16px 28px;display:flex;justify-content:space-bet
 </div>
 </div>
 
-<footer style="text-align:center;padding:30px 20px;color:#6b7280;font-size:13px;background:white;border-top:1px solid #eee;margin-top:20px">
+<footer style="text-align:center;padding:30px 20px;color:#6b7280;font-size:13px;background:white;border-top:1px solid #eee">
   <div>© 2026 ZELORA - Dijital Akademi | 9/9 Ders Yayında 🚀</div>
   <div style="margin-top:8px">İletişim: <a href="mailto:zelorahq@gmail.com" style="color:#7c3aed;font-weight:bold;text-decoration:none">zelorahq@gmail.com</a></div>
 </footer>
 
 <script>
-function sertifikaAc(){document.getElementById('certModal').classList.add('active')}
 function sertifikaYap(){
 const ad=document.getElementById('ad').value||'Zelora Öğrencisi';
 const c=document.getElementById('cert'); const ctx=c.getContext('2d');
@@ -84,14 +80,13 @@ ctx.fillStyle='white'; ctx.fillRect(25,25,750,450);
 ctx.fillStyle='#2d1b4e'; ctx.font='bold 36px Arial'; ctx.fillText('ZELORA ACADEMY',240,130);
 ctx.font='18px Arial'; ctx.fillText('Ücretsiz Dijital Akademi - Başarı Sertifikası',210,170);
 ctx.font='bold 30px Arial'; ctx.textAlign='center'; ctx.fillText(ad,400,260); ctx.textAlign='left';
-ctx.font='14px Arial'; ctx.fillText('9 dersi başarıyla tamamladı - '+new Date().toLocaleDateString('tr-TR'),200,310);
+ctx.font='14px Arial'; ctx.fillText('9 dersi tamamladı - '+new Date().toLocaleDateString('tr-TR'),200,310);
 const a=document.createElement('a'); a.download='ZELORA-Sertifika.png'; a.href=c.toDataURL(); a.click();
 document.getElementById('certModal').classList.remove('active');
 }
-let puan=5;
-let yorumlar=JSON.parse(localStorage.getItem('zelora_yorum')||'[]');
+let puan=5; let yorumlar=JSON.parse(localStorage.getItem('zelora_yorum')||'[]');
 const starEl=document.getElementById('stars');
-starEl.onclick=(e)=>{puan=Math.ceil((e.offsetX/starEl.offsetWidth)*5); starEl.innerText='★'.repeat(puan)+'☆'.repeat(5-puan)};
+starEl.onclick=(e)=>{puan=Math.ceil((e.offsetX/starEl.offsetWidth)*5)||5; starEl.innerText='★'.repeat(puan)+'☆'.repeat(5-puan)};
 function yorumEkle(){
 const ad=document.getElementById('yAd').value||'Anonim'; const y=document.getElementById('yYorum').value;
 if(!y) return alert('Yorum yaz fındığım!');
