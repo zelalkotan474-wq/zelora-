@@ -7,19 +7,33 @@
 <style>
 *{box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:#faf8ff;margin:0;color:#2d1b4e}
-header{background:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0}
+header{background:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10}
 .logo{font-weight:800;font-size:22px} .logo span{color:#7c3aed}
 .banner{background:linear-gradient(90deg,#1f1140,#4a2a9a);color:white;padding:32px 30px;border-radius:18px;max-width:1100px;margin:24px auto;text-align:center}
 .grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:0 20px 40px 20px}
-.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+.card{background:white;border-radius:16px;padding:22px 20px;border:1px solid #eee;border-left:4px solid #7c3aed;display:flex;flex-direction:column;justify-content:space-between;min-height:140px;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(124,58,237,.15)}
 .card h3{margin:0 0 8px 0;font-size:15px;color:#4c1d95} .card p{margin:0 0 16px 0;font-size:13px;color:#6b7280}
-.btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content}
+.btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content;display:inline-block;cursor:pointer;border:0}
+.btn.sari{background:#FFC93C;color:#4c1d95}
 footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
+/* EKLENEN KISIMLAR */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:white;border-radius:18px;padding:28px;max-width:420px;width:100%;text-align:center;border:2px solid #7c3aed}
+.yorum-alani{max-width:800px;margin:0 auto 40px auto;padding:0 20px}
+.yorum-kutu{background:white;border-radius:16px;padding:20px;border:1px solid #eee}
+.yorum-item{background:#f9f7ff;border-radius:12px;padding:12px 14px;margin-bottom:10px;border:1px solid #ede9fe}
 </style>
 </head>
 <body>
-<header><div class="logo">ZEL<span>ORA</span></div><div style="font-size:13px">9 Ders Yayında!</div></header>
-<div class="banner"><h1>🎉 ZELORA TAMAMLANDI!</h1><p>9 dersin tamamı yayında - Ücretsiz Dijital Akademi</p></div>
+<header><div class="logo">ZEL<span>ORA</span></div><div style="font-size:13px">9 Ders Yayında! <span id="ortPuan">⭐ 5.0</span></div></header>
+<div class="banner">
+<h1>🎉 ZELORA TAMAMLANDI!</h1>
+<p>9 dersin tamamı yayında - Ücretsiz Dijital Akademi</p>
+<button class="btn sari" onclick="sertifikaAc()" style="margin-top:12px">🎓 Sertifikamı Al</button>
+</div>
+
 <div class="grid">
 <div class="card"><div><h3>1. Bilgisayarın Temelleri</h3><p>Donanım, yazılım nedir?</p></div><a class="btn" href="bilgisayar-temelleri.html">Keşfet →</a></div>
 <div class="card"><div><h3>2. İnternet ve Güvenlik</h3><p>Güvende kalmanın yolları.</p></div><a class="btn" href="internet-ve-guvenlik.html">Keşfet →</a></div>
@@ -31,6 +45,63 @@ footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
 <div class="card"><div><h3>8. Veritabanları</h3><p>SQL Lab ile verileri yönet.</p></div><a class="btn" href="veritabanlari.html">Keşfet →</a></div>
 <div class="card"><div><h3>9. Linux</h3><p>Terminal komutlarını öğren.</p></div><a class="btn" href="linux.html">Keşfet →</a></div>
 </div>
+
+<!-- YORUM VE PUAN BÖLÜMÜ -->
+<div class="yorum-alani">
+<h2 style="text-align:center">⭐ Öğrenciler Ne Diyor? <span id="avg">5.0</span> (<span id="count">0</span>)</h2>
+<div id="stars" style="font-size:32px;text-align:center;cursor:pointer;margin:10px 0">★★★★★</div>
+<div class="yorum-kutu">
+<input id="yAd" placeholder="Adın" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;margin-bottom:8px">
+<textarea id="yYorum" placeholder="ZELORA hakkında yorumunu yaz..." style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;height:70px"></textarea>
+<button class="btn" style="width:100%;margin-top:8px;justify-content:center;text-align:center" onclick="yorumEkle()">Yorumu Gönder</button>
+</div>
+<div id="yorumList" style="margin-top:16px"></div>
+</div>
+
+<!-- SERTİFİKA MODAL -->
+<div id="certModal" class="modal" onclick="if(event.target==this)this.classList.remove('active')">
+<div class="modal-box">
+<h3>🎓 ZELORA Sertifikası</h3>
+<p style="font-size:13px;color:#666">Adını yaz, sertifikanı indir!</p>
+<input id="ad" placeholder="Ad Soyad" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:15px 0">
+<button class="btn" style="width:100%" onclick="sertifikaYap()">Sertifikayı İndir</button>
+<button onclick="document.getElementById('certModal').classList.remove('active')" style="margin-top:10px;background:none;border:0;color:#999;cursor:pointer">Kapat</button>
+<canvas id="cert" width="800" height="500" style="display:none"></canvas>
+</div>
+</div>
+
 <footer>© 2026 ZELORA - 9/9 Ders Yayında 🚀 Tebrikler!</footer>
+
+<script>
+function sertifikaAc(){document.getElementById('certModal').classList.add('active')}
+function sertifikaYap(){
+const ad=document.getElementById('ad').value||'Zelora Öğrencisi';
+const c=document.getElementById('cert'); const ctx=c.getContext('2d');
+ctx.fillStyle='#4a2a9a'; ctx.fillRect(0,0,800,500);
+ctx.fillStyle='#FFC93C'; ctx.fillRect(15,15,770,470);
+ctx.fillStyle='white'; ctx.fillRect(25,25,750,450);
+ctx.fillStyle='#2d1b4e'; ctx.font='bold 36px Arial'; ctx.fillText('ZELORA ACADEMY',240,130);
+ctx.font='18px Arial'; ctx.fillText('Ücretsiz Dijital Akademi - Başarı Sertifikası',210,170);
+ctx.font='bold 30px Arial'; ctx.textAlign='center'; ctx.fillText(ad,400,260); ctx.textAlign='left';
+ctx.font='14px Arial'; ctx.fillText('9 dersi başarıyla tamamladı - '+new Date().toLocaleDateString('tr-TR'),200,310);
+const a=document.createElement('a'); a.download='ZELORA-Sertifika.png'; a.href=c.toDataURL(); a.click();
+document.getElementById('certModal').classList.remove('active');
+}
+let puan=5;
+let yorumlar=JSON.parse(localStorage.getItem('zelora_yorum')||'[{"ad":"Zeynep","yorum":"Linux dersi çok iyiydi!","puan":5},{"ad":"Ahmet","yorum":"9 dersi bitirdim sertifikamı aldım 🚀","puan":5}]');
+const starEl=document.getElementById('stars');
+starEl.onclick=(e)=>{puan=Math.ceil((e.offsetX/starEl.offsetWidth)*5); starEl.innerText='★'.repeat(puan)+'☆'.repeat(5-puan)};
+function yorumEkle(){
+const ad=document.getElementById('yAd').value||'Anonim'; const y=document.getElementById('yYorum').value;
+if(!y) return alert('Yorum yaz fındığım!');
+yorumlar.unshift({ad,yorum:y,puan}); localStorage.setItem('zelora_yorum',JSON.stringify(yorumlar)); document.getElementById('yYorum').value=''; listele();
+}
+function listele(){
+let t=0; const list=document.getElementById('yorumList');
+list.innerHTML=yorumlar.map(r=>{t+=r.puan; return `<div class="yorum-item"><b>${r.ad}</b> ${'★'.repeat(r.puan)}<p style="margin:4px 0 0;font-size:13px">${r.yorum}</p></div>`}).join('');
+if(yorumlar.length){document.getElementById('avg').innerText=(t/yorumlar.length).toFixed(1); document.getElementById('count').innerText=yorumlar.length; document.getElementById('ortPuan').innerText='⭐ '+(t/yorumlar.length).toFixed(1)}
+}
+listele();
+</script>
 </body>
 </html>
