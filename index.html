@@ -16,7 +16,6 @@ header{background:white;padding:16px 28px;display:flex;justify-content:space-bet
 .card h3{margin:0 0 8px 0;font-size:15px;color:#4c1d95} .card p{margin:0 0 16px 0;font-size:13px;color:#6b7280}
 .btn{background:#7c3aed;color:white;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:bold;text-decoration:none;width:fit-content;display:inline-block;cursor:pointer;border:0}
 .btn.sari{background:#FFC93C;color:#4c1d95}
-footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
 .modal.active{display:flex}
 .modal-box{background:white;border-radius:18px;padding:28px;max-width:420px;width:100%;text-align:center;border:2px solid #7c3aed}
@@ -69,7 +68,10 @@ footer{text-align:center;padding:20px;color:#aaa;font-size:12px}
 </div>
 </div>
 
-<footer>© 2026 ZELORA - 9/9 Ders Yayında 🚀 Tebrikler!</footer>
+<footer style="text-align:center;padding:30px 20px;color:#6b7280;font-size:13px;background:white;border-top:1px solid #eee;margin-top:20px">
+  <div>© 2026 ZELORA - Dijital Akademi | 9/9 Ders Yayında 🚀</div>
+  <div style="margin-top:8px">İletişim: <a href="mailto:zelorahq@gmail.com" style="color:#7c3aed;font-weight:bold;text-decoration:none">zelorahq@gmail.com</a></div>
+</footer>
 
 <script>
 function sertifikaAc(){document.getElementById('certModal').classList.add('active')}
@@ -87,7 +89,7 @@ const a=document.createElement('a'); a.download='ZELORA-Sertifika.png'; a.href=c
 document.getElementById('certModal').classList.remove('active');
 }
 let puan=5;
-let yorumlar=JSON.parse(localStorage.getItem('zelora_yorum')||'[{"ad":"Zeynep","yorum":"Linux dersi çok iyiydi!","puan":5},{"ad":"Ahmet","yorum":"9 dersi bitirdim sertifikamı aldım 🚀","puan":5}]');
+let yorumlar=JSON.parse(localStorage.getItem('zelora_yorum')||'[]');
 const starEl=document.getElementById('stars');
 starEl.onclick=(e)=>{puan=Math.ceil((e.offsetX/starEl.offsetWidth)*5); starEl.innerText='★'.repeat(puan)+'☆'.repeat(5-puan)};
 function yorumEkle(){
